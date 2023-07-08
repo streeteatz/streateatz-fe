@@ -1,8 +1,12 @@
 import React, { useEffect, useState } from 'react';
+import Header from '../Header/Header';
 
 const App = () => {
   return(
-    <p>Hello</p>
+    <>
+      
+      <Header />
+    </>
   )
 }
 

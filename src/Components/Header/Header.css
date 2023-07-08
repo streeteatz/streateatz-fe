@@ -1,0 +1,14 @@
+.header-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin: 1%;
+  border: 1px red solid;
+}
+
+.logo-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-content: left;
+}
