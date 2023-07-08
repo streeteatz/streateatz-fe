@@ -22,6 +22,8 @@ const App = () => {
 
   const searchResults = (searchValue) => {
     //this is going to take in whatever the search value and based upon the search value it will iterate over the vendors and update the vendors state accordingly
+
+    // now if we are passing down the name of a  truck or location of truck then we just need to iteratre over vendors and filter where we see fit
   }
 
   const toggleView = () => {
