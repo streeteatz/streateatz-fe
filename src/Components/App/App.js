@@ -5,7 +5,7 @@ import Search from '../Search/Search'
 import VendorView from '../VendorView/VendorView'
 
 const App = () => {
-  const [vendors, setVendors] = useState([])
+  const [vendors, setVendors] = useState([1, 2, 3, 4])
   const [currentUser, setCurrentUser] = useState('customer')
   const [favorites, setFavorites] = useState([])
   const [loading, setLoading] = useState(true)
@@ -29,7 +29,7 @@ const App = () => {
   const toggleView = (id) => {
     setCurrentUser(id);
   }
- 
+
   const filterChosenVendor = () => {
 
   }
