@@ -12,8 +12,16 @@ const App = () => {
   const [error, setError] = useState(null)
 
   const favTruck = (truck) => {
-    const newFavState = [...favorites, truck]
-    setFavorites(newFavState)
+    if (!favorites.contains(truck)) {
+      const newFavState = [...favorites, truck]
+      setFavorites(newFavState)
+      console.log(state, "state after")
+    } else {
+      const newFavState = favorites.filter(fav => {
+        return fav.id != truck.id
+      })
+      setFavorites(newFavState)
+    }
   }
 
   const removeFav = (truck) => {
@@ -50,7 +58,7 @@ const fetchData = () => {
       <h1>App</h1>
       <Header togView={toggleView}/>
       <Search vendors={vendors} search={searchResults}/>
-      <Results vendors={vendors} remFav={removeFav} addFav={favTruck}/>
+      <Results vendors={vendors} remFav={removeFav} addFav={favTruck} favorites={favorites}/>
     </div> :
     <div>
       <Header togView={toggleView}/>
