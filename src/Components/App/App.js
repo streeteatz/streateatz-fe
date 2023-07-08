@@ -6,7 +6,7 @@ import VendorView from '../VendorView/VendorView'
 
 const App = () => {
   const [vendors, setVendors] = useState([])
-  const [currentUser, setCurrentUser] = useState(true)
+  const [currentUser, setCurrentUser] = useState('customer')
   const [favorites, setFavorites] = useState([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(null)
@@ -26,8 +26,8 @@ const App = () => {
     // now if we are passing down the name of a  truck or location of truck then we just need to iteratre over vendors and filter where we see fit
   }
 
-  const toggleView = () => {
-    //upon clicking on the toggle it will set the currentUser state to false and vice versa
+  const toggleView = (id) => {
+    setCurrentUser(id);
   }
  
   const filterChosenVendor = () => {
@@ -38,7 +38,7 @@ const fetchData = () => {
   // this is going to fetch the data and then set state but then also reset isLoading to false
 }
   useEffect(() => {
-    fetchData()
+    fetchData();
 // call in mock data somehow and establish it as the state of vendors
   }, [])
 
