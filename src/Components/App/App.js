@@ -15,7 +15,6 @@ const App = () => {
     if (!favorites.contains(truck)) {
       const newFavState = [...favorites, truck]
       setFavorites(newFavState)
-      console.log(state, "state after")
     } else {
       const newFavState = favorites.filter(fav => {
         return fav.id != truck.id

@@ -7,11 +7,10 @@ import downvoted from '../../assets/downvoted.png'
 import upvoted from '../../assets/upvoted.png'
 
 const TruckCard = ({ truck, addFav }) => {
-  const [favorite, setFavorite] = useState(false);
   return(
     <div>
       {/* <img className="notFav icon" alt="empty star icon" src={notFav} onClick={(event) => addFav(truck)}/> */}
-      <img className="fav icon" alt="favorited icon" src={[truck.favorite]} onClick={(event) => addFav(truck)}/>
+      {/* <img className="fav icon" alt="favorited icon" src={[truck.favorite]} onClick={(event) => addFav(truck)}/> */}
       {/* src= truck.favorite is equal to "Fav" or "notFav", which is assigned as a string within the Results component. Those strings refer to the image imports above and hopefully render the right image. This might not work when the data is actually in place, since I don't think the Results component automatically re-renders upon click of either of these images */}
       <img className="notDownvoted icon" alt="empty thumbs down icon" src={notDownvoted} />
       <img className="notUpvoted icon" alt="empty thumbs up icon" src={notUpvoted} />
