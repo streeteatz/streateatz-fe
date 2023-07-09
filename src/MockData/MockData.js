@@ -1,4 +1,4 @@
-const mockData = {
+export const mockData = {
   "data": [
     {
       "id": "1",
@@ -16,6 +16,9 @@ const mockData = {
         "tags": "#burgers, #fries, #awesomeness",
         "website": "www.bobsburgers.com",
         "wait_time": "15",
+        "favorited": "false",
+        "userDownvote": "false",
+        "userUpvote": "false",
         // "img": "www.burgerimage.com"
       }
     },
@@ -35,6 +38,9 @@ const mockData = {
         "tags": "#pizza, #italian, #yum",
         "website": "www.pizzapalace.com",
         "wait_time": "20",
+        "favorited": "false",
+        "userDownvote": "false",
+        "userUpvote": "false",
         // "img": "www.pizzaimage.com"
       }
     },
@@ -54,6 +60,9 @@ const mockData = {
         "tags": "#tacos, #mexican, #delicious",
         "website": "www.tacotown.com",
         "wait_time": "10",
+        "favorited": "false",
+        "userDownvote": "false",
+        "userUpvote": "false",
         // "img": "www.tacoimage.com"
       }
     },
@@ -73,6 +82,9 @@ const mockData = {
         "tags": "#sushi, #japanese, #fast",
         "website": "www.sushiexpress.com",
         "wait_time": "5",
+        "favorited": "false",
+        "userDownvote": "false",
+        "userUpvote": "false",
         // "img": "www.sushiimage.com"
       }
     },
@@ -92,6 +104,9 @@ const mockData = {
         "tags": "#bbq, #ribs, #grill",
         "website": "www.bbqbarn.com",
         "wait_time": "25",
+        "favorited": "false",
+        "userDownvote": "false",
+        "userUpvote": "false",
         // "img": "www.bbqimage.com"
       }
     },
@@ -111,6 +126,9 @@ const mockData = {
         "tags": "#pasta, #italian, #yum",
         "website": "www.pastaparadise.com",
         "wait_time": "15",
+        "favorited": "false",
+        "userDownvote": "false",
+        "userUpvote": "false",
         // "img": "www.pastaimage.com"
       }
     },
@@ -130,6 +148,9 @@ const mockData = {
         "tags": "#burritos, #mexican, #yum",
         "website": "www.burritobliss.com",
         "wait_time": "12",
+        "favorited": "false",
+        "userDownvote": "false",
+        "userUpvote": "false",
         // "img": "www.burritoimage.com"
       }
     },
@@ -149,6 +170,9 @@ const mockData = {
         "tags": "#icecream, #dessert, #yum",
         "website": "www.icecreamparadise.com",
         "wait_time": "5",
+        "favorited": "false",
+        "userDownvote": "false",
+        "userUpvote": "false",
         // "img": "www.icecreamimage.com"
       }
     },
@@ -168,6 +192,9 @@ const mockData = {
         "tags": "#thai, #spicy, #delicious",
         "website": "www.tastythai.com",
         "wait_time": "18",
+        "favorited": "false",
+        "userDownvote": "false",
+        "userUpvote": "false",
         // "img": "www.thaiimage.com"
       }
     },
@@ -187,6 +214,9 @@ const mockData = {
         "tags": "#sushi, #japanese, #yum",
         "website": "www.sushishack.com",
         "wait_time": "30",
+        "favorited": "false",
+        "userDownvote": "false",
+        "userUpvote": "false",
         // "img": "www.sushiimage.com"
       }
     }

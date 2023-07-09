@@ -3,13 +3,12 @@ import TruckCard from '../TruckCard/TruckCard'
 
 const Results = ({ vendors, addFav, remFav, favorites }) => {
   const allVendors = vendors.map((truck, element) =>  {
-    // if (favorites.includes(truck)) {
-    //   truck.favorite = "Fav";
-    // } else {
-    //   truck.favorite = "notFav";
-    // }
     return(
-      <TruckCard props={(truck, addFav, remFav)} key={element} />
+      <TruckCard 
+        truck={truck}
+        addFav={addFav}
+        remFav={remFav}
+        key={element} />
     )
   })
 
