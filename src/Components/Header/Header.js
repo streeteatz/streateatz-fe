@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import logo from '../../assets/streeteatz_logo.png';
 import './Header.css';
 
-const Header = ({ togView }) => {
+const Header = ({ togView, currentUser }) => {
   return (
     <div className="header-container">
       <div className="logo-container">
@@ -10,8 +10,8 @@ const Header = ({ togView }) => {
         <p className="logo-name">street eatz</p>
       </div>
       <div className="toggle-container">
-        <button id="vendor" className="vendor-btn btn" onClick={(event) => togView(event.target.id)}>vendors</button>
-        <button id="customer" className="customer-btn selected-btn" onClick={(event) => togView(event.target.id)}>customers</button>
+        <button id="vendor" className={ `${currentUser === "vendor" ? "selected-btn" : "btn"}`} onClick={(event) => togView(event.target.id)}>vendors</button>
+        <button id="customer" className={ `${currentUser === "customer" ? "selected-btn" : "btn"}`} onClick={(event) => togView(event.target.id)}>customers</button>
       </div>
     </div>
   )

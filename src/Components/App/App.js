@@ -66,7 +66,7 @@ const fetchData = () => {
   return(
     currentUser ? 
     <div>
-      <Header togView={toggleView}/>
+      <Header togView={toggleView} currentUser={currentUser}/>
       <Search vendors={vendors} search={searchResults}/>
       <Results vendors={vendors} remFav={removeFav} addFav={favTruck} favorites={favorites}/>
     </div> :

@@ -85,6 +85,12 @@
   border: 1.5px #767676 solid;
   border-radius: 25px;
   cursor: pointer;
+  transition: all .3s ease-in-out;
+}
+
+.filter-btn:hover {
+  width: 100px;
+  transition: all .3s ease-in-out;
 }
 
 .selected-filter-btn {
