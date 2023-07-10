@@ -1,21 +1,91 @@
 .truck-card {
-  border: 2px blue solid;
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
   align-items: top;
-  margin: 4vh 3vw 3vh 4vw;
+  margin: 4vh 27.5vw 3vh 27.5vw;
+  height: fit-content;
+  width: 45vw;
 }
 
 .icon {
-  width: 15px;
-  height: 15px;
+  height: 20px;
+  width: 20px;
   cursor: pointer;
 }
 
-.fake-image {
-  height: 150px;
-  width: 225px;
+.star-icon {
+  height: 30px;
+  width: 30px;
+  cursor: pointer;
+}
+
+.image {
+  height: 175px;
+  width: 250px;
   margin: 0px 10px 0px 10px;
   cursor: pointer;
+}
+
+.details-container  {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: left;
+}
+
+.status-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: left;
+  margin: 0px 0px 2px 0px;
+}
+
+.distance {
+  margin: 0px 0px 2px 0px;
+  color: #5D5D5D;
+  font-size: 1.15em;
+}
+
+.status {
+  margin: 0px;
+  font-weight: 600;
+}
+
+.pin  {
+  margin-top: 2.5px;
+  margin-right: 5px;
+  margin-left: 5px;
+  height: 15px;
+  width: 15px;
+}
+
+.status, .location {
+  color: #5D5D5D;
+  margin: 0px;
+  font-size: 1em;
+}
+
+.name {
+  margin: 0px 0px 2px 0px;
+  font-size: 1.25em;
+  font-weight: 600;
+}
+
+.tags  {
+  margin: 0px 0px 53px 0px;
+  color: #5D5D5D;
+  font-size: .9em;
+}
+
+.votes-container  {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.upvotes, .downvotes  {
+  margin: 0px 5px 0px 5px;
 }

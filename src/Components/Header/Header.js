@@ -3,7 +3,7 @@ import logo from '../../assets/streeteatz_logo.png';
 import './Header.css';
 import { NavLink } from 'react-router-dom';
 
-const Header = ({ togView }) => {
+const Header = ({ togView, currentUser }) => {
   return (
     <div className="header-container">
       <NavLink to="/" >
@@ -14,10 +14,10 @@ const Header = ({ togView }) => {
       </NavLink>
       <div className="toggle-container">
         <NavLink to="/vendor-view" >
-          <button id="vendor" className="vendor-btn btn" onClick={(event) => togView(event.target.id)}>vendors</button>
+          <button id="vendor" className={ `${currentUser === "vendor" ? "selected-btn" : "btn"}`} onClick={(event) => togView(event.target.id)}>vendors</button>
         </NavLink>
         <NavLink to="/">
-          <button id="customer" className="customer-btn selected-btn" onClick={(event) => togView(event.target.id)}>customers</button>
+          <button id="customer" className={ `${currentUser === "customer" ? "selected-btn" : "btn"}`} onClick={(event) => togView(event.target.id)}>customers</button>
         </NavLink>
       </div>
     </div>

@@ -6,6 +6,8 @@ import notUpvoted from '../../assets/notUpvoted.png'
 import downvoted from '../../assets/downvoted.png'
 import upvoted from '../../assets/upvoted.png'
 import { NavLink } from 'react-router-dom';
+import pin from '../../assets/pin.png'
+import './TruckCard.css'
 
 const TruckCard = (props) => {
   const [isFavorite, setIsFavorite] = useState(false)
@@ -53,41 +55,46 @@ const currentUpvote = isUpvoted ? upvoted : notUpvoted
 const currentDownvote = isDownvoted ? downvoted : notDownvoted
 const starAltText = isFavorite ? "Favorited Food Truck Star" : "Not Favorited Food Truck Star"
   return(
-    <div>
-      <img
-        className="star icon"
-        alt={starAltText}
-        src={currentStar}
-        onClick={() => handleFav()}
-        height={50} width={50} />
-      {/* <img className="fav icon" alt="favorited icon" src={[truck.favorite]} onClick={(event) => handleFav(truck)} /> */}
-      {/* src= truck.favorite is equal to "Fav" or "notFav", which is assigned as a string within the Results component. Those strings refer to the image imports above and hopefully render the right image. This might not work when the data is actually in place, since I don't think the Results component automatically re-renders upon click of either of these images */}
-      {/* <img className="notDownvoted icon" alt="empty thumbs down icon" src={notDownvoted} height={50} width={50}/> */}
-      <img
-        className="downvoted icon"
-        alt="downvoted icon"
-        src={currentDownvote}
-        onClick={() => handleDownvote()}
-        height={50} width={50} />
-      <img
-        className="notUpvoted icon"
-        alt="empty thumbs up icon"
-        src={currentUpvote}
+    <div className="truck-card">
+    <img 
+    className="star-icon" 
+    alt={starAltText} 
+    src={currentStar} 
+    onClick={() => handleFav()} 
+    height={50} width={50}/> 
+  <img className="image" src={props.truck.img}/>  
+    <div className="details-container">
+      <p className="distance">0.4 miles</p>
+      <div className="status-container">
+        <p className="status">{props.truck.status}</p>
+        <img className="pin" src={pin}></img>
+        <p className="location">{props.truck.location}</p>
+          {/* we're going to need to figure out what to do with the props.truck.location coordinates to make them display in a way that's like, readable for a human being */}
+          {/* we're also going to need to figure out how to do a distance calculation based on lat/long coordinates */}
+      </div>
+      <NavLink to={`/vendor/${props.truck.id}`}>
+          <p className="name">{props.truck.name}</p>
+      </NavLink>
+      <p className="tags">{props.truck.tags}</p>
+      <div className="votes-container">
+        <img 
+        className="notUpvoted icon" 
+        alt="empty thumbs up icon" 
+        src={currentUpvote} 
         onClick={() => handleUpvote()}
         height={50} width={50} />
-      {/* <img className="upvoted icon" alt="upvoted icon" src={upvoted} height={50} width={50}/> */}
-      <NavLink to={`/vendor/${props.truck.id}`}>
-        <p className="name">{props.truck.name}</p>
-      </NavLink>
-      <p className="location">Location</p>
-      <p className="distance">Distance</p>
-      <p className="status">Status</p>
-      <p className="tags">Tags</p>
-      <p className="upvotes">Upvote</p>
-      <p className="downvotes">Downvote</p>
-      <div className="fake-image"></div>
+        <p className="upvotes">{props.truck.up_rating}</p>
+        <img 
+        className="downvoted icon" 
+        alt="downvoted icon" 
+        src={currentDownvote} 
+        onClick={() => handleDownvote()}
+        height={50} width={50}/>
+        <p className="downvotes">{props.truck.down_rating}</p>
+      </div>
     </div>
-  )
+  </div>
+)
 }
 
 export default TruckCard;
