@@ -3,6 +3,7 @@ import Header from '../Header/Header'
 import Results from '../Results/Results'
 import Search from '../Search/Search'
 import VendorView from '../VendorView/VendorView'
+import { Routes, Route } from 'react-router-dom';
 
 import { mockData } from '../../MockData/MockData';
 
@@ -64,16 +65,17 @@ const fetchData = () => {
 
 
   return(
-    currentUser ? 
-    <div>
-      <Header togView={toggleView}/>
-      <Search vendors={vendors} search={searchResults}/>
-      <Results vendors={vendors} remFav={removeFav} addFav={favTruck} favorites={favorites}/>
-    </div> :
-    <div>
-      <Header togView={toggleView}/>
-      <VendorView vendors={vendors}/>
-    </div>
+    <Routes>
+      <div>
+        <Header togView={toggleView}/>
+        <Search vendors={vendors} search={searchResults}/>
+        <Results vendors={vendors} remFav={removeFav} addFav={favTruck} favorites={favorites}/>
+      </div> :
+      <div>
+        <Header togView={toggleView}/>
+        <VendorView vendors={vendors}/>
+      </div>
+    </Routes>
   )
 }
 
