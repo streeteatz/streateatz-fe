@@ -4,7 +4,7 @@ import Results from '../Results/Results'
 import Search from '../Search/Search'
 import VendorView from '../VendorView/VendorView'
 // import TruckDetails from '../TruckDetails/TruckDetails'
-import { Routes, Route, Router } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
 
 import { mockData } from '../../MockData/MockData';
 
@@ -66,7 +66,6 @@ const fetchData = () => {
 
 
   return(
-    
     <Routes>
       <Route path="/" element={
           <div>
@@ -87,6 +86,9 @@ const fetchData = () => {
             <Header togView={toggleView} />
             <VendorView vendors={vendors} />
           </div>
+      } />
+      <Route path="*" element={
+        <Header togView={toggleView} />
       } />
     </Routes>
   
