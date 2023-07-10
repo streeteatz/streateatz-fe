@@ -30,6 +30,7 @@ return(
       <button className="searchQuerySubmit" id="spin-active" onClick={handleSubmit}>🔎</button>
     </form>
     <div className="filter-btn-container">
+      {/* eventually I want to change the styling of the filter buttons on click. The easiest way to do that will be to add  setStyle(".selected-filter.btn") to the onClick function we set up for filtering  */}
       <button className="filter-btn">closest</button>
       <button className="filter-btn">open now</button>
       <button className="filter-btn">favorites</button>
