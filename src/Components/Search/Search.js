@@ -14,17 +14,20 @@ const clearInputs = () => {
   setQuery('')
 }
 return(
-      <form>
-        <input 
-          type="text" 
-          placeholder='Search for Trucks' 
-          name='query' 
-          className='search-field'
-          value={query}
-          onChange={event => setQuery(event.target.value)}
-          />
-          <button className="search-button" onClick={handleSubmit}>Find me Food</button>
-      </form>
+  <div className="search-container">
+    <h2>hungry?</h2>
+    <form>
+      <input 
+        type="text" 
+        placeholder='Search for Trucks' 
+        name='query' 
+        className='search-field'
+        value={query}
+        onChange={event => setQuery(event.target.value)}
+      />
+      <button className="search-button" onClick={handleSubmit}>Find me Food</button>
+    </form>
+  </div>
   )
 }
 

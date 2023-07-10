@@ -2,8 +2,7 @@
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  margin: 1%;
-  border: 1px red solid;
+  margin: 4vh 3vw 3vw 4vh;
 }
 
 .logo-container {
@@ -11,4 +10,61 @@
   flex-direction: row;
   justify-content: flex-start;
   align-content: left;
+  /* border: 2px pink solid; */
+}
+
+.logo {
+  width: 165px;
+  height: 40px;
+  cursor: pointer;
+  transition: all .3s ease-in-out;
+}
+
+.logo:hover {
+  width: 167px;
+  height: 42px;
+  cursor: pointer;
+  transition: all .3s ease-in-out;
+}
+
+.toggle-container  {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 1vw;
+  border: 2px #2f2f2f solid;
+  border-radius: 25px;
+  padding: 3px;
+}
+
+.btn {
+  height: 30px;
+  width: 100px;
+  background-color: #ffffff;
+  color: #2f2f2f;
+  border: none;
+  border-radius: 25px;
+  cursor: pointer;
+  transition: all .3s ease-in-out;
+}
+
+.btn:hover  {
+  width: 110px;
+  transition: all .3s ease-in-out;
+}
+
+.selected-btn {
+  height: 30px;
+  width: 100px;
+  background-color: #D43C0D;
+  color: #ffffff;
+  border: none;
+  border-radius: 25px;
+  cursor: pointer;
+  transition: all .3s ease-in-out;
+}
+
+.selected-btn:hover  {
+  width: 110px;
+  transition: all .3s ease-in-out;
 }
