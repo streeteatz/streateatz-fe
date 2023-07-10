@@ -74,7 +74,7 @@ const starAltText = isFavorite ? "Favorited Food Truck Star" : "Not Favorited Fo
       </div>
       <NavLink to={`/vendor/${props.truck.id}`}>
           <p className="name">{props.truck.name}</p>
-        </NavLink>
+      </NavLink>
       <p className="tags">{props.truck.tags}</p>
       <div className="votes-container">
         <img 
