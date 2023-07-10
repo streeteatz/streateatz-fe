@@ -1,0 +1,94 @@
+.search-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  margin: 0vh 3vw 3vh 4vw;
+  /* border: 2px red solid; */
+}
+
+.search-header  {
+  margin: 0vh 0vw 2.5vh 0vw;
+  font-size: 3.25em;
+  /* border: 2px pink solid; */
+}
+
+.search-bar {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+#searchQueryInput {
+  width: 20%;
+  height: 2.8rem;
+  background: #ffffff;
+  outline: none;
+  border: 2px #767676 solid;
+  border-radius: 1.625rem;
+  padding: 0 3.5rem 0 1.5rem;
+  font-size: 1rem;
+  transition: all .3s ease-in-out;
+}
+
+#searchQueryInput:focus {
+  width: 25%;
+  transition: all .3s ease-in-out;
+}
+
+#searchQueryInput:hover {
+  width: 25%;
+  transition: all .3s ease-in-out;
+}
+
+.searchQuerySubmit {
+  width: 2rem;
+  height: 2rem;
+  margin-left: -2.75rem;
+  background: none;
+  border: none;
+  outline: none;
+  transition: all .3s ease-in-out;
+  cursor: pointer;
+}
+
+#spin-active:active {
+  animation: spin 1s linear;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.filter-btn-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  margin-top: 3vh;
+  gap: 1vw;
+  margin-left: 1vw;
+}
+
+.filter-btn {
+  height: 30px;
+  width: 90px;
+  background: #ffffff;
+  color: #000000;
+  border: 1.5px #767676 solid;
+  border-radius: 25px;
+  cursor: pointer;
+}
+
+.selected-filter-btn {
+  background-color: #d2d2d2;
+  color: #ffffff;
+}
+

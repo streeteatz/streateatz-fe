@@ -2,13 +2,74 @@
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  margin: 1%;
-  border: 1px red solid;
+  margin: 4vh 3vw 3vh 4vw;
 }
 
 .logo-container {
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
-  align-content: left;
+}
+
+.logo-img {
+  width: 25px;
+  height: 30px;
+  cursor: pointer;
+  transition: all .3s ease-in-out;
+  cursor: pointer;
+}
+
+#spin-hover:hover {
+  animation: spin 1s linear;
+}
+
+.logo-name  {
+  font-weight: 700;
+  font-size: 1.25em;
+  margin-top: 0px;
+  margin-left: 5px;
+}
+
+.toggle-container  {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 1vw;
+  border: 1.5px #767676 solid;
+  border-radius: 25px;
+  padding: 3px;
+  height: 35px;
+  width: 215px;
+}
+
+.btn {
+  height: 30px;
+  width: 100px;
+  background-color: #F6F6F5;
+  color: #2f2f2f;
+  border: none;
+  border-radius: 25px;
+  cursor: pointer;
+  transition: all .3s ease-in-out;
+}
+
+.btn:hover  {
+  width: 110px;
+  transition: all .3s ease-in-out;
+}
+
+.selected-btn {
+  height: 30px;
+  width: 100px;
+  background-color: #D43C0D;
+  color: #ffffff;
+  border: none;
+  border-radius: 25px;
+  cursor: pointer;
+  transition: all .3s ease-in-out;
+}
+
+.selected-btn:hover  {
+  width: 110px;
+  transition: all .3s ease-in-out;
 }
