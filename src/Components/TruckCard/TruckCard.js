@@ -5,6 +5,7 @@ import notDownvoted from '../../assets/notDownvoted.png'
 import notUpvoted from '../../assets/notUpvoted.png'
 import downvoted from '../../assets/downvoted.png'
 import upvoted from '../../assets/upvoted.png'
+import { NavLink } from 'react-router-dom';
 import pin from '../../assets/pin.png'
 import './TruckCard.css'
 
@@ -55,18 +56,15 @@ const currentDownvote = isDownvoted ? downvoted : notDownvoted
 const starAltText = isFavorite ? "Favorited Food Truck Star" : "Not Favorited Food Truck Star"
   return(
     <div className="truck-card">
-      <img 
-      className="star-icon" 
-      alt={starAltText} 
-      src={currentStar} 
-      onClick={() => handleFav()} 
-      height={50} width={50}/> 
-
-    <img className="image" src={props.truck.img}/>  
-
+    <img 
+    className="star-icon" 
+    alt={starAltText} 
+    src={currentStar} 
+    onClick={() => handleFav()} 
+    height={50} width={50}/> 
+  <img className="image" src={props.truck.img}/>  
     <div className="details-container">
       <p className="distance">0.4 miles</p>
-
       <div className="status-container">
         <p className="status">{props.truck.status}</p>
         <img className="pin" src={pin}></img>
@@ -74,9 +72,10 @@ const starAltText = isFavorite ? "Favorited Food Truck Star" : "Not Favorited Fo
           {/* we're going to need to figure out what to do with the props.truck.location coordinates to make them display in a way that's like, readable for a human being */}
           {/* we're also going to need to figure out how to do a distance calculation based on lat/long coordinates */}
       </div>
-      <p className="name">{props.truck.name}</p>
+      <NavLink to={`/vendor/${props.truck.id}`}>
+          <p className="name">{props.truck.name}</p>
+        </NavLink>
       <p className="tags">{props.truck.tags}</p>
-
       <div className="votes-container">
         <img 
         className="notUpvoted icon" 
@@ -93,10 +92,9 @@ const starAltText = isFavorite ? "Favorited Food Truck Star" : "Not Favorited Fo
         height={50} width={50}/>
         <p className="downvotes">{props.truck.down_rating}</p>
       </div>
-
     </div>
-    </div>
-  )
+  </div>
+)
 }
 
 export default TruckCard;

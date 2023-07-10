@@ -52,7 +52,7 @@ const goBackHome = () => {
       <div className='right-side'>
         <span> <p>100</p> <p>0</p> </span>
         <div>
-          {items}
+          {/* {items} */}
         </div>
       </div>
     </section>

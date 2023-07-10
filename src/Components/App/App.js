@@ -3,6 +3,8 @@ import Header from '../Header/Header'
 import Results from '../Results/Results'
 import Search from '../Search/Search'
 import VendorView from '../VendorView/VendorView'
+// import TruckDetails from '../TruckDetails/TruckDetails'
+import { Routes, Route } from 'react-router-dom';
 
 import { mockData } from '../../MockData/MockData';
 
@@ -64,16 +66,32 @@ const fetchData = () => {
 
 
   return(
-    currentUser ? 
-    <div>
-      <Header togView={toggleView} currentUser={currentUser}/>
-      <Search vendors={vendors} search={searchResults}/>
-      <Results vendors={vendors} remFav={removeFav} addFav={favTruck} favorites={favorites}/>
-    </div> :
-    <div>
-      <Header togView={toggleView}/>
-      <VendorView vendors={vendors}/>
-    </div>
+    <Routes>
+      <Route path="/" element={
+          <div>
+            <Header togView={toggleView} currentUser={currentUser}/>
+            <Search vendors={vendors} search={searchResults} />
+            <Results vendors={vendors} remFav={removeFav} addFav={favTruck} favorites={favorites} />
+          </div>
+      } />
+      <Route path="/vendor/:id" element={
+          <div>
+            <Header togView={toggleView} />
+            {/* <TruckDetails /> */}
+            {/* //params.match, need to pass down the id that is clicked as a prop to truck details to element specfic truck info */}
+          </div>
+       } />
+      <Route path="/vendor-view" element={
+          <div>
+            <Header togView={toggleView} />
+            <VendorView vendors={vendors} />
+          </div>
+      } />
+      <Route path="*" element={
+        <Header togView={toggleView} />
+      } />
+    </Routes>
+  
   )
 }
 
