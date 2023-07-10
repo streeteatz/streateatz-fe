@@ -1,0 +1,21 @@
+.truck-card {
+  border: 2px blue solid;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: top;
+  margin: 4vh 3vw 3vh 4vw;
+}
+
+.icon {
+  width: 15px;
+  height: 15px;
+  cursor: pointer;
+}
+
+.fake-image {
+  height: 150px;
+  width: 225px;
+  margin: 0px 10px 0px 10px;
+  cursor: pointer;
+}

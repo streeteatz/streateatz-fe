@@ -6,7 +6,8 @@ const Header = ({ togView }) => {
   return (
     <div className="header-container">
       <div className="logo-container">
-        <img src={logo} className="logo" alt="streeteatz-logo"/>
+        <img src={logo} id="spin-hover" className="logo-img" alt="streeteatz-logo"/>
+        <p className="logo-name">street eatz</p>
       </div>
       <div className="toggle-container">
         <button id="vendor" className="vendor-btn btn" onClick={(event) => togView(event.target.id)}>vendors</button>

@@ -4,20 +4,26 @@ import Results from '../Results/Results'
 import Search from '../Search/Search'
 import VendorView from '../VendorView/VendorView'
 
+import { mockData } from '../../MockData/MockData';
+
 const App = () => {
-  const [vendors, setVendors] = useState([1, 2, 3, 4])
+  const [vendors, setVendors] = useState([])
   const [currentUser, setCurrentUser] = useState('customer')
   const [favorites, setFavorites] = useState([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(null)
 
+const thisData = mockData.data.map((data) => {
+  
+})
+
   const favTruck = (truck) => {
-    if (!favorites.contains(truck)) {
+    if (!favorites.find((fav) => fav.id === truck.id)) {
       const newFavState = [...favorites, truck]
       setFavorites(newFavState)
     } else {
       const newFavState = favorites.filter(fav => {
-        return fav.id != truck.id
+        return fav.id !== truck.id
       })
       setFavorites(newFavState)
     }
@@ -25,6 +31,8 @@ const App = () => {
 
   const removeFav = (truck) => {
 // filter over vendors and !== the paramter truck and reset state
+const newFavState = favorites.filter((fav) => fav.id !== truck.id)
+setFavorites(newFavState)
   }
 
   const searchResults = (searchValue) => {
@@ -42,6 +50,10 @@ const App = () => {
   }
 
 const fetchData = () => {
+  const thisData = mockData.data.map((data) => {
+    return data.attributes
+  })
+  setVendors( thisData)
   // this is going to fetch the data and then set state but then also reset isLoading to false
 }
   useEffect(() => {

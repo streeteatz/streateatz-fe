@@ -2,29 +2,32 @@
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  margin: 4vh 3vw 3vw 4vh;
+  margin: 4vh 3vw 3vh 4vw;
 }
 
 .logo-container {
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
-  align-content: left;
-  /* border: 2px pink solid; */
 }
 
-.logo {
-  width: 165px;
-  height: 40px;
+.logo-img {
+  width: 25px;
+  height: 30px;
   cursor: pointer;
   transition: all .3s ease-in-out;
+  cursor: pointer;
 }
 
-.logo:hover {
-  width: 167px;
-  height: 42px;
-  cursor: pointer;
-  transition: all .3s ease-in-out;
+#spin-hover:hover {
+  animation: spin 1s linear;
+}
+
+.logo-name  {
+  font-weight: 700;
+  font-size: 1.25em;
+  margin-top: 0px;
+  margin-left: 5px;
 }
 
 .toggle-container  {
@@ -32,15 +35,17 @@
   flex-direction: row;
   align-items: center;
   gap: 1vw;
-  border: 2px #2f2f2f solid;
+  border: 1.5px #767676 solid;
   border-radius: 25px;
   padding: 3px;
+  height: 35px;
+  width: 215px;
 }
 
 .btn {
   height: 30px;
   width: 100px;
-  background-color: #ffffff;
+  background-color: #F6F6F5;
   color: #2f2f2f;
   border: none;
   border-radius: 25px;

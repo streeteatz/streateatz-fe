@@ -1,8 +1,16 @@
 body {
+  position: absolute;
+  z-index: 0;
   margin: 0;
+  height: 100vh;
+  width: 95vw;
   font-family: 'Open Sans', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-image: url('./assets/background.png');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-color:#F6F6F5;
 }
 
 code {
