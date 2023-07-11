@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import logo from '../../assets/streeteatz_logo.png';
+import bell from '../../assets/bell.png';
 import './Header.css';
 import { NavLink } from 'react-router-dom';
 
@@ -20,8 +21,9 @@ const Header = ({ togView, currentUser }) => {
           <button id="customer" className={ `${currentUser === "customer" ? "selected-btn" : "btn"}`} onClick={(event) => togView(event.target.id)}>customers</button>
         </NavLink>
       </div>
-      <div>
-        <button>notifications</button>
+      <div className="notifications-container">
+        <img className="notifications-icon" src={bell}></img>
+        <button className="notifications-btn">3</button>
       </div>
     </div>
   )
