@@ -1,14 +1,18 @@
 .header-container {
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
-  margin: 4vh 3vw 3vh 4vw;
+  justify-content: center;
+  align-items: center;
+  width: 92vw;
+  margin: 3vh 4vw 3vh 4vw;
 }
 
 .logo-container {
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
+  align-items: center;
+  margin-right: 60vw;
 }
 
 .logo-img {
@@ -26,7 +30,6 @@
 .logo-name  {
   font-weight: 700;
   font-size: 1.25em;
-  margin-top: 0px;
   margin-left: 5px;
 }
 
@@ -39,7 +42,8 @@
   border-radius: 25px;
   padding: 3px;
   height: 35px;
-  width: 215px;
+  width: 220px;
+  margin-right: 2vw;
 }
 
 .btn {
@@ -54,7 +58,7 @@
 }
 
 .btn:hover  {
-  width: 110px;
+  width: 105px;
   transition: all .3s ease-in-out;
 }
 
@@ -70,6 +74,62 @@
 }
 
 .selected-btn:hover  {
-  width: 110px;
+  width: 105px;
   transition: all .3s ease-in-out;
 }
+
+.notifications-container  {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.notifications-icon {
+  height: 25px;
+  width: 25px;
+  cursor: pointer;
+}
+
+.notifications-icon:hover {
+  animation: bell 1s ease-out;
+  transform-origin: center top;
+}
+
+@keyframes bell {
+  0% {transform: rotate(5deg);}
+  25% {transform: rotate(-5deg)}
+  75% {transform: rotate(5deg)}
+  100% {transform: rotate(0);}  
+}
+
+.notifications-btn {
+  position: absolute;
+  z-index: 1;
+  height: 15px;
+  width: 15px;
+  background-color: #D43C0D;
+  color: #ffffff;
+  border: none;
+  border-radius: 25px;
+  padding: 2px 2px 1px 2px;
+  margin: 0px 0px 15px 15px;
+  font-size: .5em;
+  text-align: center;
+}
+
+.dropdown {
+  position: absolute;
+  margin-top: 11vh;
+  margin-left: 78vw;
+}
+
+.dropdown-show {
+  display: inline;
+  font-size: .8em;
+}
+
+.dropdown-hide {
+  display: none;
+}
+
