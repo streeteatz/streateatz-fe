@@ -3,7 +3,7 @@ import Header from '../Header/Header'
 import Results from '../Results/Results'
 import Search from '../Search/Search'
 import VendorView from '../VendorView/VendorView'
-// import TruckDetails from '../TruckDetails/TruckDetails'
+import TruckDetails from '../TruckDetails/TruckDetails'
 import { Routes, Route } from 'react-router-dom';
 import TruckCard from '../TruckCard/TruckCard';
 import { mockData } from '../../MockData/MockData';
@@ -29,15 +29,15 @@ const App = () => {
     }
   }
 
-const importDistance = (miles) => {
+  const importDistance = (miles) => {
   setTruckLocation(...miles)
-  console.log(truckLocation, 'truckLocation')
   return miles
 }
 
   const removeFav =  (truck) => {
 // filter over vendors and !== the paramter truck and reset state
-const newFavState = favorites.filter((fav) => fav.id !== truck.id)
+
+  const newFavState = favorites.filter((fav) => fav.id !== truck.id)
   setFavorites(newFavState)
   }
 
@@ -49,21 +49,19 @@ const newFavState = favorites.filter((fav) => fav.id !== truck.id)
 
     // now if we are passing down the name of a  truck or location of truck then we just need to iteratre over vendors and filter where we see fit
   }
-const searchButtons = (event, button) => {
-  console.log(button, 'in app')
-  event.preventDefault();
-  if (button === "favorites") {  
-    setVendors(favorites)
-    // setVendors(vendors.filter(v => v.favorited === true))
-  } 
-  if (button === "openNow") {
-    setVendors(vendors.filter(v => v.status === "true"))
+  const searchButtons = (event, button) => {
+    event.preventDefault();
+    if (button === "favorites") {  
+      setVendors(favorites)
+      // setVendors(vendors.filter(v => v.favorited === true))
+    } 
+    if (button === "openNow") {
+      setVendors(vendors.filter(v => v.status === "true"))
+    }
+    // if (button === "closest") {
+      
+    // }
   }
-  if (button === "closest") {
-    
-  }
-}
-console.log(TruckCard.isFavorite, 'in apppppp')
 
   const toggleView = (id) => {
     setCurrentUser(id);
@@ -88,8 +86,6 @@ const fetchData = () => {
 // call in mock data somehow and establish it as the state of vendors
   }, [])
 
-
-
   return(
     <Routes>
       <Route path="/" element={
@@ -105,7 +101,7 @@ const fetchData = () => {
             {/* <TruckDetails /> */}
             {/* //params.match, need to pass down the id that is clicked as a prop to truck details to element specfic truck info */}
           </div>
-       } />
+      } />
       <Route path="/vendor-view" element={
           <div>
             <Header togView={toggleView} />

@@ -21,8 +21,8 @@ const TruckCard = (props) => {
     const userLocation = "41.905580, -87.688060"
     const [lat2, lon2] = truckLocation.split(", ")
     const [lat1, lon1] = userLocation.split(", ")
-    var R = 6371; // Radius of the earth in km
-    var dLat = deg2rad(lat2-lat1);  // deg2rad below
+    var R = 6371; 
+    var dLat = deg2rad(lat2-lat1);
     var dLon = deg2rad(lon2-lon1); 
     var a = 
       Math.sin(dLat/2) * Math.sin(dLat/2) +
@@ -30,17 +30,19 @@ const TruckCard = (props) => {
       Math.sin(dLon/2) * Math.sin(dLon/2)
       ; 
     var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a)); 
-    var d = R * c; // Distance in km
-    console.log(props.dist(kmToMiles(d).toFixed(2)), 'in truckCard')
+    var d = R * c;
     return kmToMiles(d).toFixed(2);
   }
-  function deg2rad(deg) {
+
+  const deg2rad = (deg) => {
     return deg * (Math.PI/180)
   }
-  function kmToMiles(km) {
+  
+  const kmToMiles = (km) => {
     const milesPerKm = 0.62137119;
     return km * milesPerKm;
   }
+
 const handleFav = () => {
   setIsFavorite(!isFavorite)
   if (!isFavorite) {
@@ -66,6 +68,7 @@ const handleUpvote = () => {
     }
   }
 }
+
 const handleDownvote = () => {
   if (isUpvoted) {
     return
@@ -80,10 +83,12 @@ const handleDownvote = () => {
     }
   }
 }
+
 const currentStar = isFavorite ? Fav : notFav
 const currentUpvote = isUpvoted ? upvoted : notUpvoted
 const currentDownvote = isDownvoted ? downvoted : notDownvoted
 const starAltText = isFavorite ? "Favorited Food Truck Star" : "Not Favorited Food Truck Star"
+
   return(
     <div className="truck-card">
     <img 

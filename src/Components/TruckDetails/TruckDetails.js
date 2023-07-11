@@ -30,11 +30,11 @@ const goBackHome = () => {
       setLoading(false)
     }, [])
 
-    const items = menu.map((menuItem, index) => {
-      return (
-        <MenuItem key={index} item={menuItem} />
-      )
-    })
+    // const items = menu.map((menuItem, index) => {
+    //   return (
+    //     <MenuItem key={index} item={menuItem} />
+    //   )
+    // })
 
   return(
     <section>
