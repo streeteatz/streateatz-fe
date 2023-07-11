@@ -15,6 +15,7 @@ const clearInputs = () => {
   setQuery('')
 }
 
+
 return(
   <div className="search-container">
     <h2 className="search-header">hungry?</h2>
@@ -32,10 +33,9 @@ return(
     </form>
     <div className="filter-btn-container">
       {/* eventually I want to change the styling of the filter buttons on click. The easiest way to do that will be to add  setStyle(".selected-filter.btn") to the onClick function we set up for filtering  */}
-      <button className="filter-btn">closest</button>
-      <button className="filter-btn">open now</button>
-      <button className="filter-btn">favorites</button>
-      <button className="filter-btn">type </button>
+      <button className="filter-btn" value="closest" onClick={(event) => props.allSearch(event, event.target.value)}>closest</button>
+      <button className="filter-btn" value="openNow" onClick={(event) => props.allSearch(event, event.target.value)}>open now</button>
+      <button className="filter-btn" value="favorites" onClick={(event) => props.allSearch(event, event.target.value)}>favorites</button>
       <button className="clear-btn" onClick={(event) => props.reset(event)}>clear</button>
     </div>
   </div>
