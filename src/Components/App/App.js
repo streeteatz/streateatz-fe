@@ -38,6 +38,10 @@ setFavorites(newFavState)
   }
 
   const searchResults = (searchValue) => {
+    let lowerSearchValue = searchValue.toLowerCase()
+    let nameSearchResults = vendors.filter((v) => v.name.toLowerCase().includes(lowerSearchValue))
+    console.log(nameSearchResults, 'namesearch')
+    setVendors(nameSearchResults)
     //this is going to take in whatever the search value and based upon the search value it will iterate over the vendors and update the vendors state accordingly
 
     // now if we are passing down the name of a  truck or location of truck then we just need to iteratre over vendors and filter where we see fit
@@ -50,7 +54,10 @@ setFavorites(newFavState)
   const filterChosenVendor = () => {
 
   }
-
+  const resestResults = (event) => {
+    event.preventDefault();
+    fetchData()
+  }
 const fetchData = () => {
   const thisData = mockData.data.map((data) => {
     return data.attributes
@@ -70,7 +77,7 @@ const fetchData = () => {
       <Route path="/" element={
           <div>
             <Header togView={toggleView} currentUser={currentUser}/>
-            <Search vendors={vendors} search={searchResults} />
+            <Search vendors={vendors} search={searchResults} reset={resestResults}/>
             <Results vendors={vendors} remFav={removeFav} addFav={favTruck} favorites={favorites} />
           </div>
       } />

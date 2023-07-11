@@ -12,8 +12,9 @@ import './TruckCard.css'
 const TruckCard = (props) => {
   const [isFavorite, setIsFavorite] = useState(false)
   const [isDownvoted, setIsDownvoted] = useState(false)
+  let [downVote, setDownVote] = useState(parseInt(props.truck.down_rating))
+  let [upVote, setupVote] = useState(parseInt(props.truck.up_rating))
   const [isUpvoted, setIsUpvoted] = useState(false)
-  console.log(props.truck, 'in truck card')
 
 const handleFav = () => {
   setIsFavorite(!isFavorite)
@@ -32,8 +33,10 @@ const handleUpvote = () => {
   } else {
     setIsUpvoted(!isUpvoted)
     if (!isUpvoted) {
+      setupVote(upVote += 1)
       props.truck.userUpvote = true
     } else {
+      setupVote(upVote += -1)
       props.truck.userUpvote = false
     }
   }
@@ -44,8 +47,10 @@ const handleDownvote = () => {
   } else {
     setIsDownvoted(!isDownvoted)
     if (!isDownvoted) {
+      setDownVote(downVote += 1)
       props.truck.userDownvote = true
     } else {
+      setDownVote(downVote += -1)
       props.truck.userDownvote = false
     }
   }
@@ -83,14 +88,14 @@ const starAltText = isFavorite ? "Favorited Food Truck Star" : "Not Favorited Fo
         src={currentUpvote} 
         onClick={() => handleUpvote()}
         height={50} width={50} />
-        <p className="upvotes">{props.truck.up_rating}</p>
+        <p className="upvotes">{upVote}</p>
         <img 
         className="downvoted icon" 
         alt="downvoted icon" 
         src={currentDownvote} 
         onClick={() => handleDownvote()}
         height={50} width={50}/>
-        <p className="downvotes">{props.truck.down_rating}</p>
+        <p className="downvotes">{downVote}</p>
       </div>
     </div>
   </div>
