@@ -12,9 +12,35 @@ import './TruckCard.css'
 const TruckCard = (props) => {
   const [isFavorite, setIsFavorite] = useState(false)
   const [isDownvoted, setIsDownvoted] = useState(false)
+  let [downVote, setDownVote] = useState(parseInt(props.truck.down_rating))
+  let [upVote, setupVote] = useState(parseInt(props.truck.up_rating))
   const [isUpvoted, setIsUpvoted] = useState(false)
-  console.log(props.truck, 'in truck card')
-
+  
+  const getDistance = () => {
+    let truckLocation = props.truck.location
+    const userLocation = "41.905580, -87.688060"
+    const [lat2, lon2] = truckLocation.split(", ")
+    const [lat1, lon1] = userLocation.split(", ")
+    var R = 6371; // Radius of the earth in km
+    var dLat = deg2rad(lat2-lat1);  // deg2rad below
+    var dLon = deg2rad(lon2-lon1); 
+    var a = 
+      Math.sin(dLat/2) * Math.sin(dLat/2) +
+      Math.cos(deg2rad(lat1)) * Math.cos(deg2rad(lat2)) * 
+      Math.sin(dLon/2) * Math.sin(dLon/2)
+      ; 
+    var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a)); 
+    var d = R * c; // Distance in km
+    console.log(props.dist(kmToMiles(d).toFixed(2)), 'in truckCard')
+    return kmToMiles(d).toFixed(2);
+  }
+  function deg2rad(deg) {
+    return deg * (Math.PI/180)
+  }
+  function kmToMiles(km) {
+    const milesPerKm = 0.62137119;
+    return km * milesPerKm;
+  }
 const handleFav = () => {
   setIsFavorite(!isFavorite)
   if (!isFavorite) {
@@ -32,8 +58,10 @@ const handleUpvote = () => {
   } else {
     setIsUpvoted(!isUpvoted)
     if (!isUpvoted) {
+      setupVote(upVote += 1)
       props.truck.userUpvote = true
     } else {
+      setupVote(upVote += -1)
       props.truck.userUpvote = false
     }
   }
@@ -44,8 +72,10 @@ const handleDownvote = () => {
   } else {
     setIsDownvoted(!isDownvoted)
     if (!isDownvoted) {
+      setDownVote(downVote += 1)
       props.truck.userDownvote = true
     } else {
+      setDownVote(downVote += -1)
       props.truck.userDownvote = false
     }
   }
@@ -64,7 +94,7 @@ const starAltText = isFavorite ? "Favorited Food Truck Star" : "Not Favorited Fo
     height={50} width={50}/> 
   <img className="image" src={props.truck.img}/>  
     <div className="details-container">
-      <p className="distance">0.4 miles</p>
+      <p className="distance">{getDistance()} miles away</p>
       <div className="status-container">
         <p className="status">{props.truck.status}</p>
         <img className="pin" src={pin}></img>
@@ -83,14 +113,14 @@ const starAltText = isFavorite ? "Favorited Food Truck Star" : "Not Favorited Fo
         src={currentUpvote} 
         onClick={() => handleUpvote()}
         height={50} width={50} />
-        <p className="upvotes">{props.truck.up_rating}</p>
+        <p className="upvotes">{upVote}</p>
         <img 
         className="downvoted icon" 
         alt="downvoted icon" 
         src={currentDownvote} 
         onClick={() => handleDownvote()}
         height={50} width={50}/>
-        <p className="downvotes">{props.truck.down_rating}</p>
+        <p className="downvotes">{downVote}</p>
       </div>
     </div>
   </div>
