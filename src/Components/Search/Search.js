@@ -15,7 +15,6 @@ const clearInputs = () => {
   setQuery('')
 }
 
-
 return(
   <div className="search-container">
     <h2 className="search-header">hungry?</h2>

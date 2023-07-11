@@ -118,3 +118,18 @@
   text-align: center;
 }
 
+.dropdown {
+  position: absolute;
+  margin-top: 11vh;
+  margin-left: 78vw;
+}
+
+.dropdown-show {
+  display: inline;
+  font-size: .8em;
+}
+
+.dropdown-hide {
+  display: none;
+}
+
