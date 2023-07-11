@@ -97,3 +97,14 @@
   color: #ffffff;
 }
 
+.clear-btn {
+  height: 30px;
+  width: 90px;
+  background: #D43C0D;
+  color: #ffffff;
+  border: none;
+  border-radius: 25px;
+  cursor: pointer;
+  transition: all .3s ease-in-out;
+}
+
