@@ -6,7 +6,7 @@ import { NavLink } from 'react-router-dom';
 const Header = ({ togView, currentUser }) => {
   return (
     <div className="header-container">
-      <NavLink to="/" >
+      <NavLink to="/" style={{ textDecoration: 'none', color: "#2f2f2f" }}>
         <div className="logo-container">
           <img src={logo} id="spin-hover" className="logo-img" alt="streeteatz-logo" />
           <p className="logo-name">street eatz</p>
@@ -19,6 +19,9 @@ const Header = ({ togView, currentUser }) => {
         <NavLink to="/">
           <button id="customer" className={ `${currentUser === "customer" ? "selected-btn" : "btn"}`} onClick={(event) => togView(event.target.id)}>customers</button>
         </NavLink>
+      </div>
+      <div>
+        <button>notifications</button>
       </div>
     </div>
   )
