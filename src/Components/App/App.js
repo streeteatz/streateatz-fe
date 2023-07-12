@@ -8,6 +8,7 @@ import Error from '../Error/Error'
 import { Routes, Route } from 'react-router-dom'
 import TruckCard from '../TruckCard/TruckCard'
 import { mockData } from '../../MockData/MockData'
+import { io } from 'socket.io-client'
 
 const App = () => {
   const [vendors, setVendors] = useState([])
@@ -18,6 +19,23 @@ const App = () => {
   const [error, setError] = useState(null)
   const [truckLocation, setTruckLocation] = useState([])
   const [userLocation, setUserLocation] = useState('')
+
+
+  const socket = io("http://localhost:3001", {
+    withCredentials: true,
+    extraHeaders: {
+      "street-eat": "street-eat"
+      }
+  })
+
+  const sendMessage = (truck) => {
+    if (truck.status === 'false') {
+      truck.status = 'true'
+    } else {
+      truck.status = 'false'
+    }
+      socket.emit("send_data", { updatedVendors: vendors.filter(v => v.id !== truck.id), truck: truck });
+  };
 
   const favTruck = (truck) => {
     if (!favorites.find((fav) => fav.id === truck.id)) {
@@ -37,7 +55,6 @@ const App = () => {
 // }
 
   const removeFav =  (truck) => {
-// filter over vendors and !== the paramter truck and reset state
 
   const newFavState = favorites.filter((fav) => fav.id !== truck.id)
   setFavorites(newFavState)
@@ -47,10 +64,12 @@ const App = () => {
     let lowerSearchValue = searchValue.toLowerCase()
     let nameSearchResults = vendors.filter((v) => v.name.toLowerCase().includes(lowerSearchValue) || v.tags.toLowerCase().includes(lowerSearchValue) || v.description.toLowerCase().includes(lowerSearchValue))
     setVendors(nameSearchResults)
+
     //this is going to take in whatever the search value and based upon the search value it will iterate over the vendors and update the vendors state accordingly
 
     // now if we are passing down the name of a  truck or location of truck then we just need to iteratre over vendors and filter where we see fit
   }
+  
   const searchButtons = (event, button) => {
     event.preventDefault();
     if (button === "favorites") {  
@@ -69,6 +88,10 @@ const App = () => {
     setCurrentUser(id);
   }
 
+  const filterChosenVendor = () => {
+
+  }
+
   const resestResults = (event) => {
     event.preventDefault();
     fetchData()
@@ -83,8 +106,15 @@ const App = () => {
   }
 
   useEffect(() => {
-    fetchData();
-// call in mock data somehow and establish it as the state of vendors
+    fetchData()
+    
+    socket.on('receive_data', (data) => {
+      setVendors([data.truck, ...data.updatedVendors])
+    });
+
+    return () => {
+      socket.off('receive_data');
+    };
   }, [])
 
   return(
@@ -101,7 +131,7 @@ const App = () => {
       />
       <Route path="/vendor-view" element={
         <div>
-          <VendorView vendors={vendors} currentVendor={currentVendor}/>
+          <VendorView toggleLive={sendMessage} vendor={vendors.find(v => v.id == 1)} currentVendor={currentVendor}/>
         </div>
       } />
       <Route path="*" element={
