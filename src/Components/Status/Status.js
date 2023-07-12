@@ -2,10 +2,10 @@ import React, { useEffect, useState } from 'react'
 import pin from '../../assets/pin.png'
 import './Status.css'
 
-const Status = ( ) => {
+const Status = ({ toggle, vendor }) => {
   const [location, setLocation] = useState('')
 
-  console.log(location)
+  console.log(vendor, 'location')
 
   return(
     <div className="status-container">
@@ -15,7 +15,7 @@ const Status = ( ) => {
         <p className="closed">closed</p>
         <div className="toggle-switch">
           <input type="checkbox" className="checkbox" 
-            name="live-switch" id="live-switch"/>
+            name="live-switch" id="live-switch" onClick={() => toggle(vendor)}/>
           <label className="label" htmlFor={"live-switch"}>
             <span className="inner" />
             <span className="switch" />

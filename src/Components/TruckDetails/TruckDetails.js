@@ -15,6 +15,7 @@ const TruckDetails = ({ vendors, currentVendor }) => {
     const [loading, setLoading] = useState(true)
     let { id } = useParams();
     let match = vendors.filter(truck => truck.id === id)[0]
+    console.log(vendors, 'vendors in truck details')
 
     // const individualTruckFetch = (id) => {
       // fetch and interpolate the id onto the end of the fetch call
@@ -60,6 +61,7 @@ const goBackHome = () => {
             <div className="details-status-container">
               {/* <p className="status">{translateStatus(match.status)}</p> */}
               <p className="status">currently open</p>
+              {/* pass a status variable in to the status p tag to change with vendors status */}
               <img className="pin" src={pin}></img>
               <p className="location">Placeholder address</p>
             </div>
