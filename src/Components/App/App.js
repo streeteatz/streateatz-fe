@@ -1,12 +1,13 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react'
 import Header from '../Header/Header'
 import Results from '../Results/Results'
 import Search from '../Search/Search'
 import VendorView from '../VendorView/VendorView'
 import TruckDetails from '../TruckDetails/TruckDetails'
-import { Routes, Route } from 'react-router-dom';
-import TruckCard from '../TruckCard/TruckCard';
-import { mockData } from '../../MockData/MockData';
+import Error from '../Error/Error'
+import { Routes, Route } from 'react-router-dom'
+import TruckCard from '../TruckCard/TruckCard'
+import { mockData } from '../../MockData/MockData'
 
 const App = () => {
   const [vendors, setVendors] = useState([])
@@ -87,32 +88,27 @@ const fetchData = () => {
   }, [])
 
   return(
-    <Routes>
-      <Route path="/" element={
+    <div>
+      <Header togView={toggleView} currentUser={currentUser}/>
+      <Routes>
+        <Route path="/" element={
           <div>
-            <Header togView={toggleView} currentUser={currentUser}/>
             <Search vendors={vendors} search={searchResults} reset={resestResults} allSearch={searchButtons}/>
             <Results vendors={vendors} remFav={removeFav} addFav={favTruck} favorites={favorites} dist={importDistance}/>
           </div>
-      } />
-      <Route path="/vendor/:id" element={
-          <div>
-            <Header togView={toggleView} />
-            {/* <TruckDetails /> */}
-            {/* //params.match, need to pass down the id that is clicked as a prop to truck details to element specfic truck info */}
-          </div>
-      } />
+        } />
+      <Route path="/vendor/:id" element={<TruckDetails vendors={vendors}/>}
+      />
       <Route path="/vendor-view" element={
-          <div>
-            <Header togView={toggleView} />
-            <VendorView vendors={vendors} />
-          </div>
+        <div>
+          <VendorView vendors={vendors} />
+        </div>
       } />
       <Route path="*" element={
-        <Header togView={toggleView} />
+        <Error message={"url"}/>
       } />
     </Routes>
-  
+    </div>
   )
 }
 
