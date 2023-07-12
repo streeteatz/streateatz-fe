@@ -2,7 +2,7 @@ import React from 'react'
 import Status from '../Status/Status'
 import TruckDetails from '../TruckDetails/TruckDetails'
 
-const VendorView = ({ vendors, currentVendor }{ toggleLive, vendor }) => {
+const VendorView = ({ vendors, currentVendor, toggleLive }) => {
   console.log(vendor, 'vendor from vendor view')
   return(
     <div>
