@@ -30,10 +30,10 @@ const App = () => {
     }
   }
 
-  const importDistance = (miles) => {
-  setTruckLocation(...miles)
-  return miles
-}
+  // const importDistance = (miles) => {
+  // setTruckLocation(...miles)
+  // return miles
+// }
 
   const removeFav =  (truck) => {
 // filter over vendors and !== the paramter truck and reset state
@@ -94,7 +94,7 @@ const fetchData = () => {
         <Route path="/" element={
           <div>
             <Search vendors={vendors} search={searchResults} reset={resestResults} allSearch={searchButtons}/>
-            <Results vendors={vendors} remFav={removeFav} addFav={favTruck} favorites={favorites} dist={importDistance}/>
+            <Results vendors={vendors} remFav={removeFav} addFav={favTruck} favorites={favorites} />
           </div>
         } />
       <Route path="/vendor/:id" element={<TruckDetails vendors={vendors}/>}
