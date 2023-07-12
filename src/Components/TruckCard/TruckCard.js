@@ -109,7 +109,8 @@ const starAltText = isFavorite ? "Favorited Food Truck Star" : "Not Favorited Fo
       src={currentStar} 
       onClick={() => handleFav()} 
       height={50} width={50}/> 
-      <img className="image" src={props.truck.img}/>  
+      <img className="image" src={props.truck.img}/>
+      <button className="status-icon-open"></button>  
       <div className="card-details-container">
         <p className="distance">{getDistance()} miles away</p>
         <div className="details-status-container">
