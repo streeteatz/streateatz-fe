@@ -88,7 +88,7 @@ const handleDownvote = () => {
 }
 
 const translateStatus = (status) => {
-  if (status === false) {
+  if (status === 'false') {
     return "closed"
   } else {
     return "open now"
@@ -111,7 +111,7 @@ const starAltText = isFavorite ? "Favorited Food Truck Star" : "Not Favorited Fo
       <img className="image" src={props.truck.img}/>
       <button className="status-icon-open"></button>  
       <div className="card-details-container">
-        <p className="distance">{getDistance()} miles away</p>
+        {/* <p className="distance">{getDistance()} miles away</p> */}
         <div className="details-status-container">
           <p className="status">{translateStatus(props.truck.status)}</p>
           <img className="pin" src={pin}></img>
