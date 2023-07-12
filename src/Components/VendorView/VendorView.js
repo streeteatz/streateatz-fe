@@ -1,8 +1,11 @@
 import React from 'react';
 
-const VendorView = () => {
+const VendorView = ({ toggleLive, vendor }) => {
+  console.log(vendor, 'vendor from vendor view')
   return(
-    <div></div>
+    <div>
+      <button onClick={() => toggleLive(vendor)}>{vendor.status === 'true' ? "Close Shop" : "Go Live"}</button>
+    </div>
   )
 }
 
