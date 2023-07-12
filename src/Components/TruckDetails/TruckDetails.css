@@ -1,0 +1,62 @@
+.details-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: top;
+  gap: 2.5vw;
+  margin: 15vh 0vw 0vh 0vw;
+}
+
+.left-side  {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: top;
+  margin: 0vh 0vw 0vh 0vw;
+}
+
+.details-star-icon {
+  height: 35px;
+  width: 35px;
+  margin: 170px 0px 0px 0px;
+  cursor: pointer;
+}
+
+.details-vendor {
+  margin: 0vh 0vw 0vh 1vw;
+}
+
+.details-name {
+  font-size: 2.75em;
+  margin: 0px 0px 2px 0px;
+}
+
+.details-tags {
+  margin: 0px 0px 2px 0px;
+  color: #5D5D5D;
+  font-size: .9em;
+}
+
+.wait-time {
+  margin-top: 0px;
+  color: #5D5D5D;
+}
+
+.details-image {
+  height: 275px;
+  width: 415px;
+  margin: 0px 0px 0px 0px;
+  cursor: pointer;
+}
+
+.right-side {
+  margin: 24vh 0vw 0vh 0vw;
+}
+
+.menu-container {
+  margin: 3vh 0vw 0vh 0vw;
+  height: 225px;
+  width: 500px;
+  border: 1px black solid;
+}
+

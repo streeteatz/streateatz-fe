@@ -1,17 +1,19 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react'
 import Header from '../Header/Header'
 import Results from '../Results/Results'
 import Search from '../Search/Search'
 import VendorView from '../VendorView/VendorView'
 import TruckDetails from '../TruckDetails/TruckDetails'
-import { Routes, Route } from 'react-router-dom';
-import TruckCard from '../TruckCard/TruckCard';
-import { mockData } from '../../MockData/MockData';
+import Error from '../Error/Error'
+import { Routes, Route } from 'react-router-dom'
+import TruckCard from '../TruckCard/TruckCard'
+import { mockData } from '../../MockData/MockData'
 import { io } from 'socket.io-client'
 
 const App = () => {
   const [vendors, setVendors] = useState([])
   const [currentUser, setCurrentUser] = useState('customer')
+  const [currentVendor, setCurrentVendor] = useState(1)
   const [favorites, setFavorites] = useState([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(null)
@@ -47,10 +49,10 @@ const App = () => {
     }
   }
 
-  const importDistance = (miles) => {
-  setTruckLocation(...miles)
-  return miles
-}
+  // const importDistance = (miles) => {
+  // setTruckLocation(...miles)
+  // return miles
+// }
 
   const removeFav =  (truck) => {
 
@@ -99,7 +101,7 @@ const App = () => {
     const thisData = mockData.data.map((data) => {
       return data.attributes
     })
-    setVendors(thisData)
+    setVendors( thisData)
     // this is going to fetch the data and then set state but then also reset isLoading to false
   }
 
@@ -116,32 +118,27 @@ const App = () => {
   }, [])
 
   return(
-    <Routes>
-      <Route path="/" element={
+    <div>
+      <Header togView={toggleView} currentUser={currentUser}/>
+      <Routes>
+        <Route path="/" element={
           <div>
-            <Header togView={toggleView} currentUser={currentUser}/>
             <Search vendors={vendors} search={searchResults} reset={resestResults} allSearch={searchButtons}/>
-            <Results vendors={vendors} remFav={removeFav} addFav={favTruck} favorites={favorites} dist={importDistance}/>
+            <Results vendors={vendors} remFav={removeFav} addFav={favTruck} favorites={favorites} />
           </div>
-      } />
-      <Route path="/vendor/:id" element={
-          <div>
-            <Header togView={toggleView} />
-            {/* <TruckDetails /> */}
-            {/* //params.match, need to pass down the id that is clicked as a prop to truck details to element specfic truck info */}
-          </div>
-      } />
+        } />
+      <Route path="/vendor/:id" element={<TruckDetails vendors={vendors}/>}
+      />
       <Route path="/vendor-view" element={
-          <div>
-            <Header togView={toggleView} />
-            <VendorView toggleLive={sendMessage} vendor={vendors.find(v => v.id == 1)} />
-          </div>
+        <div>
+          <VendorView toggleLive={sendMessage} vendor={vendors.find(v => v.id == 1)} currentVendor={currentVendor}/>
+        </div>
       } />
       <Route path="*" element={
-        <Header togView={toggleView} />
+        <Error message={"url"}/>
       } />
     </Routes>
-  
+    </div>
   )
 }
 

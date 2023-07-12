@@ -5,23 +5,21 @@ import './Header.css';
 import { NavLink } from 'react-router-dom';
 
 const Header = ({ togView, currentUser }) => {
-  const [showNotifs, setShowNotifs] = useState(false);
+  const [showNotifs, setShowNotifs] = useState(false)
 
   const seeNotifs = (event) => {
     event.preventDefault()
     if (!showNotifs)  {
-      console.log("showing notifications")
       setShowNotifs(true)
   } else {
     setShowNotifs(false)
-    console.log("hiding notifications")
   }
 }
 
   return (
     <div className="header-container">
       <div className="dropdown">
-          <p className={`${showNotifs === false ? "dropdown-show" : "dropdown-hide"}`}>notification text will go here</p>
+          <p className={`${showNotifs === false ? "dropdown-hide" : "dropdown-show"}`}>notification text will go here</p>
       </div>
       <NavLink to="/" style={{ textDecoration: 'none', color: "#2f2f2f" }}>
         <div className="logo-container">

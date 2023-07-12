@@ -61,6 +61,8 @@ const handleUpvote = () => {
     if (!isUpvoted) {
       setupVote(upVote += 1)
       props.truck.userUpvote = true
+      // props.truck.up_rating += 1 also parse int if backend data is a string
+      // add line of code to direclty manipulate the data model
     } else {
       setupVote(upVote += -1)
       props.truck.userUpvote = false
@@ -75,11 +77,21 @@ const handleDownvote = () => {
     setIsDownvoted(!isDownvoted)
     if (!isDownvoted) {
       setDownVote(downVote += 1)
+      // props.truck.up_rating += -1 also parse int if backend data is a string 
+      // add line of code to direclty manipulate the data model
       props.truck.userDownvote = true
     } else {
       setDownVote(downVote += -1)
       props.truck.userDownvote = false
     }
+  }
+}
+
+const translateStatus = (status) => {
+  if (status === false) {
+    return "closed"
+  } else {
+    return "open now"
   }
 }
 
@@ -90,21 +102,22 @@ const starAltText = isFavorite ? "Favorited Food Truck Star" : "Not Favorited Fo
 
   return(
     <div className="truck-card">
-    <img 
-    className="star-icon" 
-    alt={starAltText} 
-    src={currentStar} 
-    onClick={() => handleFav()} 
-    height={50} width={50}/> 
-  <img className="image" src={props.truck.img}/>  
-    <div className="details-container">
-      {/* <p className="distance">{getDistance()} miles away</p> */}
-      <div className="status-container">
-        <p className="status">{props.truck.status}</p>
-        <img className="pin" src={pin}></img>
-        <p className="location">{props.truck.location}</p>
-          {/* we're going to need to figure out what to do with the props.truck.location coordinates to make them display in a way that's like, readable for a human being */}
-          {/* we're also going to need to figure out how to do a distance calculation based on lat/long coordinates */}
+      <img 
+      className="star-icon" 
+      alt={starAltText} 
+      src={currentStar} 
+      onClick={() => handleFav()} 
+      height={50} width={50}/> 
+      <img className="image" src={props.truck.img}/>
+      <button className="status-icon-open"></button>  
+      <div className="card-details-container">
+        <p className="distance">{getDistance()} miles away</p>
+        <div className="details-status-container">
+          <p className="status">{translateStatus(props.truck.status)}</p>
+          <img className="pin" src={pin}></img>
+          <p className="location">Placeholder address</p>
+            {/* we're going to need to figure out what to do with the props.truck.location coordinates to make them display in a way that's like, readable for a human being */}
+            {/* we're also going to need to figure out how to do a distance calculation based on lat/long coordinates */}
       </div>
       <NavLink to={`/vendor/${props.truck.id}`} style={{ textDecoration: 'none', color: "#2f2f2f" }}>
           <p className="name">{props.truck.name}</p>

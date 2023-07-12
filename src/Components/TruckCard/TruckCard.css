@@ -17,6 +17,7 @@
 .star-icon {
   height: 30px;
   width: 30px;
+  margin-right: 10px;
   cursor: pointer;
 }
 
@@ -27,19 +28,41 @@
   cursor: pointer;
 }
 
-.details-container  {
+.status-icon-closed {
+  position: absolute;
+  z-index: 1;
+  height: 12px;
+  width: 12px;
+  margin: 33px 0px 0px 312px;
+  border: none;
+  border-radius: 25px;
+  background-color: rgb(41, 41, 41);;
+}
+
+.status-icon-open {
+  position: absolute;
+  z-index: 1;
+  height: 12px;
+  width: 12px;
+  margin: 33px 0px 0px 312px;
+  border: none;
+  border-radius: 25px;
+  background-color: rgb(4, 226, 89);;
+}
+
+.card-details-container  {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   align-items: left;
 }
 
-.status-container {
+.details-status-container {
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
   align-items: left;
-  margin: 0px 0px 2px 0px;
+  margin: 0px 0px 2px 20px;
 }
 
 .distance {
