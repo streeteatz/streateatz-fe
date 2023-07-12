@@ -12,6 +12,7 @@ import { mockData } from '../../MockData/MockData'
 const App = () => {
   const [vendors, setVendors] = useState([])
   const [currentUser, setCurrentUser] = useState('customer')
+  const [currentVendor, setCurrentVendor] = useState(1)
   const [favorites, setFavorites] = useState([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(null)
@@ -68,20 +69,19 @@ const App = () => {
     setCurrentUser(id);
   }
 
-  const filterChosenVendor = () => {
-
-  }
   const resestResults = (event) => {
     event.preventDefault();
     fetchData()
   }
-const fetchData = () => {
-  const thisData = mockData.data.map((data) => {
-    return data.attributes
-  })
-  setVendors( thisData)
-  // this is going to fetch the data and then set state but then also reset isLoading to false
-}
+
+  const fetchData = () => {
+    const thisData = mockData.data.map((data) => {
+      return data.attributes
+    })
+    setVendors( thisData)
+    // this is going to fetch the data and then set state but then also reset isLoading to false
+  }
+
   useEffect(() => {
     fetchData();
 // call in mock data somehow and establish it as the state of vendors
@@ -101,7 +101,7 @@ const fetchData = () => {
       />
       <Route path="/vendor-view" element={
         <div>
-          <VendorView vendors={vendors} />
+          <VendorView vendors={vendors} currentVendor={currentVendor}/>
         </div>
       } />
       <Route path="*" element={

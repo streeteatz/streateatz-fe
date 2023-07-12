@@ -27,14 +27,14 @@
   cursor: pointer;
 }
 
-.details-container  {
+.card-details-container  {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   align-items: left;
 }
 
-.status-container {
+.details-status-container {
   display: flex;
   flex-direction: row;
   justify-content: flex-start;

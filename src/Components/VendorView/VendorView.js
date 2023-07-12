@@ -1,10 +1,13 @@
-import React from 'react';
-import Status from '../Status/Status';
+import React from 'react'
+import Status from '../Status/Status'
+import TruckDetails from '../TruckDetails/TruckDetails'
 
-const VendorView = () => {
+const VendorView = ({ vendors, currentVendor }) => {
   return(
-    <Status/>
-    // <TruckDetails/>
+    <div>
+      <Status/>
+      {/* <TruckDetails vendors={vendors} currentVendor={currentVendor}/> */}
+    </div>
   )
 }
 
