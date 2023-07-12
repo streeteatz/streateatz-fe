@@ -3,7 +3,7 @@ import Header from '../Header/Header'
 import Results from '../Results/Results'
 import Search from '../Search/Search'
 import VendorView from '../VendorView/VendorView'
-// import TruckDetails from '../TruckDetails/TruckDetails'
+import TruckDetails from '../TruckDetails/TruckDetails'
 import { Routes, Route } from 'react-router-dom';
 import TruckCard from '../TruckCard/TruckCard';
 import { mockData } from '../../MockData/MockData';
@@ -48,34 +48,38 @@ const App = () => {
   }
 
   const importDistance = (miles) => {
-    setTruckLocation(...miles)
-    console.log(truckLocation, 'truckLocation')
-    return miles
-  }
+  setTruckLocation(...miles)
+  return miles
+}
 
   const removeFav =  (truck) => {
-    const newFavState = favorites.filter((fav) => fav.id !== truck.id)
-    setFavorites(newFavState)
+
+  const newFavState = favorites.filter((fav) => fav.id !== truck.id)
+  setFavorites(newFavState)
   }
 
   const searchResults = (searchValue) => {
     let lowerSearchValue = searchValue.toLowerCase()
     let nameSearchResults = vendors.filter((v) => v.name.toLowerCase().includes(lowerSearchValue) || v.tags.toLowerCase().includes(lowerSearchValue) || v.description.toLowerCase().includes(lowerSearchValue))
     setVendors(nameSearchResults)
-  }
 
+    //this is going to take in whatever the search value and based upon the search value it will iterate over the vendors and update the vendors state accordingly
+
+    // now if we are passing down the name of a  truck or location of truck then we just need to iteratre over vendors and filter where we see fit
+  }
+  
   const searchButtons = (event, button) => {
     event.preventDefault();
-
     if (button === "favorites") {  
       setVendors(favorites)
+      // setVendors(vendors.filter(v => v.favorited === true))
     } 
     if (button === "openNow") {
       setVendors(vendors.filter(v => v.status === "true"))
     }
-    if (button === "closest") {
+    // if (button === "closest") {
       
-    }
+    // }
   }
 
   const toggleView = (id) => {
