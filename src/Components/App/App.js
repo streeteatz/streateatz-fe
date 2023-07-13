@@ -8,7 +8,8 @@ import Error from '../Error/Error'
 import { Routes, Route } from 'react-router-dom'
 import TruckCard from '../TruckCard/TruckCard'
 import { mockData } from '../../MockData/MockData'
-import { io } from 'socket.io-client'
+import { socket } from '../../utilities/socket'
+import { fetchAllTrucks } from '../../utilities/apiCalls'
 
 const App = () => {
   const [vendors, setVendors] = useState([])
@@ -20,13 +21,6 @@ const App = () => {
   const [truckLocation, setTruckLocation] = useState([])
   const [userLocation, setUserLocation] = useState('')
 
-
-  const socket = io("http://localhost:3001", {
-    withCredentials: true,
-    extraHeaders: {
-      "street-eat": "street-eat"
-      }
-  })
 
   const sendMessage = (truck) => {
     if (truck.status === 'false') {
@@ -40,13 +34,13 @@ const App = () => {
   const favTruck = (truck) => {
     if (!favorites.find((fav) => fav.id === truck.id)) {
       const newFavState = [...favorites, truck]
-        setFavorites(newFavState)
+      console.log(truck, "truck inside if statement")
+        // setFavorites(newFavState)
     } else {
-      const newFavState = favorites.filter(fav => {
-        return fav.id !== truck.id
-      })
-        setFavorites(newFavState)
-    }
+      setVendors(vendors.filter((v) => v.favorited === true))
+        // setFavorites(newFavState)
+      }
+        console.log(truck, "truck OTHER inside if statement")
   }
 
   // const importDistance = (miles) => {
@@ -55,9 +49,7 @@ const App = () => {
 // }
 
   const removeFav =  (truck) => {
-
-  const newFavState = favorites.filter((fav) => fav.id !== truck.id)
-  setFavorites(newFavState)
+    setVendors(vendors.filter((v) => v.favorited === true))
   }
 
   const searchResults = (searchValue) => {
@@ -74,7 +66,7 @@ const App = () => {
     event.preventDefault();
     if (button === "favorites") {  
       setVendors(favorites)
-      // setVendors(vendors.filter(v => v.favorited === true))
+      setVendors(vendors.filter(v => v.favorited === true))
     } 
     if (button === "openNow") {
       setVendors(vendors.filter(v => v.status === "true"))
@@ -97,16 +89,24 @@ const App = () => {
     fetchData()
   }
 
-  const fetchData = () => {
-    const thisData = mockData.data.map((data) => {
-      return data.attributes
-    })
-    setVendors( thisData)
-    // this is going to fetch the data and then set state but then also reset isLoading to false
-  }
-
-  useEffect(() => {
-    fetchData()
+  const fetchData = async () => {
+    try {
+      const data = await fetchAllTrucks()
+        setVendors(data.data.attributes)
+      } catch(error) {
+        console.log(error, "error")
+      }
+      // const thisData = mockData.data.map((data) => {
+        //   return data.attributes
+        // })
+        // setVendors( thisData)
+        // this is going to fetch the data and then set state but then also reset isLoading to false
+      }
+      
+      
+      useEffect(() => {
+        fetchData()
+        console.log(vendors, "line 111")
     
     socket.on('receive_data', (data) => {
       setVendors([data.truck, ...data.updatedVendors])

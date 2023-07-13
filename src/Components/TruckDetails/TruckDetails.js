@@ -9,14 +9,16 @@ import notUpvoted from '../../assets/notUpvoted.png'
 import downvoted from '../../assets/downvoted.png'
 import upvoted from '../../assets/upvoted.png'
 import './TruckDetails.css'
+import { fetchAllTrucks } from '../../utilities/apiCalls'
 
 const TruckDetails = ({ vendors, currentVendor }) => {
     const [singularTruck, setSingularTruck] = useState({})
     const [menu, setMenu] = useState([])
     const [loading, setLoading] = useState(true)
     let { id } = useParams();
-    let match = vendors.filter(truck => truck.id === id)[0]
-    console.log(vendors, 'vendors in truck details')
+    let match = vendors.filter((truck) => parseInt(truck.id) === parseInt(id))[0]
+    
+    // console.log(match, 'match in truck details')
 
     // const individualTruckFetch = (id) => {
       // fetch and interpolate the id onto the end of the fetch call
@@ -29,7 +31,25 @@ const TruckDetails = ({ vendors, currentVendor }) => {
       // and then set menu state based on this
       // em- same here
     // }
+    const fetchData = async () => {
+      try {
+        const data = await fetchAllTrucks()
+          let oneTruck = data.data.attributes.filter((truck) => truck.id === match.id)[0]
+          setSingularTruck(oneTruck)
+          console.log(oneTruck, "oneTruck")
+        } catch(error) {
+          console.log(error, "error")
+        }
+        // const thisData = mockData.data.map((data) => {
+          //   return data.attributes
+          // })
+          // setVendors( thisData)
+          // this is going to fetch the data and then set state but then also reset isLoading to false
+        }
 
+useEffect(() => {
+  fetchData()
+}, []) 
 const goBackHome = () => {
   setSingularTruck({})
   setMenu([])
@@ -55,7 +75,7 @@ const goBackHome = () => {
       <div className='left-side'>
         <img className="details-star-icon" src={notFav} alt="favorited star" />
         <div className="details-vendor">
-          <h2 className="details-name">{match.name}</h2>
+          <h2 className="details-name">{singularTruck.name}</h2>
           <div className="details-vendor-container">
             {/* <p className="distance">{getDistance()} miles away</p> */}
             <p className="distance">0.4 miles away</p>
@@ -68,9 +88,9 @@ const goBackHome = () => {
               <p className="location">Placeholder address</p>
             </div>
           </div>
-          <p className="details-tags">{match.tags}</p>
-          <p className="wait-time">{match.wait_time} minutes wait</p>
-          <img className="details-image" src={match.img} alt='food truck preview image'/>
+          <p className="details-tags">{singularTruck.tags}</p>
+          <p className="wait-time">{singularTruck.wait_time} minutes wait</p>
+          <img className="details-image" src={singularTruck.img} alt='food truck preview image'/>
         </div>
       </div>
       <div className='right-side'>
