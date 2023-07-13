@@ -1,0 +1,28 @@
+.error-url-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  margin: 10vh 20vw 0vh 20vw;
+}
+
+.error-url {
+  white-space: nowrap;
+  width: fit-content;
+}
+
+.home-button {
+  height: 30px;
+  width: 90px;
+  background: #ffffff;
+  color: #000000;
+  border: 1px #767676 solid;
+  border-radius: 25px;
+  cursor: pointer;
+  transition: all .3s ease-in-out;
+}
+  
+.home-button:hover {
+  width: 100px;
+  transition: all .3s ease-in-out;
+}

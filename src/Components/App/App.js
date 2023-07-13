@@ -50,7 +50,11 @@ const App = () => {
   const searchResults = (searchValue) => {
     let lowerSearchValue = searchValue.toLowerCase()
     let nameSearchResults = vendors.filter((v) => v.name.toLowerCase().includes(lowerSearchValue) || v.tags.toLowerCase().includes(lowerSearchValue) || v.description.toLowerCase().includes(lowerSearchValue))
-    setVendors(nameSearchResults)
+    if (!nameSearchResults.length) {
+      setError("search")
+    } else {
+      setVendors(nameSearchResults)
+    }
   }
   
   const searchButtons = (event, button ) => {
@@ -82,12 +86,6 @@ const App = () => {
        console.log(error, "fetch")
       }
     }
-      
-
-      
-      useEffect(() => {
-        fetchData()
-  }
             
   useEffect(() => {
     fetchData()
@@ -108,7 +106,7 @@ const App = () => {
         <Route path="/" element={
           <div>
             <Search vendors={vendors} search={searchResults} reset={resestResults} allSearch={searchButtons}/>
-            {error === "" ? (<Results vendors={vendors} remFav={removeFav} addFav={favTruck} favorites={favorites} />) : (<Error message={"fetch"} />) }
+            {error === "" ? (<Results vendors={vendors} remFav={removeFav} addFav={favTruck} favorites={favorites} />) : (error === "fetch" ?(<Error message={"fetch"} />) : (<Error message={"search"} />)) }
           </div>
         } />
       <Route path="/vendor/:id" element={<TruckDetails vendors={vendors}/>}
