@@ -21,35 +21,31 @@ const App = () => {
   const [truckLocation, setTruckLocation] = useState([])
   const [userLocation, setUserLocation] = useState('')
 
+// vendors and customers toggle switch. 
+// make a state that holds boolean
+// based off of that value, it will be on vendor or user page
+// pass 
 
-  const sendMessage = (truck) => {
-    if (truck.status === 'false') {
-      truck.status = 'true'
+  const sendData = (truck) => {
+    if (truck.status === false) {
+      truck.status = true
     } else {
-      truck.status = 'false'
+      truck.status = false
     }
-      socket.emit("send_data", { updatedVendors: vendors.filter(v => v.id !== truck.id), truck: truck });
+    
+    socket.emit("send_data", { updatedVendors: vendors.filter(v => v.id !== truck.id), truck: truck });
   };
 
   const favTruck = (truck) => {
     if (!favorites.find((fav) => fav.id === truck.id)) {
       const newFavState = [...favorites, truck]
-      console.log(truck, "truck inside if statement")
-        // setFavorites(newFavState)
     } else {
       setVendors(vendors.filter((v) => v.favorited === true))
-        // setFavorites(newFavState)
       }
-        console.log(truck, "truck OTHER inside if statement")
   }
 
-  // const importDistance = (miles) => {
-  // setTruckLocation(...miles)
-  // return miles
-// }
-
   const removeFav =  (truck) => {
-    setVendors(vendors.filter((v) => v.favorited === true))
+    setVendors(vendors)
   }
 
   const searchResults = (searchValue) => {
@@ -65,24 +61,20 @@ const App = () => {
   const searchButtons = (event, button) => {
     event.preventDefault();
     if (button === "favorites") {  
-      setVendors(favorites)
       setVendors(vendors.filter(v => v.favorited === true))
     } 
     if (button === "openNow") {
-      setVendors(vendors.filter(v => v.status === "true"))
+      setVendors(vendors.filter(v => v.status === true))
     }
-    // if (button === "closest") {
-      
-    // }
   }
 
   const toggleView = (id) => {
     setCurrentUser(id);
   }
 
-  const filterChosenVendor = () => {
+  // const filterChosenVendor = () => {
 
-  }
+  // }
 
   const resestResults = (event) => {
     event.preventDefault();
@@ -96,18 +88,11 @@ const App = () => {
       } catch(error) {
         console.log(error, "error")
       }
-      // const thisData = mockData.data.map((data) => {
-        //   return data.attributes
-        // })
-        // setVendors( thisData)
-        // this is going to fetch the data and then set state but then also reset isLoading to false
-      }
-      
-      
-      useEffect(() => {
-        fetchData()
-        console.log(vendors, "line 111")
-    
+  }
+            
+  useEffect(() => {
+    fetchData()
+
     socket.on('receive_data', (data) => {
       setVendors([data.truck, ...data.updatedVendors])
     });
@@ -117,7 +102,7 @@ const App = () => {
     };
   }, [])
 
-  return(
+  return (
     <div>
       <Header togView={toggleView} currentUser={currentUser}/>
       <Routes>
@@ -131,7 +116,7 @@ const App = () => {
       />
       <Route path="/vendor-view" element={
         <div>
-          <VendorView toggleLive={sendMessage} vendor={vendors.find(v => v.id == 1)} currentVendor={currentVendor}/>
+          <VendorView toggleLive={sendData} vendor={vendors.find(v => v.id == 1)} currentVendor={currentVendor}/>
         </div>
       } />
       <Route path="*" element={

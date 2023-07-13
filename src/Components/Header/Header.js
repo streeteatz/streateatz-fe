@@ -6,15 +6,23 @@ import { NavLink } from 'react-router-dom';
 
 const Header = ({ togView, currentUser }) => {
   const [showNotifs, setShowNotifs] = useState(false)
+  const [selectedUser, setSelectedUser] = useState('')
 
   const seeNotifs = (event) => {
     event.preventDefault()
     if (!showNotifs)  {
       setShowNotifs(true)
-  } else {
-    setShowNotifs(false)
+    } else {
+      setShowNotifs(false)
+    }
   }
-}
+
+  const setSelectedBtn = (target) => {
+      setSelectedUser(target.id)
+      sessionStorage.setItem('SEuserBtnStatus', JSON.stringify(target.id))
+  }
+  
+  const selUser = JSON.parse(sessionStorage.getItem('SEuserBtnStatus')) || 'customer'
 
   return (
     <div className="header-container">
@@ -30,10 +38,17 @@ const Header = ({ togView, currentUser }) => {
       <div className="right-container">
         <div className="toggle-container">
           <NavLink to="/vendor-view" >
-            <button id="vendor" className={`${currentUser === "vendor" ? "selected-btn" : "btn"}`} onClick={(event) => togView(event.target.id)}>vendors</button>
+          {/* these lines are where the vendor or user state is being declared */}
+            <button id="vendor" className={`${selUser === "vendor" ? "selected-btn" : "btn"}`} onClick={(event) => {
+              togView(event.target.id)
+              setSelectedBtn(event.target)
+            }}>vendors</button>
           </NavLink>
           <NavLink to="/">
-            <button id="customer" className={`${currentUser === "customer" ? "selected-btn" : "btn"}`} onClick={(event) => togView(event.target.id)}>customers</button>
+            <button id="customer" className={`${selUser === "customer" ? "selected-btn" : "btn"}`} onClick={(event) => {
+              togView(event.target.id)
+              setSelectedBtn(event.target)
+            }}>customers</button>
           </NavLink>
         </div>
         <div className="notifications-container">
