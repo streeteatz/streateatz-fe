@@ -29,52 +29,47 @@ const TruckCard = (props) => {
     }
   }
 
-  const handleUpvote = () => {
-    if (isDownvoted) {
-      return
+const handleUpvote = () => {
+  if (isDownvoted) {
+    return
+  } else {
+    setIsUpvoted(!isUpvoted)
+    if (!isUpvoted) {
+      setupVote(upVote += 1)
+      props.truck.userUpvote = true
     } else {
-      setIsUpvoted(!isUpvoted)
-      if (!isUpvoted) {
-        setupVote(upVote += 1)
-        props.truck.userUpvote = true
-        // props.truck.up_rating += 1 also parse int if backend data is a string
-        // add line of code to direclty manipulate the data model
-      } else {
-        setupVote(upVote += -1)
-        props.truck.userUpvote = false
-      }
+      setupVote(upVote += -1)
+      props.truck.userUpvote = false
     }
   }
+}
 
-  const handleDownvote = () => {
-    if (isUpvoted) {
-      return
+const handleDownvote = () => {
+  if (isUpvoted) {
+    return
+  } else {
+    setIsDownvoted(!isDownvoted)
+    if (!isDownvoted) {
+      setDownVote(downVote += 1)
+      props.truck.userDownvote = true
     } else {
-      setIsDownvoted(!isDownvoted)
-      if (!isDownvoted) {
-        setDownVote(downVote += 1)
-        // props.truck.up_rating += -1 also parse int if backend data is a string 
-        // add line of code to direclty manipulate the data model
-        props.truck.userDownvote = true
-      } else {
-        setDownVote(downVote += -1)
-        props.truck.userDownvote = false
-      }
+      setDownVote(downVote += -1)
+      props.truck.userDownvote = false
     }
   }
+}
 
-  const translateStatus = (status) => {
-    if (status === false) {
-      return "closed"
-    } else {
-      return "open now"
-    }
+const translateStatus = (status) => {
+  if (status === false) {
+    return "closed"
+  } else {
+    return "open now"
   }
-
-  const currentStar = isFavorite ? Fav : notFav
-  const currentUpvote = isUpvoted ? upvoted : notUpvoted
-  const currentDownvote = isDownvoted ? downvoted : notDownvoted
-  const starAltText = isFavorite ? "Favorited Food Truck Star" : "Not Favorited Food Truck Star"
+}
+const currentStar = isFavorite ? Fav : notFav
+const currentUpvote = isUpvoted ? upvoted : notUpvoted
+const currentDownvote = isDownvoted ? downvoted : notDownvoted
+const starAltText = isFavorite ? "Favorited Food Truck Star" : "Not Favorited Food Truck Star"
 
   return(
     <div className="card-container">
@@ -86,12 +81,11 @@ const TruckCard = (props) => {
       height={50} width={50}/> 
       <img className="image" src={props.truck.img}/>
       <div className="card-details-container">
-        <p className="distance">{getDistance(props.truck.location)} miles away</p>
         <div className="details-status-container">
-          <button className="status-icon-open"></button>  
+        <button className={`${props.truck.status === false ? "status-icon-closed" : "status-icon-open"}`}></button>
           <p className="status">{translateStatus(props.truck.status)}</p>
           <img className="pin" src={pin}></img>
-          <p className="location">Placeholder address</p>
+          <p className="location">{props.truck.address}</p>
             {/* we're going to need to figure out what to do with the props.truck.location coordinates to make them display in a way that's like, readable for a human being */}
             {/* we're also going to need to figure out how to do a distance calculation based on lat/long coordinates */}
       </div>

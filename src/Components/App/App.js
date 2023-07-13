@@ -37,33 +37,28 @@ const App = () => {
   };
 
   const favTruck = (truck) => {
-    if (!favorites.find((fav) => fav.id === truck.id)) {
-      const newFavState = [...favorites, truck]
-    } else {
-      setVendors(vendors.filter((v) => v.favorited === true))
-      }
+    const newFavState = [...favorites, truck]
+    setFavorites(newFavState)
   }
 
   const removeFav =  (truck) => {
-    setVendors(vendors)
+    const updatedFavs = favorites.filter((fav) => fav.id !== truck.id)
+    setFavorites(updatedFavs)
   }
 
   const searchResults = (searchValue) => {
     let lowerSearchValue = searchValue.toLowerCase()
     let nameSearchResults = vendors.filter((v) => v.name.toLowerCase().includes(lowerSearchValue) || v.tags.toLowerCase().includes(lowerSearchValue) || v.description.toLowerCase().includes(lowerSearchValue))
     setVendors(nameSearchResults)
-
-    //this is going to take in whatever the search value and based upon the search value it will iterate over the vendors and update the vendors state accordingly
-
-    // now if we are passing down the name of a  truck or location of truck then we just need to iteratre over vendors and filter where we see fit
   }
   
-  const searchButtons = (event, button) => {
+  const searchButtons = (event, button ) => {
     event.preventDefault();
     if (button === "favorites") {  
-      setVendors(vendors.filter(v => v.favorited === true))
+      setVendors(favorites)
     } 
     if (button === "openNow") {
+      setVendors(vendors.filter(v => v.status === true))
       setVendors(vendors.filter(v => v.status === true))
     }
   }
@@ -71,10 +66,6 @@ const App = () => {
   const toggleView = (id) => {
     setCurrentUser(id);
   }
-
-  // const filterChosenVendor = () => {
-
-  // }
 
   const resestResults = (event) => {
     event.preventDefault();
@@ -86,8 +77,11 @@ const App = () => {
       const data = await fetchAllTrucks()
         setVendors(data.data.attributes)
       } catch(error) {
-        console.log(error, "error")
       }
+    }
+      
+      useEffect(() => {
+        fetchData()
   }
             
   useEffect(() => {
