@@ -1,11 +1,12 @@
-.truck-card {
+.card-container {
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
   align-items: top;
-  margin: 4vh 27.5vw 3vh 27.5vw;
+  margin: 2% 30% 0% 30%;
   height: fit-content;
-  width: 45vw;
+  width: fit-content;
+  white-space: nowrap;
 }
 
 .icon {
@@ -28,28 +29,6 @@
   cursor: pointer;
 }
 
-.status-icon-closed {
-  position: absolute;
-  z-index: 1;
-  height: 12px;
-  width: 12px;
-  margin: 33px 0px 0px 312px;
-  border: none;
-  border-radius: 25px;
-  background-color: rgb(41, 41, 41);;
-}
-
-.status-icon-open {
-  position: absolute;
-  z-index: 1;
-  height: 12px;
-  width: 12px;
-  margin: 33px 0px 0px 312px;
-  border: none;
-  border-radius: 25px;
-  background-color: rgb(4, 226, 89);;
-}
-
 .card-details-container  {
   display: flex;
   flex-direction: column;
@@ -62,7 +41,25 @@
   flex-direction: row;
   justify-content: flex-start;
   align-items: left;
-  margin: 0px 0px 2px 20px;
+  margin: 0px 0px 2px 0px;
+}
+
+.status-icon-closed {
+  height: 12px;
+  width: 12px;
+  margin: 5px 5px 0px 0px;
+  border: none;
+  border-radius: 25px;
+  background-color: rgb(41, 41, 41);;
+}
+
+.status-icon-open {
+  height: 12px;
+  width: 12px;
+  margin: 5px 5px 0px 0px;
+  border: none;
+  border-radius: 25px;
+  background-color: rgb(4, 226, 89);
 }
 
 .distance {
@@ -111,4 +108,48 @@
 
 .upvotes, .downvotes  {
   margin: 0px 5px 0px 5px;
+}
+
+@media screen and (max-width: 50em) {
+  .card-container {
+    margin: 2% 10% 0% 10%;
+  }
+}
+
+@media screen and (max-width: 35em) {
+  .card-container {
+    margin: 2% 2% 5% 2%;
+  }
+
+  .star-icon {
+    height: 25px;
+    width: 25px;
+    margin-right: 0px;
+  }
+
+  .image {
+    height: 100px;
+    width: 175px;
+  }
+
+  .distance {
+    font-size: 1em;
+  }
+
+  .status, .location {
+    font-size: .75em;
+  }
+
+  .name {
+    font-size: 1em;
+  }
+
+  .tags  {
+    margin: 0px 0px 0px 0px;
+    font-size: .75em;
+  }
+
+  .upvotes, .downvotes  {
+    font-size: .75em;
+  }
 }
