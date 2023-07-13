@@ -8,6 +8,7 @@ import upvoted from '../../assets/upvoted.png'
 import { NavLink } from 'react-router-dom';
 import pin from '../../assets/pin.png'
 import './TruckCard.css'
+import { getDistance } from '../../utilities/distance-calculator'
 
 const TruckCard = (props) => {
   const [isFavorite, setIsFavorite] = useState(false)
@@ -17,16 +18,16 @@ const TruckCard = (props) => {
   const [isUpvoted, setIsUpvoted] = useState(false)
   
 
-const handleFav = () => {
-  setIsFavorite(!isFavorite)
-  if (!isFavorite) {
-    props.truck.favorited = true
-    props.addFav(props.truck)
-  } else {
-    props.truck.favorited = false
-    props.remFav(props.truck)
+  const handleFav = () => {
+    setIsFavorite(!isFavorite)
+    if (!isFavorite) {
+      props.truck.favorited = true
+      props.addFav(props.truck)
+    } else {
+      props.truck.favorited = false
+      props.remFav(props.truck)
+    }
   }
-}
 
 const handleUpvote = () => {
   if (isDownvoted) {

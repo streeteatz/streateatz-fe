@@ -21,14 +21,19 @@ const App = () => {
   const [truckLocation, setTruckLocation] = useState([])
   const [userLocation, setUserLocation] = useState('')
 
+// vendors and customers toggle switch. 
+// make a state that holds boolean
+// based off of that value, it will be on vendor or user page
+// pass 
 
-  const sendMessage = (truck) => {
-    if (!truck.status) {
+  const sendData = (truck) => {
+    if (truck.status === false) {
       truck.status = true
     } else {
       truck.status = false
     }
-      socket.emit("send_data", { updatedVendors: vendors.filter(v => v.id !== truck.id), truck: truck });
+    
+    socket.emit("send_data", { updatedVendors: vendors.filter(v => v.id !== truck.id), truck: truck });
   };
 
   const favTruck = (truck) => {
@@ -54,6 +59,7 @@ const App = () => {
     } 
     if (button === "openNow") {
       setVendors(vendors.filter(v => v.status === true))
+      setVendors(vendors.filter(v => v.status === true))
     }
   }
 
@@ -76,6 +82,11 @@ const App = () => {
       
       useEffect(() => {
         fetchData()
+  }
+            
+  useEffect(() => {
+    fetchData()
+
     socket.on('receive_data', (data) => {
       setVendors([data.truck, ...data.updatedVendors])
     });
@@ -85,7 +96,7 @@ const App = () => {
     };
   }, [])
 
-  return(
+  return (
     <div>
       <Header togView={toggleView} currentUser={currentUser}/>
       <Routes>
@@ -99,7 +110,7 @@ const App = () => {
       />
       <Route path="/vendor-view" element={
         <div>
-          <VendorView toggleLive={sendMessage} vendor={vendors.find(v => v.id == 1)} currentVendor={currentVendor}/>
+          <VendorView toggleLive={sendData} vendor={vendors.find(v => v.id == 1)} currentVendor={currentVendor}/>
         </div>
       } />
       <Route path="*" element={
