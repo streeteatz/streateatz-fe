@@ -34,13 +34,13 @@ const App = () => {
   const favTruck = (truck) => {
     if (!favorites.find((fav) => fav.id === truck.id)) {
       const newFavState = [...favorites, truck]
-        setFavorites(newFavState)
+      console.log(truck, "truck inside if statement")
+        // setFavorites(newFavState)
     } else {
-      const newFavState = favorites.filter(fav => {
-        return fav.id !== truck.id
-      })
-        setFavorites(newFavState)
-    }
+      setVendors(vendors.filter((v) => v.favorited === true))
+        // setFavorites(newFavState)
+      }
+        console.log(truck, "truck OTHER inside if statement")
   }
 
   // const importDistance = (miles) => {
@@ -49,9 +49,7 @@ const App = () => {
 // }
 
   const removeFav =  (truck) => {
-
-  const newFavState = favorites.filter((fav) => fav.id !== truck.id)
-  setFavorites(newFavState)
+    setVendors(vendors.filter((v) => v.favorited === true))
   }
 
   const searchResults = (searchValue) => {
@@ -68,7 +66,7 @@ const App = () => {
     event.preventDefault();
     if (button === "favorites") {  
       setVendors(favorites)
-      // setVendors(vendors.filter(v => v.favorited === true))
+      setVendors(vendors.filter(v => v.favorited === true))
     } 
     if (button === "openNow") {
       setVendors(vendors.filter(v => v.status === "true"))
