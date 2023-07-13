@@ -8,7 +8,8 @@ import Error from '../Error/Error'
 import { Routes, Route } from 'react-router-dom'
 import TruckCard from '../TruckCard/TruckCard'
 import { mockData } from '../../MockData/MockData'
-import { io } from 'socket.io-client'
+import { socket } from '../../utilities/socket'
+import { fetchAllTrucks } from '../../utilities/apiCalls'
 
 const App = () => {
   const [vendors, setVendors] = useState([])
@@ -20,13 +21,6 @@ const App = () => {
   const [truckLocation, setTruckLocation] = useState([])
   const [userLocation, setUserLocation] = useState('')
 
-
-  const socket = io("http://localhost:3001", {
-    withCredentials: true,
-    extraHeaders: {
-      "street-eat": "street-eat"
-      }
-  })
 
   const sendMessage = (truck) => {
     if (truck.status === 'false') {
@@ -98,6 +92,14 @@ const App = () => {
   }
 
   const fetchData = () => {
+  // async () => {
+    // try {
+    //   await fetchAllTrucks().then((data) => {
+    //     console.log(data, "data")
+    //   })
+    // } catch(error) {
+    //   console.log(error, "error")
+    // }
     const thisData = mockData.data.map((data) => {
       return data.attributes
     })
