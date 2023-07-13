@@ -86,8 +86,6 @@ const starAltText = isFavorite ? "Favorited Food Truck Star" : "Not Favorited Fo
           <p className="status">{translateStatus(props.truck.status)}</p>
           <img className="pin" src={pin}></img>
           <p className="location">{props.truck.address}</p>
-            {/* we're going to need to figure out what to do with the props.truck.location coordinates to make them display in a way that's like, readable for a human being */}
-            {/* we're also going to need to figure out how to do a distance calculation based on lat/long coordinates */}
       </div>
       <NavLink to={`/vendor/${props.truck.id}`} style={{ textDecoration: 'none', color: "#2f2f2f" }}>
           <p className="name">{props.truck.name}</p>

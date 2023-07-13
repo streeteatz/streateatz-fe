@@ -17,9 +17,10 @@ const App = () => {
   const [currentVendor, setCurrentVendor] = useState(1)
   const [favorites, setFavorites] = useState([])
   const [loading, setLoading] = useState(true)
-  const [error, setError] = useState(null)
+  const [error, setError] = useState('')
   const [truckLocation, setTruckLocation] = useState([])
   const [userLocation, setUserLocation] = useState('')
+
 
 // vendors and customers toggle switch. 
 // make a state that holds boolean
@@ -77,8 +78,12 @@ const App = () => {
       const data = await fetchAllTrucks()
         setVendors(data.data.attributes)
       } catch(error) {
+       setError("fetch")
+       console.log(error, "fetch")
       }
     }
+      
+
       
       useEffect(() => {
         fetchData()
@@ -103,7 +108,7 @@ const App = () => {
         <Route path="/" element={
           <div>
             <Search vendors={vendors} search={searchResults} reset={resestResults} allSearch={searchButtons}/>
-            <Results vendors={vendors} remFav={removeFav} addFav={favTruck} favorites={favorites} />
+            {error === "" ? (<Results vendors={vendors} remFav={removeFav} addFav={favTruck} favorites={favorites} />) : (<Error message={"fetch"} />) }
           </div>
         } />
       <Route path="/vendor/:id" element={<TruckDetails vendors={vendors}/>}
