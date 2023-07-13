@@ -15,7 +15,7 @@
   flex-direction: row;
   justify-content: flex-start;
   align-items: top;
-  margin: 0vh 0vw 0vh 0vw;
+  margin: 5.5vh 0vw 0vh 0vw;
 }
 
 .details-star-icon {
@@ -57,6 +57,11 @@
   width: 500px;
 }
 
+.details-icon {
+  height: 20px;
+  width: 20px;
+}
+
 .menu-container {
   margin: 3vh 0vw 0vh 0vw;
   height: 225px;
@@ -64,8 +69,13 @@
   border: 1px black solid;
 }
 
+.button-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+
 .back-btn {
-  margin: 53vh 0vw 0vh 0vw;
   height: 30px;
   width: 90px;
   background: #ffffff;

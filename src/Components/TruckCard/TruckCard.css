@@ -3,7 +3,7 @@
   flex-direction: row;
   justify-content: flex-start;
   align-items: top;
-  margin: 2% 30% 0% 30%;
+  margin: 2% 33% 0% 33%;
   height: fit-content;
   width: fit-content;
   white-space: nowrap;
@@ -94,7 +94,7 @@
 }
 
 .tags  {
-  margin: 0px 0px 53px 0px;
+  margin: 0px 0px 83px 0px;
   color: #5D5D5D;
   font-size: .9em;
 }

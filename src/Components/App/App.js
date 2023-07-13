@@ -10,6 +10,7 @@ import TruckCard from '../TruckCard/TruckCard'
 import { mockData } from '../../MockData/MockData'
 import { socket } from '../../utilities/socket'
 import { fetchAllTrucks } from '../../utilities/apiCalls'
+import './App.css'
 
 const App = () => {
   const [vendors, setVendors] = useState([])
@@ -100,7 +101,7 @@ const App = () => {
   }, [])
 
   return (
-    <div>
+    <div className='app'>
       <Header togView={toggleView} currentUser={currentUser}/>
       <Routes>
         <Route path="/" element={

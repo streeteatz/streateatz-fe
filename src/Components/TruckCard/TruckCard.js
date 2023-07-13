@@ -79,17 +79,17 @@ const starAltText = isFavorite ? "Favorited Food Truck Star" : "Not Favorited Fo
       src={currentStar} 
       onClick={() => handleFav()} 
       height={50} width={50}/> 
-      <img className="image" src={props.truck.img}/>
+      <NavLink to={`/vendor/${props.truck.id}`}><img className="image" src={props.truck.img}/></NavLink>
       <div className="card-details-container">
+        <NavLink to={`/vendor/${props.truck.id}`} style={{ textDecoration: 'none', color: "#2f2f2f" }}>
+            <p className="name">{props.truck.name}</p>
+        </NavLink>
         <div className="details-status-container">
         <button className={`${props.truck.status === false ? "status-icon-closed" : "status-icon-open"}`}></button>
           <p className="status">{translateStatus(props.truck.status)}</p>
           <img className="pin" src={pin}></img>
           <p className="location">{props.truck.address}</p>
       </div>
-      <NavLink to={`/vendor/${props.truck.id}`} style={{ textDecoration: 'none', color: "#2f2f2f" }}>
-          <p className="name">{props.truck.name}</p>
-      </NavLink>
       <p className="tags">{props.truck.tags}</p>
       <div className="votes-container">
         <img 
