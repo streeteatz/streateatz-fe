@@ -70,22 +70,21 @@ const goBackHome = () => {
     //   )
     // })
 
+    let truckStatus = singularTruck.status === true ? "Open Now!" : "Closed Now!"
   return(
     <section className="details-container">
       <div className='left-side'>
-        <img className="details-star-icon" src={notFav} alt="favorited star" />
+        {/* <img className="details-star-icon" src={notFav} alt="favorited star" /> */}
         <div className="details-vendor">
           <h2 className="details-name">{singularTruck.name}</h2>
           <div className="details-vendor-container">
-            {/* <p className="distance">{getDistance()} miles away</p> */}
-            <p className="distance">0.4 miles away</p>
             <div className="details-status-container">
               <button className="status-icon-open"></button> 
               {/* <p className="status">{translateStatus(match.status)}</p> */}
-              <p className="status">currently open</p>
+              <p className="status">{singularTruck.status}</p>
               {/* pass a status variable in to the status p tag to change with vendors status */}
               <img className="pin" src={pin}></img>
-              <p className="location">Placeholder address</p>
+              <p className="location">{singularTruck.address}</p>
             </div>
           </div>
           <p className="details-tags">{singularTruck.tags}</p>
@@ -100,13 +99,13 @@ const goBackHome = () => {
           alt="empty thumbs up icon" 
           src={notUpvoted} 
           height={50} width={50} />
-          <p className="upvotes">500</p>
+          <p className="upvotes">{singularTruck.up_rating}</p>
           <img 
           className="downvoted icon" 
           alt="downvoted icon" 
           src={notDownvoted}
           height={50} width={50}/>
-          <p className="downvotes">10</p>
+          <p className="downvotes">{singularTruck.down_rating}</p>
         </div>
         <div className="menu-container">
           {/* {items} */}
