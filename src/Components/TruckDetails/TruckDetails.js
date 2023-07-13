@@ -59,6 +59,7 @@ const goBackHome = () => {
             {/* <p className="distance">{getDistance()} miles away</p> */}
             <p className="distance">0.4 miles away</p>
             <div className="details-status-container">
+              <button className="status-icon-open"></button> 
               {/* <p className="status">{translateStatus(match.status)}</p> */}
               <p className="status">currently open</p>
               {/* pass a status variable in to the status p tag to change with vendors status */}
