@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from 'react'
 import { useParams } from 'react-router-dom'
+import { NavLink } from 'react-router-dom';
 import pin from '../../assets/pin.png'
 import notFav from '../../assets/notFav.png'
 import Fav from '../../assets/fav.png'
@@ -59,6 +60,7 @@ const goBackHome = () => {
             {/* <p className="distance">{getDistance()} miles away</p> */}
             <p className="distance">0.4 miles away</p>
             <div className="details-status-container">
+              <button className="status-icon-open"></button> 
               {/* <p className="status">{translateStatus(match.status)}</p> */}
               <p className="status">currently open</p>
               {/* pass a status variable in to the status p tag to change with vendors status */}
@@ -90,6 +92,7 @@ const goBackHome = () => {
           {/* {items} */}
         </div>
       </div>
+      <NavLink to="/"><button className="back-btn">back</button></NavLink>
     </section>
   )
 }
