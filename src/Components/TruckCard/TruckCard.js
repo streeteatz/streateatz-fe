@@ -8,6 +8,7 @@ import upvoted from '../../assets/upvoted.png'
 import { NavLink } from 'react-router-dom';
 import pin from '../../assets/pin.png'
 import './TruckCard.css'
+import { getDistance } from '../../utilities/distance-calculator'
 
 const TruckCard = (props) => {
   const [isFavorite, setIsFavorite] = useState(false)
@@ -16,41 +17,17 @@ const TruckCard = (props) => {
   let [upVote, setupVote] = useState(parseInt(props.truck.up_rating))
   const [isUpvoted, setIsUpvoted] = useState(false)
   
-  const getDistance = () => {
-    let truckLocation = props.truck.location
-    const userLocation = "41.905580, -87.688060"
-    const [lat2, lon2] = truckLocation.split(", ")
-    const [lat1, lon1] = userLocation.split(", ")
-    var R = 6371; 
-    var dLat = deg2rad(lat2-lat1);  
-    var dLon = deg2rad(lon2-lon1); 
-    var a = 
-      Math.sin(dLat/2) * Math.sin(dLat/2) +
-      Math.cos(deg2rad(lat1)) * Math.cos(deg2rad(lat2)) * 
-      Math.sin(dLon/2) * Math.sin(dLon/2)
-      ; 
-    var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a)); 
-    var d = R * c; 
-    return kmToMiles(d).toFixed(2);
-  }
-  function deg2rad(deg) {
-    return deg * (Math.PI/180)
-  }
-  function kmToMiles(km) {
-    const milesPerKm = 0.62137119;
-    return km * milesPerKm;
-  }
 
-const handleFav = () => {
-  setIsFavorite(!isFavorite)
-  if (!isFavorite) {
-    props.truck.favorited = true
-    props.addFav(props.truck)
-  } else {
-    props.truck.favorited = false
-    props.remFav(props.truck)
+  const handleFav = () => {
+    setIsFavorite(!isFavorite)
+    if (!isFavorite) {
+      props.truck.favorited = true
+      props.addFav(props.truck)
+    } else {
+      props.truck.favorited = false
+      props.remFav(props.truck)
+    }
   }
-}
 
 const handleUpvote = () => {
   if (isDownvoted) {
@@ -60,8 +37,6 @@ const handleUpvote = () => {
     if (!isUpvoted) {
       setupVote(upVote += 1)
       props.truck.userUpvote = true
-      // props.truck.up_rating += 1 also parse int if backend data is a string
-      // add line of code to direclty manipulate the data model
     } else {
       setupVote(upVote += -1)
       props.truck.userUpvote = false
@@ -76,8 +51,6 @@ const handleDownvote = () => {
     setIsDownvoted(!isDownvoted)
     if (!isDownvoted) {
       setDownVote(downVote += 1)
-      // props.truck.up_rating += -1 also parse int if backend data is a string 
-      // add line of code to direclty manipulate the data model
       props.truck.userDownvote = true
     } else {
       setDownVote(downVote += -1)
@@ -93,7 +66,6 @@ const translateStatus = (status) => {
     return "open now"
   }
 }
-
 const currentStar = isFavorite ? Fav : notFav
 const currentUpvote = isUpvoted ? upvoted : notUpvoted
 const currentDownvote = isDownvoted ? downvoted : notDownvoted
@@ -109,14 +81,11 @@ const starAltText = isFavorite ? "Favorited Food Truck Star" : "Not Favorited Fo
       height={50} width={50}/> 
       <img className="image" src={props.truck.img}/>
       <div className="card-details-container">
-        <p className="distance">{getDistance()} miles away</p>
         <div className="details-status-container">
-        <button className={`${translateStatus(props.truck.status) === "closed" ? "status-icon-closed" : "status-icon-open"}`}></button>
+        <button className={`${props.truck.status === false ? "status-icon-closed" : "status-icon-open"}`}></button>
           <p className="status">{translateStatus(props.truck.status)}</p>
           <img className="pin" src={pin}></img>
-          <p className="location">Placeholder address</p>
-            {/* we're going to need to figure out what to do with the props.truck.location coordinates to make them display in a way that's like, readable for a human being */}
-            {/* we're also going to need to figure out how to do a distance calculation based on lat/long coordinates */}
+          <p className="location">{props.truck.address}</p>
       </div>
       <NavLink to={`/vendor/${props.truck.id}`} style={{ textDecoration: 'none', color: "#2f2f2f" }}>
           <p className="name">{props.truck.name}</p>

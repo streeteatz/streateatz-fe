@@ -22,66 +22,50 @@ const App = () => {
   const [userLocation, setUserLocation] = useState('')
 
 
-  const sendMessage = (truck) => {
+// vendors and customers toggle switch. 
+// make a state that holds boolean
+// based off of that value, it will be on vendor or user page
+// pass 
+
+  const sendData = (truck) => {
     if (truck.status === false) {
       truck.status = true
     } else {
       truck.status = false
     }
-      socket.emit("send_data", { updatedVendors: vendors.filter(v => v.id !== truck.id), truck: truck });
+    
+    socket.emit("send_data", { updatedVendors: vendors.filter(v => v.id !== truck.id), truck: truck });
   };
 
   const favTruck = (truck) => {
-    if (!favorites.find((fav) => fav.id === truck.id)) {
-      const newFavState = [...favorites, truck]
-      console.log(truck, "truck inside if statement")
-        // setFavorites(newFavState)
-    } else {
-      setVendors(vendors.filter((v) => v.favorited === true))
-        // setFavorites(newFavState)
-      }
-        console.log(truck, "truck OTHER inside if statement")
+    const newFavState = [...favorites, truck]
+    setFavorites(newFavState)
   }
 
-  // const importDistance = (miles) => {
-  // setTruckLocation(...miles)
-  // return miles
-// }
-
   const removeFav =  (truck) => {
-    setVendors(vendors.filter((v) => v.favorited === true))
+    const updatedFavs = favorites.filter((fav) => fav.id !== truck.id)
+    setFavorites(updatedFavs)
   }
 
   const searchResults = (searchValue) => {
     let lowerSearchValue = searchValue.toLowerCase()
     let nameSearchResults = vendors.filter((v) => v.name.toLowerCase().includes(lowerSearchValue) || v.tags.toLowerCase().includes(lowerSearchValue) || v.description.toLowerCase().includes(lowerSearchValue))
     setVendors(nameSearchResults)
-
-    //this is going to take in whatever the search value and based upon the search value it will iterate over the vendors and update the vendors state accordingly
-
-    // now if we are passing down the name of a  truck or location of truck then we just need to iteratre over vendors and filter where we see fit
   }
   
-  const searchButtons = (event, button) => {
+  const searchButtons = (event, button ) => {
     event.preventDefault();
     if (button === "favorites") {  
       setVendors(favorites)
-      setVendors(vendors.filter(v => v.favorited === true))
     } 
     if (button === "openNow") {
-      setVendors(vendors.filter(v => v.status === "true"))
+      setVendors(vendors.filter(v => v.status === true))
+      setVendors(vendors.filter(v => v.status === true))
     }
-    // if (button === "closest") {
-      
-    // }
   }
 
   const toggleView = (id) => {
     setCurrentUser(id);
-  }
-
-  const filterChosenVendor = () => {
-
   }
 
   const resestResults = (event) => {
@@ -99,11 +83,15 @@ const App = () => {
       }
     }
       
+
       
       useEffect(() => {
         fetchData()
-        console.log(vendors, "line 111")
-    
+  }
+            
+  useEffect(() => {
+    fetchData()
+
     socket.on('receive_data', (data) => {
       setVendors([data.truck, ...data.updatedVendors])
     });
@@ -113,7 +101,7 @@ const App = () => {
     };
   }, [])
 
-  return(
+  return (
     <div>
       <Header togView={toggleView} currentUser={currentUser}/>
       <Routes>
@@ -127,7 +115,7 @@ const App = () => {
       />
       <Route path="/vendor-view" element={
         <div>
-          <VendorView toggleLive={sendMessage} vendor={vendors.find(v => v.id == 1)} currentVendor={currentVendor}/>
+          <VendorView toggleLive={sendData} vendor={vendors.find(v => v.id == 1)} currentVendor={currentVendor}/>
         </div>
       } />
       <Route path="*" element={
