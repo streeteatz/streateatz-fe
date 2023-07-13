@@ -12,7 +12,10 @@ const Error = ({ message }) => {
     )
   } if (message === "fetch") {
     return (
-    <p className='error-fetch'>Oops, something has gone wrong on our end, try again!</p>
+      <div className='error-fetch-container'>
+        <p className='error-fetch'>Oops, something has gone wrong on our end, try again!</p>
+        <NavLink to="/"><button className='home-button'>refresh</button></NavLink>
+      </div>
     )
   } if (message === "search") {
     return(

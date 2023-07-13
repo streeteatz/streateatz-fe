@@ -1,4 +1,4 @@
-.error-url-container {
+.error-url-container, .error-fetch-container {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -25,4 +25,8 @@
 .home-button:hover {
   width: 100px;
   transition: all .3s ease-in-out;
+}
+
+.search-error {
+  margin: 5vh 40vw 0vh 40vw;
 }
