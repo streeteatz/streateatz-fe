@@ -27,7 +27,7 @@ const Header = ({ togView, currentUser }) => {
           <p className="logo-name">street eatz</p>
         </div>
       </NavLink>
-      <div class="right-container">
+      <div className="right-container">
         <div className="toggle-container">
           <NavLink to="/vendor-view" >
             <button id="vendor" className={`${currentUser === "vendor" ? "selected-btn" : "btn"}`} onClick={(event) => togView(event.target.id)}>vendors</button>
