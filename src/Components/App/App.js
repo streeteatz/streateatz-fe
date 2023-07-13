@@ -22,7 +22,7 @@ const App = () => {
   const [userLocation, setUserLocation] = useState('')
 
 
-  const sendMessage = (truck) => {
+  const sendData = (truck) => {
     if (truck.status === false) {
       truck.status = true
     } else {
@@ -50,7 +50,7 @@ const App = () => {
 // }
 
   const removeFav =  (truck) => {
-    setVendors(vendors.filter((v) => v.favorited === true))
+    setVendors(vendors)
   }
 
   const searchResults = (searchValue) => {
@@ -66,24 +66,20 @@ const App = () => {
   const searchButtons = (event, button) => {
     event.preventDefault();
     if (button === "favorites") {  
-      setVendors(favorites)
       setVendors(vendors.filter(v => v.favorited === true))
     } 
     if (button === "openNow") {
-      setVendors(vendors.filter(v => v.status === "true"))
+      setVendors(vendors.filter(v => v.status === true))
     }
-    // if (button === "closest") {
-      
-    // }
   }
 
   const toggleView = (id) => {
     setCurrentUser(id);
   }
 
-  const filterChosenVendor = () => {
+  // const filterChosenVendor = () => {
 
-  }
+  // }
 
   const resestResults = (event) => {
     event.preventDefault();
@@ -125,7 +121,7 @@ const App = () => {
       />
       <Route path="/vendor-view" element={
         <div>
-          <VendorView toggleLive={sendMessage} vendor={vendors.find(v => v.id == 1)} currentVendor={currentVendor}/>
+          <VendorView toggleLive={sendData} vendor={vendors.find(v => v.id == 1)} currentVendor={currentVendor}/>
         </div>
       } />
       <Route path="*" element={
