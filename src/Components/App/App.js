@@ -92,7 +92,6 @@ const App = () => {
   const fetchData = async () => {
     try {
       const data = await fetchAllTrucks()
-        console.log(data.data, "data")
         setVendors(data.data.attributes)
       } catch(error) {
         console.log(error, "error")
