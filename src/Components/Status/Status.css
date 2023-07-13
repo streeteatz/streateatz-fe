@@ -3,7 +3,10 @@
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
-  margin: 3vh 4vw 3vh 4vw;
+  margin: 10vh 30vw 0vh 30vw;
+  padding-bottom: 5vh;
+  width: fit-content;
+  white-space: nowrap;
 }
 
 .status-header {
@@ -111,7 +114,7 @@
   flex-direction: row;
   justify-content: space-around;
   align-items: center;
-  width: 35vw;
+  width: 45vw;
 }
 
 .status-pin {
@@ -139,4 +142,57 @@
 #statusLocation:hover {
   width: 83%;
   transition: all .3s ease-in-out;
+}
+
+@media screen and (max-width: 50em) {
+  .status-container {
+    margin: 10vh 21vw 0vh 21vw;
+  }
+
+  .status-header {
+    font-size: 2.75em;
+  }
+
+  .location-container {
+    width: 55vw;
+  }
+
+  .status-location {
+    width: 75%;
+  }
+
+  #statusLocation:focus {
+    width: 78%;
+  }
+  
+  #statusLocation:hover {
+    width: 78%;
+  }
+}
+
+
+@media screen and (max-width: 35em) {
+  .status-container {
+    margin: 10vh 10vw 0vh 10vw;
+  }
+
+  .status-header {
+    font-size: 2.25em;
+  }
+
+  .location-container {
+    width: 65vw;
+  }
+
+  .status-location {
+    width: 68%;
+  }
+
+  #statusLocation:focus {
+    width: 71%;
+  }
+  
+  #statusLocation:hover {
+    width: 71%;
+  }
 }
