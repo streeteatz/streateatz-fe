@@ -64,7 +64,7 @@ const TruckCard = (props) => {
   }
 
   const translateStatus = (status) => {
-    if (status === 'false') {
+    if (status === false) {
       return "closed"
     } else {
       return "open now"

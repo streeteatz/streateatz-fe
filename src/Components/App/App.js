@@ -23,12 +23,13 @@ const App = () => {
 
 
   const sendMessage = (truck) => {
-    if (truck.status === 'false') {
-      truck.status = 'true'
+    if (truck.status === false) {
+      truck.status = true
     } else {
-      truck.status = 'false'
+      truck.status = false
     }
-      socket.emit("send_data", { updatedVendors: vendors.filter(v => v.id !== truck.id), truck: truck });
+    
+    socket.emit("send_data", { updatedVendors: vendors.filter(v => v.id !== truck.id), truck: truck });
   };
 
   const favTruck = (truck) => {
@@ -96,17 +97,10 @@ const App = () => {
       } catch(error) {
         console.log(error, "error")
       }
-      // const thisData = mockData.data.map((data) => {
-        //   return data.attributes
-        // })
-        // setVendors( thisData)
-        // this is going to fetch the data and then set state but then also reset isLoading to false
-      }
-      
-      
-      useEffect(() => {
-        fetchData()
-        console.log(vendors, "line 111")
+  }
+            
+  useEffect(() => {
+    fetchData()
     
     socket.on('receive_data', (data) => {
       setVendors([data.truck, ...data.updatedVendors])
@@ -117,7 +111,7 @@ const App = () => {
     };
   }, [])
 
-  return(
+  return (
     <div>
       <Header togView={toggleView} currentUser={currentUser}/>
       <Routes>
