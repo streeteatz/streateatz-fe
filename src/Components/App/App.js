@@ -17,16 +17,16 @@ const App = () => {
   const [currentVendor, setCurrentVendor] = useState(1)
   const [favorites, setFavorites] = useState([])
   const [loading, setLoading] = useState(true)
-  const [error, setError] = useState(null)
+  const [error, setError] = useState('')
   const [truckLocation, setTruckLocation] = useState([])
   const [userLocation, setUserLocation] = useState('')
 
 
   const sendMessage = (truck) => {
-    if (truck.status === 'false') {
-      truck.status = 'true'
+    if (truck.status === false) {
+      truck.status = true
     } else {
-      truck.status = 'false'
+      truck.status = false
     }
       socket.emit("send_data", { updatedVendors: vendors.filter(v => v.id !== truck.id), truck: truck });
   };
@@ -94,14 +94,10 @@ const App = () => {
       const data = await fetchAllTrucks()
         setVendors(data.data.attributes)
       } catch(error) {
-        console.log(error, "error")
+       setError("fetch")
+       console.log(error, "fetch")
       }
-      // const thisData = mockData.data.map((data) => {
-        //   return data.attributes
-        // })
-        // setVendors( thisData)
-        // this is going to fetch the data and then set state but then also reset isLoading to false
-      }
+    }
       
       
       useEffect(() => {
@@ -124,7 +120,7 @@ const App = () => {
         <Route path="/" element={
           <div>
             <Search vendors={vendors} search={searchResults} reset={resestResults} allSearch={searchButtons}/>
-            <Results vendors={vendors} remFav={removeFav} addFav={favTruck} favorites={favorites} />
+            {error === "" ? (<Results vendors={vendors} remFav={removeFav} addFav={favTruck} favorites={favorites} />) : (<Error message={"fetch"} />) }
           </div>
         } />
       <Route path="/vendor/:id" element={<TruckDetails vendors={vendors}/>}
