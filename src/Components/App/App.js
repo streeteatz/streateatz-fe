@@ -23,10 +23,10 @@ const App = () => {
 
 
   const sendMessage = (truck) => {
-    if (truck.status === 'false') {
-      truck.status = 'true'
+    if (!truck.status) {
+      truck.status = true
     } else {
-      truck.status = 'false'
+      truck.status = false
     }
       socket.emit("send_data", { updatedVendors: vendors.filter(v => v.id !== truck.id), truck: truck });
   };
