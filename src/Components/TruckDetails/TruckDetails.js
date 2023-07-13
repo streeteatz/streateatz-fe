@@ -14,8 +14,9 @@ const TruckDetails = ({ vendors, currentVendor }) => {
     const [menu, setMenu] = useState([])
     const [loading, setLoading] = useState(true)
     let { id } = useParams();
-    let match = vendors.filter(truck => truck.id === id)[0]
-    console.log(vendors, 'vendors in truck details')
+    let match = vendors.filter((truck) => parseInt(truck.id) === parseInt(id))[0]
+    
+    console.log(match, 'match in truck details')
 
     // const individualTruckFetch = (id) => {
       // fetch and interpolate the id onto the end of the fetch call

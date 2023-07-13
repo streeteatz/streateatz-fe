@@ -89,24 +89,25 @@ const App = () => {
     fetchData()
   }
 
-  const fetchData = () => {
-  // async () => {
-    // try {
-    //   await fetchAllTrucks().then((data) => {
-    //     console.log(data, "data")
-    //   })
-    // } catch(error) {
-    //   console.log(error, "error")
-    // }
-    const thisData = mockData.data.map((data) => {
-      return data.attributes
-    })
-    setVendors( thisData)
-    // this is going to fetch the data and then set state but then also reset isLoading to false
-  }
-
-  useEffect(() => {
-    fetchData()
+  const fetchData = async () => {
+    try {
+      const data = await fetchAllTrucks()
+        console.log(data.data, "data")
+        setVendors(data.data.attributes)
+      } catch(error) {
+        console.log(error, "error")
+      }
+      // const thisData = mockData.data.map((data) => {
+        //   return data.attributes
+        // })
+        // setVendors( thisData)
+        // this is going to fetch the data and then set state but then also reset isLoading to false
+      }
+      
+      
+      useEffect(() => {
+        fetchData()
+        console.log(vendors, "line 111")
     
     socket.on('receive_data', (data) => {
       setVendors([data.truck, ...data.updatedVendors])
