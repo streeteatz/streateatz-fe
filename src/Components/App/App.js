@@ -21,6 +21,10 @@ const App = () => {
   const [truckLocation, setTruckLocation] = useState([])
   const [userLocation, setUserLocation] = useState('')
 
+// vendors and customers toggle switch. 
+// make a state that holds boolean
+// based off of that value, it will be on vendor or user page
+// pass 
 
   const sendData = (truck) => {
     if (truck.status === false) {
@@ -35,19 +39,10 @@ const App = () => {
   const favTruck = (truck) => {
     if (!favorites.find((fav) => fav.id === truck.id)) {
       const newFavState = [...favorites, truck]
-      console.log(truck, "truck inside if statement")
-        // setFavorites(newFavState)
     } else {
       setVendors(vendors.filter((v) => v.favorited === true))
-        // setFavorites(newFavState)
       }
-        console.log(truck, "truck OTHER inside if statement")
   }
-
-  // const importDistance = (miles) => {
-  // setTruckLocation(...miles)
-  // return miles
-// }
 
   const removeFav =  (truck) => {
     setVendors(vendors)
@@ -97,7 +92,7 @@ const App = () => {
             
   useEffect(() => {
     fetchData()
-    
+
     socket.on('receive_data', (data) => {
       setVendors([data.truck, ...data.updatedVendors])
     });
