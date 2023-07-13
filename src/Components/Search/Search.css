@@ -99,3 +99,14 @@
   transition: all .3s ease-in-out;
 }
 
+@media screen and (max-width: 50em) {
+  #searchQueryInput {
+    width: 40%;
+  }
+}
+
+@media screen and (max-width: 35em) {
+  #searchQueryInput {
+    width: 60%;
+  }
+}

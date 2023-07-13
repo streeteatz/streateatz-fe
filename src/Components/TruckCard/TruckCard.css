@@ -28,6 +28,7 @@
   margin: 0px 10px 0px 10px;
   cursor: pointer;
 }
+
 .card-details-container  {
   display: flex;
   flex-direction: column;
@@ -60,7 +61,6 @@
   border-radius: 25px;
   background-color: rgb(4, 226, 89);
 }
-
 
 .distance {
   margin: 0px 0px 2px 0px;
@@ -116,9 +116,40 @@
   }
 }
 
-
 @media screen and (max-width: 35em) {
   .card-container {
-    margin: 2% 2% 0% 2%;
+    margin: 2% 2% 5% 2%;
+  }
+
+  .star-icon {
+    height: 25px;
+    width: 25px;
+    margin-right: 0px;
+  }
+
+  .image {
+    height: 100px;
+    width: 175px;
+  }
+
+  .distance {
+    font-size: 1em;
+  }
+
+  .status, .location {
+    font-size: .75em;
+  }
+
+  .name {
+    font-size: 1em;
+  }
+
+  .tags  {
+    margin: 0px 0px 0px 0px;
+    font-size: .75em;
+  }
+
+  .upvotes, .downvotes  {
+    font-size: .75em;
   }
 }

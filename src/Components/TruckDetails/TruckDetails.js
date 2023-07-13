@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from 'react'
 import { useParams } from 'react-router-dom'
+import { NavLink } from 'react-router-dom';
 import pin from '../../assets/pin.png'
 import notFav from '../../assets/notFav.png'
 import Fav from '../../assets/fav.png'
@@ -91,6 +92,7 @@ const goBackHome = () => {
           {/* {items} */}
         </div>
       </div>
+      <NavLink to="/"><button className="back-btn">back</button></NavLink>
     </section>
   )
 }

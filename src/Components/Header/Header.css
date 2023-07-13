@@ -5,6 +5,7 @@
   align-items: center;
   width: 92vw;
   margin: 3vh 4vw 3vh 4vw;
+  white-space: nowrap;
 }
 
 .left-container {
@@ -142,5 +143,33 @@
 
 .dropdown-hide {
   display: none;
+}
+
+@media screen and (max-width: 50em) {
+  .dropdown {
+    margin: 9% 0% 0% 73%;
+  }
+}
+
+@media screen and (max-width: 35em) {
+  .left-container {
+    width: 15vw;
+  }
+
+  .right-container {
+    width: 30%;
+    margin-right: 8%;
+  }
+
+  .dropdown {
+    margin: 15% 0% 0% 56%;
+  }
+
+  .dropdown-show {
+    border: none;
+    border-radius: 2em;
+    padding: 10%;
+    background-color:#F6F6F5;
+  }
 }
 

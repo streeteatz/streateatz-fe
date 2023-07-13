@@ -53,7 +53,7 @@
 }
 
 .right-side {
-  margin: 24vh 0vw 0vh 0vw;
+  margin: 22vh 0vw 0vh 0vw;
   width: 500px;
 }
 
@@ -62,6 +62,23 @@
   height: 225px;
   width: 100%;
   border: 1px black solid;
+}
+
+.back-btn {
+  margin: 53vh 0vw 0vh 0vw;
+  height: 30px;
+  width: 90px;
+  background: #ffffff;
+  color: #000000;
+  border: 1px #767676 solid;
+  border-radius: 25px;
+  cursor: pointer;
+  transition: all .3s ease-in-out;
+}
+
+.back-btn:hover {
+  width: 100px;
+  transition: all .3s ease-in-out;
 }
 
 @media screen and (max-width: 50em) {

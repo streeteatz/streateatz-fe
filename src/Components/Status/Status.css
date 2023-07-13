@@ -3,7 +3,7 @@
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
-  margin: 10vh 30vw 0vh 30vw;
+  margin: 10vh 25vw 0vh 25vw;
   padding-bottom: 5vh;
   width: fit-content;
   white-space: nowrap;
@@ -173,7 +173,7 @@
 
 @media screen and (max-width: 35em) {
   .status-container {
-    margin: 10vh 10vw 0vh 10vw;
+    margin: 10vh 15vw 0vh 15vw;
   }
 
   .status-header {
