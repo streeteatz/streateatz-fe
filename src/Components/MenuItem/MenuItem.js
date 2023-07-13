@@ -1,12 +1,11 @@
 import React from "react";
 
-const MenuItem = ({item}) => {
- 
+export const MenuItem = ({ item }) => {
+ console.log(item, 'in menu')
     return (
         <div>
-            <h3>Burgers</h3>
-            <span><p>CheeseBurger</p><p>$8.00</p></span>
-            <span><p>BaconBurger</p><p>$9.00</p></span>
+            <span><h3>{item.name}</h3><p>{item.price}</p></span>
+            <p>{item.description}</p>
         </div>
     )
 }

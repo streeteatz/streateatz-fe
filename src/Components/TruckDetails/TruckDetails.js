@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react'
 import { useParams } from 'react-router-dom'
 import { NavLink } from 'react-router-dom';
+import { MenuItem } from '../MenuItem/MenuItem';
 import pin from '../../assets/pin.png'
 import notFav from '../../assets/notFav.png'
 import Fav from '../../assets/fav.png'
@@ -9,16 +10,14 @@ import notUpvoted from '../../assets/notUpvoted.png'
 import downvoted from '../../assets/downvoted.png'
 import upvoted from '../../assets/upvoted.png'
 import './TruckDetails.css'
-import { fetchAllTrucks } from '../../utilities/apiCalls'
+import { fetchAllTrucks, fetchAllMenus } from '../../utilities/apiCalls'
 
-const TruckDetails = ({ vendors, currentVendor }) => {
+const TruckDetails = ({ vendors }) => {
     const [singularTruck, setSingularTruck] = useState({})
     const [menu, setMenu] = useState([])
     const [loading, setLoading] = useState(true)
     let { id } = useParams();
     let match = vendors.filter((truck) => parseInt(truck.id) === parseInt(id))[0]
-    
-    // console.log(match, 'match in truck details')
 
     // const individualTruckFetch = (id) => {
       // fetch and interpolate the id onto the end of the fetch call
@@ -33,19 +32,22 @@ const TruckDetails = ({ vendors, currentVendor }) => {
     // }
     const fetchData = async () => {
       try {
+        const menuData = await fetchAllMenus()
         const data = await fetchAllTrucks()
-          let oneTruck = data.data.attributes.filter((truck) => truck.id === match.id)[0]
-          setSingularTruck(oneTruck)
-          console.log(oneTruck, "oneTruck")
-        } catch(error) {
-          console.log(error, "error")
-        }
+        let currentMenu = menuData.data.attributes.filter((item) => item.vendor === match.id)
+        let oneTruck = data.data.attributes.filter((truck) => truck.id === match.id)[0]
+        setMenu(currentMenu)
+        setSingularTruck(oneTruck)
+      } catch(error) {
+        console.log(error, "error")
+      }
         // const thisData = mockData.data.map((data) => {
           //   return data.attributes
           // })
           // setVendors( thisData)
           // this is going to fetch the data and then set state but then also reset isLoading to false
         }
+
 
 useEffect(() => {
   fetchData()
@@ -108,7 +110,11 @@ const goBackHome = () => {
           <p className="downvotes">{singularTruck.down_rating}</p>
         </div>
         <div className="menu-container">
-          {/* {items} */}
+          {menu.map((item, index) => {
+            return (
+              <MenuItem item={item} key={index} />
+            )
+          })}
         </div>
       </div>
       <NavLink to="/"><button className="back-btn">back</button></NavLink>
