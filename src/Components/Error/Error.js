@@ -7,7 +7,7 @@ const Error = ({ message }) => {
     )
   } if (message === "fetch") {
     return (
-    <p>404 Error</p>
+    <p>Oops, something has gone wrong on our end, try again!</p>
     )
   }
 }
