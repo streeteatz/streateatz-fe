@@ -4,6 +4,7 @@ beforeEach(() => {
     fixture: "truckData.json"
   })
   .visit("http://localhost:3000/")
+  // cy.wait(2000)
 });
 
 it("should display a title", () => {
@@ -35,6 +36,28 @@ it("should have a notifications icon", () => {
   cy.get('div').children('.notifications-icon')
 });
 
-it("should display a list of food truck cards", () => {
-  cy.get
+it("should display a list of food truck cards with content", () => {
+  cy.get('.vendor-display').children().should('have.length', 2)
+  cy.get('[class="card-container"]:first').children().should('have.length', 3)
+  cy.get('[class="card-container"]:first').children('.star-icon')
+  cy.get('[class="card-container"]:first').children('.card-details-container')
+    .children('a').children('.name').contains('Mac and Noodles')
+  cy.get('[class="card-container"]:first').children('.card-details-container')
+    .children('.details-status-container').children('.status-icon-closed')
+  cy.get('[class="card-container"]:first').children('.card-details-container')
+    .children('.details-status-container').children('.status').contains('closed')
+  cy.get('[class="card-container"]:first').children('.card-details-container')
+    .children('.details-status-container').children('.pin')
+  cy.get('[class="card-container"]:first').children('.card-details-container')
+    .children('.details-status-container').children('.location').contains('500 E 17th Ave Denver, CO')
+  cy.get('[class="card-container"]:first').children('.card-details-container')
+    .children('.tags').contains('#macaroni #cheese #noodles #macncheese')
+  cy.get('[class="card-container"]:first').children('.card-details-container')
+    .children('.votes-container').children('.notUpvoted')
+  cy.get('[class="card-container"]:first').children('.card-details-container')
+    .children('.votes-container').children('.upvotes').contains(666)
+  cy.get('[class="card-container"]:first').children('.card-details-container')
+    .children('.votes-container').children('.downvoted')
+  cy.get('[class="card-container"]:first').children('.card-details-container')
+    .children('.votes-container').children('.downvotes').contains(12)
 });
