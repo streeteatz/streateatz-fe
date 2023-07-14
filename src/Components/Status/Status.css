@@ -145,15 +145,15 @@
 }
 
 .broadcast-btn {
-      height: 38px;
-    width: 147px;
-    background: #D43C0D;
-    color: #ffffff;
-    border: none;
-    border-radius: 25px;
-    cursor: pointer;
-    transition: all .3s ease-in-out;
-    margin: 10px;
+  height: 38px;
+  width: 147px;
+  background: #D43C0D;
+  color: #ffffff;
+  border: none;
+  border-radius: 25px;
+  cursor: pointer;
+  transition: all .3s ease-in-out;
+  margin: 10px;
 }
 
 .broadcast-btn:hover {
