@@ -1,12 +1,7 @@
 import React from "react";
 import './MenuItem.css';
 export const MenuItem = ({ item }) => {
- console.log(item, 'in menu')
 
- const formattedPrice = item.price.toLocaleString("en-US", {
-    style: "currency",
-    currency: "USD"
-});
 let USDollar = new Intl.NumberFormat('en-US', {
     style: 'currency',
     currency: 'USD',
