@@ -24,13 +24,17 @@ it("should have a search bar, icon and search buttons", () => {
 });
 
 it("should have a toggle button with vendors and customers", () => {
-  cy.contains('h2', 'hungry?')
+  cy.get('.toggle-container').children().should('have.length', 2)
+  cy.get('button').contains('vendors')
+  cy.get('button').contains('customers')
 });
 
-it("should display a title", () => {
-  cy.contains('h2', 'hungry?')
+it("should have a notifications icon", () => {
+  cy.get('.notifications-container').children().should('have.length', 2)
+  cy.get('div').children('.notifications-btn')
+  cy.get('div').children('.notifications-icon')
 });
 
-it("should display a title", () => {
-  cy.contains('h2', 'hungry?')
+it("should display a list of food truck cards", () => {
+  cy.get
 });
