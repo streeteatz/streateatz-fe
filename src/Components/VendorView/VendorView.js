@@ -3,7 +3,7 @@ import Status from '../Status/Status'
 import TruckDetails from '../TruckDetails/TruckDetails'
 import { MenuItem } from '../MenuItem/MenuItem'
 import { fetchAllMenus } from '../../utilities/apiCalls'
-
+import './VendorView.css'
 
 const VendorView = ({ vendor, currentVendor, toggleLive }) => {
   const [menu, setMenu] = useState([])
@@ -21,11 +21,6 @@ const VendorView = ({ vendor, currentVendor, toggleLive }) => {
     } catch(error) {
       console.log(error, "error")
     }
-      // const thisData = mockData.data.map((data) => {
-        //   return data.attributes
-        // })
-        // setVendors( thisData)
-        // this is going to fetch the data and then set state but then also reset isLoading to false
       }
       useEffect(() => {
         fetchData()
@@ -33,47 +28,46 @@ const VendorView = ({ vendor, currentVendor, toggleLive }) => {
   console.log(vendor, 'vendor from vendor view')
   const suggestion = vendor.down_rating > vendor.up_rating ? 'Maybe you should try going Open now!' : ''
   return(
-    <div>
-      {/* <button onClick={() => toggleLive(vendor)}>{vendor.status === 'true' ? "Close Shop" : "Go Live"}</button> */}
-    
-      <Status toggle={toggleLive} vendor={vendor}/>
-      <div className='vendor-view-cont'>
-        <div className='vv-left'>
+    <div className="vendor-view">
+      <div className='status-container'>
+        <Status toggle={toggleLive} vendor={vendor} />
+      </div>
+    <div className="vendor-view-cont">
+      <div className="vv-left">
+        <div className="statistics-container">
           <h3>{vendor.name} Statistics!</h3>
           <p>You have a total of {vendor.up_rating} Streeteatz users who love your truck!</p>
           <p>You have a total of {vendor.down_rating} Streeteatz users who love your truck!</p>
           <p>{suggestion}</p>
-          <div>
-            <h3>Want to expand your business!?</h3>
-            <span>
-              <a href='https://www.foodtruckr.com' target='_blank' rel='noopener noreferrer'>
+        </div>
+        <div className="links-container">
+          <h3>Want to expand your business!?</h3>
+          <span>
+            <a href="https://www.foodtruckr.com" target="_blank" rel="noopener noreferrer">
               {truncateUrl('www.foodtruckr.com')} - Resources for Food Truck Owners
-              </a>
-            </span>
-            <span>
-              <a href='https://mobile-cuisine.com' target='_blank' rel='noopener noreferrer'>
+            </a>
+          </span>
+          <span>
+            <a href="https://mobile-cuisine.com" target="_blank" rel="noopener noreferrer">
               {truncateUrl('mobile-cuisine.com')} - Food Truck Information and Guides
-              </a>
-            </span>
-            <span>
-              <a href='https://www.businessnewsdaily.com/9237-how-to-start-food-truck-business.html' target='_blank' rel='noopener noreferrer'>
-                {truncateUrl('https://www.businessnewsdaily.com/9237-how-to-start-food-truck-business.html')} - How to Start a Food Truck Business!
-              </a>
-            </span>
-          </div>
-        </div>
-        <div className='vv-right'>
-        <div className="menu-container">
-          {menu.map((item, index) => {
-            return (
-              <MenuItem item={item} key={index} />
-            )
-          })}
-        </div>
+            </a>
+          </span>
+          <span>
+            <a href="https://www.businessnewsdaily.com/9237-how-to-start-food-truck-business.html" target="_blank" rel="noopener noreferrer">
+              {truncateUrl('https://www.businessnewsdaily.com/9237-how-to-start-food-truck-business.html')} - How to Start a Food Truck Business!
+            </a>
+          </span>
         </div>
       </div>
-      {/* <TruckDetails vendors={theVendor} /> */}
+      <div className="vv-right">
+        <div className="menu-container">
+          {menu.map((item, index) => {
+            return <MenuItem item={item} key={index} />;
+          })}
+        </div>
+      </div>
     </div>
+  </div>
   )
 }
 
