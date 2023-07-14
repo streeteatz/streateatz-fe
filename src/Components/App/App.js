@@ -78,6 +78,7 @@ const App = () => {
   }
 
   const resestResults = (event) => {
+    setError('')
     event.preventDefault()
     fetchData()
   }
