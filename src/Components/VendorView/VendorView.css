@@ -1,0 +1,64 @@
+.vendor-view {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .status-container {
+    width: 100%;
+    padding: 20px;
+    border-radius: 5px;
+    margin-bottom: 20px;
+  }
+  
+  .vendor-view-cont {
+    display: flex;
+    width: 100%;
+  }
+  
+  .vv-left,
+  .vv-right {
+    flex-basis: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .statistics-container,
+  .links-container {
+    width: 80%;
+    padding: 20px;
+    background-color: #f2f2f2;
+    border-radius: 5px;
+    margin-bottom: 20px;
+  }
+  
+  .links-container span {
+    display: block;
+    margin-bottom: 10px;
+  }
+  
+  .menu-container {
+    width: 80%;
+    padding: 20px;
+    background-color: #f2f2f2;
+    border-radius: 5px;
+    height: 100%;
+    overflow-y: auto;
+  }
+  
+  .menu-container::-webkit-scrollbar {
+    width: 8px;
+  }
+  
+  .menu-container::-webkit-scrollbar-thumb {
+    background-color: rgba(0, 0, 0, 0.3);
+    border-radius: 4px;
+  }
+  
+  .menu-container::-webkit-scrollbar-track {
+    background-color: rgba(0, 0, 0, 0.1);
+    border-radius: 4px;
+  }

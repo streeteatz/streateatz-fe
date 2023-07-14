@@ -9,10 +9,11 @@ import { Routes, Route } from 'react-router-dom'
 import TruckCard from '../TruckCard/TruckCard'
 import { mockData } from '../../MockData/MockData'
 import { socket } from '../../utilities/socket'
-import { fetchAllTrucks } from '../../utilities/apiCalls'
+import { fetchAllTrucks, fetchAllMenus } from '../../utilities/apiCalls'
 
 const App = () => {
   const [vendors, setVendors] = useState([])
+  const [allMenuItems, setAllMenuItems] = useState([])
   const [currentUser, setCurrentUser] = useState('customer')
   const [currentVendor, setCurrentVendor] = useState(1)
   const [favorites, setFavorites] = useState([])
@@ -88,10 +89,9 @@ const App = () => {
        console.log(error, "fetch")
       }
     }
-            
+
   useEffect(() => {
     fetchData()
-
     socket.on('receive_data', (data) => {
       setVendors([data.truck, ...data.updatedVendors])
       setPushNote([...pushNote, { vendorName: data.truck.name }])
@@ -118,7 +118,7 @@ const App = () => {
             {error === "" ? (<Results vendors={vendors} remFav={removeFav} addFav={favTruck} favorites={favorites} />) : (<Error message={"fetch"} />) }
           </div>
         } />
-      <Route path="/vendor/:id" element={<TruckDetails vendors={vendors}/>}
+      <Route path="/vendor/:id" element={<TruckDetails vendors={vendors} />}
       />
       <Route path="/vendor-view" element={
         <div>

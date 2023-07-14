@@ -8,7 +8,7 @@ const Status = ({ toggle, vendor, getAddress }) => {
   return (
     <div className="status-container">
       <p className="status-header">welcome back!</p>
-      <p className="vendor-name">Vendor Name</p>
+      <p className="vendor-name">{vendor.name}!!!</p>
       <div className="status-toggle-container">
         <p className="closed">closed</p>
         <div className="toggle-switch">
