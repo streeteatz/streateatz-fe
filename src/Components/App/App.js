@@ -59,7 +59,7 @@ const App = () => {
     let lowerSearchValue = searchValue.toLowerCase()
     let nameSearchResults = vendors.filter((v) => v.name.toLowerCase().includes(lowerSearchValue) || v.tags.toLowerCase().includes(lowerSearchValue) || v.description.toLowerCase().includes(lowerSearchValue))
     if (!nameSearchResults.length) {
-      setVendors(storedVendors)
+      // setVendors(storedVendors)
       setError("search")
     } else {
       setVendors(nameSearchResults)
@@ -90,13 +90,14 @@ const App = () => {
   const resestResults = (event) => {
     setError('')
     event.preventDefault()
-    setVendors(storedVendors)
+    console.log(vendors, 'vendors after rest')
+    console.log(storedVendors, 'vendors after rest')
+    setVendors(vendors)
   }
   const fetchData = async () => {
     try {
       const data = await fetchAllTrucks();
       const updatedVendors = data.data.attributes.map((vendor) => {
-        console.log(vendor, 'dont be 20')
         const existingVendor = vendors.find((v) => v.id === vendor.id);
         if (existingVendor) {
           vendor.status = existingVendor.status;
@@ -130,7 +131,6 @@ const App = () => {
       setPushNote([...pushNote, { vendorName: data.truck.name }])
     });
     
-    console.log(vendors, 'dataa 106')
     socket.on('receive_address', (data) => {
       setVendors([data.vendor, ...data.updatedVendors])
     })
