@@ -13,6 +13,7 @@ import { fetchAllTrucks, fetchAllMenus } from '../../utilities/apiCalls'
 
 const App = () => {
   const [vendors, setVendors] = useState([])
+  const [storedVendors, setStoredVendors] = useState([])
   const [allMenuItems, setAllMenuItems] = useState([])
   const [currentUser, setCurrentUser] = useState('customer')
   const [currentVendor, setCurrentVendor] = useState(1)
@@ -43,8 +44,10 @@ const App = () => {
   }
 
   const favTruck = (truck) => {
-    const newFavState = [...favorites, truck]
-    setFavorites(newFavState)
+    if (!favorites.includes(truck)) {
+      const newFavState = [...favorites, truck]
+      setFavorites(newFavState)  
+  }
   }
 
   const removeFav =  (truck) => {
@@ -56,6 +59,7 @@ const App = () => {
     let lowerSearchValue = searchValue.toLowerCase()
     let nameSearchResults = vendors.filter((v) => v.name.toLowerCase().includes(lowerSearchValue) || v.tags.toLowerCase().includes(lowerSearchValue) || v.description.toLowerCase().includes(lowerSearchValue))
     if (!nameSearchResults.length) {
+      setVendors(storedVendors)
       setError("search")
     } else {
       setVendors(nameSearchResults)
@@ -64,15 +68,21 @@ const App = () => {
   
   const searchButtons = (event, button ) => {
     event.preventDefault()
-    if (button === "favorites") {  
+    if (button === "favorites") { 
+      setStoredVendors(vendors)
       setVendors(favorites)
     } 
     if (button === "openNow") {
-      setVendors(vendors.filter(v => v.status === true))
-      setVendors(vendors.filter(v => v.status === true))
-    }
+      setStoredVendors(vendors)
+      setVendors(vendors.filter(v => {
+        return (
+          v.status === true
+        )
+      })
+      // setVendors(vendors.filter(v => v.status === true))
+      )
   }
-
+  }
   const toggleView = (id) => {
     setCurrentUser(id)
   }
@@ -80,17 +90,18 @@ const App = () => {
   const resestResults = (event) => {
     setError('')
     event.preventDefault()
-    fetchData()
+    setVendors(storedVendors)
   }
   const fetchData = async () => {
     try {
       const data = await fetchAllTrucks();
       const updatedVendors = data.data.attributes.map((vendor) => {
+        console.log(vendor, 'dont be 20')
         const existingVendor = vendors.find((v) => v.id === vendor.id);
         if (existingVendor) {
           vendor.status = existingVendor.status;
         } else {
-          vendor.status = false; // Set the default status to false for new vendors
+          vendor.status = false; 
         }
         return vendor;
       });
@@ -113,11 +124,8 @@ const App = () => {
 
   useEffect(() => {
     fetchData()
-    
     socket.on('receive_data', (data) => {
-      console.log(data, 'dataaaaa')
       // setVendors([...data.updatedVendors, data.truck])
-      console.log(data.truck, 'single truck')
       setVendors([data.truck, ...data.updatedVendors])
       setPushNote([...pushNote, { vendorName: data.truck.name }])
     });
@@ -140,7 +148,7 @@ const App = () => {
         <Route path="/" element={
           <div>
             <Search vendors={vendors} search={searchResults} reset={resestResults} allSearch={searchButtons}/>
-            {loading === false ? (<Results vendors={vendors} remFav={removeFav} addFav={favTruck} favorites={favorites} />) : <p>Loading....</p>}
+            {/* {loading === false ? (<Results vendors={vendors} remFav={removeFav} addFav={favTruck} favorites={favorites} />) : <p>Loading....</p>} */}
             {error === "" ? (<Results vendors={vendors} remFav={removeFav} addFav={favTruck} favorites={favorites} />) : (error === "fetch" ?(<Error message={"fetch"} />) : (<Error message={"search"} />)) }
           </div>
         } />

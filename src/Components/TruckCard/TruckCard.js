@@ -74,7 +74,7 @@ const TruckCard = (props) => {
   //   }
   // }
 
-  const currentStar = isFavorite ? Fav : notFav
+  const currentStar = props.truck.favorited === true ? Fav : notFav
   const currentUpvote = isUpvoted ? upvoted : notUpvoted
   const currentDownvote = isDownvoted ? downvoted : notDownvoted
   const starAltText = isFavorite ? "Favorited Food Truck Star" : "Not Favorited Food Truck Star"
