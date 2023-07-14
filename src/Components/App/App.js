@@ -37,6 +37,11 @@ const App = () => {
     socket.emit("send_data", { updatedVendors: vendors.filter(v => v.id !== truck.id), truck: truck });
   };
 
+  const sendAddress = (location) => {
+    console.log(location, 'location for send address')
+    socket.emit("send_address", { address: location })
+  }
+
   const favTruck = (truck) => {
     const newFavState = [...favorites, truck]
     setFavorites(newFavState)
@@ -90,8 +95,13 @@ const App = () => {
       setVendors([data.truck, ...data.updatedVendors])
     });
 
+    socket.on('receive_address', (data) => {
+      console.log(data, 'address being returned to application')
+    })
+
     return () => {
       socket.off('receive_data');
+      socket.off('receive_address')
     };
   }, [])
 
@@ -109,7 +119,7 @@ const App = () => {
       />
       <Route path="/vendor-view" element={
         <div>
-          <VendorView toggleLive={sendData} vendor={vendors.find(v => v.id == 1)} currentVendor={currentVendor}/>
+          <VendorView toggleLive={sendData} getAddress={sendAddress} vendor={vendors.find(v => v.id == 1)} currentVendor={currentVendor}/>
         </div>
       } />
       <Route path="*" element={

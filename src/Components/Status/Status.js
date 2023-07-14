@@ -2,10 +2,12 @@ import React, { useEffect, useState } from 'react'
 import pin from '../../assets/pin.png'
 import './Status.css'
 
-const Status = ({ toggle, vendor }) => {
+const Status = ({ toggle, vendor, getAddress }) => {
   const [location, setLocation] = useState('')
 
-  console.log(vendor, 'location')
+  // We need to pass the location to the other users
+  // make a function in app.js that will handle the logic
+  // pass that function in here and add it to the callback function
 
   return(
     <div className="status-container">
@@ -33,7 +35,10 @@ const Status = ({ toggle, vendor }) => {
         id='statusLocation'
         className='status-location'
         value={location}
-        onChange={event => setLocation(event.target.value)}
+        onChange={event => {
+          setLocation(event.target.value)
+          getAddress(location)
+        }}
       />
     </form>
       </div>
