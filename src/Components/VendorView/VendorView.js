@@ -5,7 +5,7 @@ import { MenuItem } from '../MenuItem/MenuItem'
 import { fetchAllMenus } from '../../utilities/apiCalls'
 import './VendorView.css'
 
-const VendorView = ({ vendor, currentVendor, toggleLive }) => {
+const VendorView = ({ vendor, currentVendor, toggleLive, getAddress }) => {
   const [menu, setMenu] = useState([])
   const truncateUrl = (url) => {
     const maxTextLength = 25;
