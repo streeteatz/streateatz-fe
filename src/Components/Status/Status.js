@@ -5,19 +5,28 @@ import './Status.css'
 const Status = ({ toggle, vendor, getAddress }) => {
   const [location, setLocation] = useState('')
 
-  // next goal is to get the data to display to the dom
-  // need to assign it to the correct key in the correct vendor object.
-  // I think we can do this easily? With a map maybe
+  const saveStatus = () => {
+    if (vendor.status) {
+      sessionStorage.setItem('SEvendorStatus', JSON.stringify(false))
+    } else {
+      sessionStorage.setItem('SEvendorStatus', JSON.stringify(true))
+    }
+  }
 
-  return(
+  const checked = JSON.parse(sessionStorage.getItem('SEvendorStatus')) || false
+
+  return (
     <div className="status-container">
       <p className="status-header">welcome back!</p>
       <p className="vendor-name">Vendor Name</p>
       <div className="status-toggle-container">
         <p className="closed">closed</p>
         <div className="toggle-switch">
-          <input type="checkbox" className="checkbox" 
-            name="live-switch" id="live-switch" onClick={() => toggle(vendor)}/>
+          <input type="checkbox" checked={checked} className="checkbox" 
+            name="live-switch" id="live-switch" onChange={() => {
+              toggle(vendor)
+              // saveStatus()
+            }}/>
           <label className="label" htmlFor={"live-switch"}>
             <span className="inner" />
             <span className="switch" />
@@ -27,7 +36,7 @@ const Status = ({ toggle, vendor, getAddress }) => {
       </div>
       <div className="location-container">
         <img className="status-pin" src={pin}></img>
-        <form className="search-bar">
+        <form className="search-bar" onSubmit={e => { e.preventDefault(); }}>
       <input 
         type="text" 
         placeholder='Location' 
@@ -39,7 +48,11 @@ const Status = ({ toggle, vendor, getAddress }) => {
       />
     </form>
       </div>
-      <button className="broadcast-btn" onClick={() => getAddress(location, vendor)}>Broadcast Location</button>
+      <button className="broadcast-btn" onClick={(event) => {
+        event.preventDefault()
+        getAddress(location, vendor)
+        console.log(vendor)
+      }}>Broadcast Location</button>
     </div>
   )
 }
