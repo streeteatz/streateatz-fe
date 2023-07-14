@@ -6,8 +6,6 @@ import VendorView from '../VendorView/VendorView'
 import TruckDetails from '../TruckDetails/TruckDetails'
 import Error from '../Error/Error'
 import { Routes, Route } from 'react-router-dom'
-import TruckCard from '../TruckCard/TruckCard'
-import { mockData } from '../../MockData/MockData'
 import { socket } from '../../utilities/socket'
 import { fetchAllTrucks } from '../../utilities/apiCalls'
 import './App.css'
@@ -17,7 +15,6 @@ const App = () => {
   const [currentUser, setCurrentUser] = useState('customer')
   const [currentVendor, setCurrentVendor] = useState(1)
   const [favorites, setFavorites] = useState([])
-  const [loading, setLoading] = useState(true)
   const [error, setError] = useState('')
   const [truckLocation, setTruckLocation] = useState([])
   const [userLocation, setUserLocation] = useState('')
@@ -34,9 +31,8 @@ const App = () => {
     } else {
       truck.status = false
     }
-    
-    socket.emit("send_data", { updatedVendors: vendors.filter(v => v.id !== truck.id), truck: truck });
-  };
+    socket.emit("send_data", { updatedVendors: vendors.filter(v => v.id !== truck.id), truck: truck })
+  }
 
   const favTruck = (truck) => {
     const newFavState = [...favorites, truck]
@@ -59,7 +55,7 @@ const App = () => {
   }
   
   const searchButtons = (event, button ) => {
-    event.preventDefault();
+    event.preventDefault()
     if (button === "favorites") {  
       setVendors(favorites)
     } 
@@ -70,11 +66,11 @@ const App = () => {
   }
 
   const toggleView = (id) => {
-    setCurrentUser(id);
+    setCurrentUser(id)
   }
 
   const resestResults = (event) => {
-    event.preventDefault();
+    event.preventDefault()
     fetchData()
   }
 
@@ -90,11 +86,9 @@ const App = () => {
             
   useEffect(() => {
     fetchData()
-
     socket.on('receive_data', (data) => {
       setVendors([data.truck, ...data.updatedVendors])
     });
-
     return () => {
       socket.off('receive_data');
     };
@@ -102,7 +96,7 @@ const App = () => {
 
   return (
     <div className='app'>
-      <Header togView={toggleView} currentUser={currentUser}/>
+      <Header togView={toggleView} />
       <Routes>
         <Route path="/" element={
           <div>

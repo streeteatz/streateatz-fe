@@ -4,7 +4,7 @@ import bell from '../../assets/bell.png';
 import './Header.css';
 import { NavLink } from 'react-router-dom';
 
-const Header = ({ togView, currentUser }) => {
+const Header = ({ togView }) => {
   const [showNotifs, setShowNotifs] = useState(false)
   const [selectedUser, setSelectedUser] = useState('')
 
