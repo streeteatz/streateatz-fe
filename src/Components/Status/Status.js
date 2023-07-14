@@ -5,9 +5,9 @@ import './Status.css'
 const Status = ({ toggle, vendor, getAddress }) => {
   const [location, setLocation] = useState('')
 
-  // We need to pass the location to the other users
-  // make a function in app.js that will handle the logic
-  // pass that function in here and add it to the callback function
+  // next goal is to get the data to display to the dom
+  // need to assign it to the correct key in the correct vendor object.
+  // I think we can do this easily? With a map maybe
 
   return(
     <div className="status-container">
@@ -39,7 +39,7 @@ const Status = ({ toggle, vendor, getAddress }) => {
       />
     </form>
       </div>
-      <button className="broadcast-btn" onClick={() => getAddress(location)}>Broadcast Location</button>
+      <button className="broadcast-btn" onClick={() => getAddress(location, vendor)}>Broadcast Location</button>
     </div>
   )
 }

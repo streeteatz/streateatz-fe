@@ -37,9 +37,9 @@ const App = () => {
     socket.emit("send_data", { updatedVendors: vendors.filter(v => v.id !== truck.id), truck: truck });
   };
 
-  const sendAddress = (location) => {
-    console.log(location, 'location for send address')
-    socket.emit("send_address", { address: location })
+  const sendAddress = (location, truck) => {
+    truck.address = location
+    socket.emit("send_address", { vendor: truck, updatedVendors: vendors.filter(v => v.id !== truck.id) })
   }
 
   const favTruck = (truck) => {
@@ -96,7 +96,7 @@ const App = () => {
     });
 
     socket.on('receive_address', (data) => {
-      console.log(data, 'address being returned to application')
+      setVendors([data.vendor, ...data.updatedVendors])
     })
 
     return () => {
