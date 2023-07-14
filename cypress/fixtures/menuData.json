@@ -1,0 +1,27 @@
+{
+  "data": {
+    "attributes": [
+      {
+        "id": 13,
+        "name": "Vegan Samosas",
+        "price": "5.00",
+        "description": "Fried baked pastry with a savory filling of potatoes and peas",
+        "vendor": 9
+      },
+      {
+        "id": 14,
+        "name": "Chicken Tikka Masala Combo",
+        "price": "9.35",
+        "description": "Chunks of roasted marinated chicken in a tomato-based creamy sauce",
+        "vendor": 9
+      },
+      {
+        "id": 15,
+        "name": "Gulab Jamun",
+        "price": "4.00",
+        "description": "Milk doughnuts soaked in syrup",
+        "vendor": 9
+      }
+    ]
+  }
+}
