@@ -53,11 +53,6 @@ const TruckDetails = ({ vendors }) => {
       } catch(error) {
         console.log(error, "error")
       }
-        // const thisData = mockData.data.map((data) => {
-          //   return data.attributes
-          // })
-          // setVendors( thisData)
-          // this is going to fetch the data and then set state but then also reset isLoading to false
         }
 
 
@@ -65,40 +60,19 @@ useEffect(()  => {
   fetchData(id)
   setLoading(false)
 }, []) 
-// const goBackHome = () => {
-//   setSingularTruck({})
-//   setMenu([])
-//   setLoading(true)
-// }
-    // if they give us a singular truck endpoint then we need to do a second fetch call 
-    // we also might need to fetch the menu based upon a single truck id
 
-    // useEffect(() => {
-    //   individualTruckFetch(singleTruck.id)
-    //   truckMenuFetch(singleTruck.id)
-    //   setLoading(false)
-    // }, [])
-
-    // const items = menu.map((menuItem, index) => {
-    //   return (
-    //     <MenuItem key={index} item={menuItem} />
-    //   )
-    // })
 
     let truckStatus = singularTruck.status === true ? "Open Now!" : "Closed Now!"
   return(
     <section className="details-container">
       {loading === true ? <p>loading....</p> :  
       (<><div className='left-side'>
-          {/* <img className="details-star-icon" src={notFav} alt="favorited star" /> */}
           <div className="details-vendor">
             <h2 className="details-name">{singularTruck.name}</h2>
             <div className="details-vendor-container">
               <div className="details-status-container">
                 <button className="status-icon-open"></button>
-                {/* <p className="status">{translateStatus(match.status)}</p> */}
                 <p className="status">{singularTruck.status}</p>
-                {/* pass a status variable in to the status p tag to change with vendors status */}
                 <img className="pin" src={pin}></img>
                 <p className="location">{singularTruck.address}</p>
               </div>
