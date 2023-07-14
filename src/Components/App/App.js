@@ -21,7 +21,7 @@ const App = () => {
   const [truckLocation, setTruckLocation] = useState([])
   const [userLocation, setUserLocation] = useState('')
   const [pushNote, setPushNote] = useState([])
-
+  const [loading, setLoading] = useState(true)
 
 // vendors and customers toggle switch. 
 // make a state that holds boolean
@@ -78,28 +78,51 @@ const App = () => {
   }
 
   const resestResults = (event) => {
+    setError('')
     event.preventDefault()
     fetchData()
   }
-
   const fetchData = async () => {
     try {
-      const data = await fetchAllTrucks()
-        setVendors(data.data.attributes)
-      } catch(error) {
-       setError("fetch")
-       console.log(error, "fetch")
-      }
+      const data = await fetchAllTrucks();
+      const updatedVendors = data.data.attributes.map((vendor) => {
+        const existingVendor = vendors.find((v) => v.id === vendor.id);
+        if (existingVendor) {
+          vendor.status = existingVendor.status;
+        } else {
+          vendor.status = false; // Set the default status to false for new vendors
+        }
+        return vendor;
+      });
+      setLoading(false)
+      setVendors(updatedVendors);
+    } catch (error) {
+      setError("fetch");
+      console.log(error, "fetch");
     }
+  };
+  // const fetchData = async () => {
+  //   try {
+  //     const data = await fetchAllTrucks()
+  //       setVendors(data.data.attributes)
+  //     } catch(error) {
+  //      setError("fetch")
+  //      console.log(error, "fetch")
+  //     }
+  //   }
 
   useEffect(() => {
     fetchData()
     
     socket.on('receive_data', (data) => {
+      console.log(data, 'dataaaaa')
+      // setVendors([...data.updatedVendors, data.truck])
+      console.log(data.truck, 'single truck')
       setVendors([data.truck, ...data.updatedVendors])
       setPushNote([...pushNote, { vendorName: data.truck.name }])
     });
-
+    
+    console.log(vendors, 'dataa 106')
     socket.on('receive_address', (data) => {
       setVendors([data.vendor, ...data.updatedVendors])
     })
@@ -117,6 +140,7 @@ const App = () => {
         <Route path="/" element={
           <div>
             <Search vendors={vendors} search={searchResults} reset={resestResults} allSearch={searchButtons}/>
+            {loading === false ? (<Results vendors={vendors} remFav={removeFav} addFav={favTruck} favorites={favorites} />) : <p>Loading....</p>}
             {error === "" ? (<Results vendors={vendors} remFav={removeFav} addFav={favTruck} favorites={favorites} />) : (error === "fetch" ?(<Error message={"fetch"} />) : (<Error message={"search"} />)) }
           </div>
         } />
