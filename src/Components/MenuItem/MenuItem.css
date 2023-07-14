@@ -1,0 +1,26 @@
+.menu-item {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-bottom: 1rem;
+  }
+  
+  .menu-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+  }
+  
+  .menu-top h3 {
+    margin: 0;
+  }
+  
+  .menu-top p {
+    margin: 0;
+    font-weight: bold;
+  }
+  
+  .menu-bottom {
+    margin-top: 0.5rem;
+  }

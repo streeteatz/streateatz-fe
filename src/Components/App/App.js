@@ -7,17 +7,20 @@ import TruckDetails from '../TruckDetails/TruckDetails'
 import Error from '../Error/Error'
 import { Routes, Route } from 'react-router-dom'
 import { socket } from '../../utilities/socket'
-import { fetchAllTrucks } from '../../utilities/apiCalls'
 import './App.css'
+import { fetchAllTrucks, fetchAllMenus } from '../../utilities/apiCalls'
+
 
 const App = () => {
   const [vendors, setVendors] = useState([])
+  const [allMenuItems, setAllMenuItems] = useState([])
   const [currentUser, setCurrentUser] = useState('customer')
   const [currentVendor, setCurrentVendor] = useState(1)
   const [favorites, setFavorites] = useState([])
   const [error, setError] = useState('')
   const [truckLocation, setTruckLocation] = useState([])
   const [userLocation, setUserLocation] = useState('')
+  const [pushNote, setPushNote] = useState([])
 
 
 // vendors and customers toggle switch. 
@@ -32,6 +35,11 @@ const App = () => {
       truck.status = false
     }
     socket.emit("send_data", { updatedVendors: vendors.filter(v => v.id !== truck.id), truck: truck })
+  }
+
+  const sendAddress = (location, truck) => {
+    truck.address = location
+    socket.emit("send_address", { vendor: truck, updatedVendors: vendors.filter(v => v.id !== truck.id) })
   }
 
   const favTruck = (truck) => {
@@ -83,20 +91,28 @@ const App = () => {
        console.log(error, "fetch")
       }
     }
-            
+
   useEffect(() => {
     fetchData()
+    
     socket.on('receive_data', (data) => {
       setVendors([data.truck, ...data.updatedVendors])
+      setPushNote([...pushNote, { vendorName: data.truck.name }])
     });
+
+    socket.on('receive_address', (data) => {
+      setVendors([data.vendor, ...data.updatedVendors])
+    })
+
     return () => {
       socket.off('receive_data');
+      socket.off('receive_address')
     };
   }, [])
 
   return (
     <div className='app'>
-      <Header togView={toggleView} />
+      <Header togView={toggleView} currentUser={currentUser} notifs={pushNote}/>
       <Routes>
         <Route path="/" element={
           <div>
@@ -104,11 +120,11 @@ const App = () => {
             {error === "" ? (<Results vendors={vendors} remFav={removeFav} addFav={favTruck} favorites={favorites} />) : (error === "fetch" ?(<Error message={"fetch"} />) : (<Error message={"search"} />)) }
           </div>
         } />
-      <Route path="/vendor/:id" element={<TruckDetails vendors={vendors}/>}
+      <Route path="/vendor/:id" element={<TruckDetails vendors={vendors} />}
       />
       <Route path="/vendor-view" element={
         <div>
-          <VendorView toggleLive={sendData} vendor={vendors.find(v => v.id == 1)} currentVendor={currentVendor}/>
+          <VendorView toggleLive={sendData} getAddress={sendAddress} vendor={vendors.find(v => v.id == 9)} currentVendor={currentVendor}/>
         </div>
       } />
       <Route path="*" element={
