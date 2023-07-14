@@ -79,10 +79,6 @@ const App = () => {
       } catch(error) {
       }
     }
-      
-      useEffect(() => {
-        fetchData()
-  }
             
   useEffect(() => {
     fetchData()
