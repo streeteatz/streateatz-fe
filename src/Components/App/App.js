@@ -96,7 +96,10 @@ const App = () => {
     fetchData()
     
     socket.on('receive_data', (data) => {
-      setVendors([data.truck, ...data.updatedVendors])
+      console.log(data.truck, 'dataaaaa')
+      setVendors([...data.updatedVendors, data.truck])
+      // setVendors([data.truck, ...data.updatedVendors])
+      console.log(vendors, 'dataa after')
       setPushNote([...pushNote, { vendorName: data.truck.name }])
     });
 
