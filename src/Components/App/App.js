@@ -83,7 +83,6 @@ const App = () => {
     try {
       const data = await fetchAllTrucks()
         setVendors(data.data.attributes)
-        console.log(data.data.attributes)
       } catch(error) {
        setError("fetch")
        console.log(error, "fetch")
