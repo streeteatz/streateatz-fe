@@ -1,13 +1,11 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import pin from '../../assets/pin.png'
 import './Status.css'
 
-const Status = ({ toggle, vendor }) => {
+const Status = ({ toggle, vendor, getAddress }) => {
   const [location, setLocation] = useState('')
 
-  console.log(vendor, 'location')
-
-  return(
+  return (
     <div className="status-container">
       <p className="status-header">welcome back!</p>
       <p className="vendor-name">Vendor Name</p>
@@ -15,7 +13,7 @@ const Status = ({ toggle, vendor }) => {
         <p className="closed">closed</p>
         <div className="toggle-switch">
           <input type="checkbox" className="checkbox" 
-            name="live-switch" id="live-switch" onClick={() => toggle(vendor)}/>
+            name="live-switch" id="live-switch" onChange={() => toggle(vendor)}/>
           <label className="label" htmlFor={"live-switch"}>
             <span className="inner" />
             <span className="switch" />
@@ -25,7 +23,7 @@ const Status = ({ toggle, vendor }) => {
       </div>
       <div className="location-container">
         <img className="status-pin" src={pin}></img>
-        <form className="search-bar">
+        <form className="search-bar" onSubmit={e => { e.preventDefault(); }}>
       <input 
         type="text" 
         placeholder='Location' 
@@ -37,6 +35,7 @@ const Status = ({ toggle, vendor }) => {
       />
     </form>
       </div>
+      <button className="broadcast-btn" onClick={() => getAddress(location, vendor)}>Broadcast Location</button>
     </div>
   )
 }
