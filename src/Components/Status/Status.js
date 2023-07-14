@@ -35,11 +35,9 @@ const Status = ({ toggle, vendor, getAddress }) => {
         id='statusLocation'
         className='status-location'
         value={location}
-        onChange={event => {
-          setLocation(event.target.value)
-          getAddress(location)
-        }}
+        onChange={event => setLocation(event.target.value)}
       />
+      <button className="broadcast-btn clear-btn" onClick={() => getAddress(location)}>Broadcast Location</button>
     </form>
       </div>
     </div>
