@@ -7,11 +7,11 @@ describe('Vendor Page', () => {
     });
     cy.intercept("GET", "https://streeteatz-be-b15261620498.herokuapp.com/vendors/9", {
       statusCode: 200,
-      fixture: "truckData.json"
+      fixture: "singleTruckData.json"
     })
     cy.intercept("GET", "https://streeteatz-be-b15261620498.herokuapp.com/items/", {
       statusCode: 200,
-      fixture: "truckData.json"
+      fixture: "menuData.json"
     })
     // cy.intercept("GET", "http://localhost:3001/socket.io/?EIO=4&transport=polling&t=ObMVm5g", {
     //   statusCode: 200,
