@@ -1,23 +1,23 @@
 {
   "data": {
     "attributes": {
-      "id": 9,
-      "name": "Taj Palace",
-      "phone_number": "720-212-6837",
-      "location": "70.92386, 40.09378",
-      "address": "1000 E Colfax Ave Denver, CO 80218",
+      "id": 8,
+      "name": "Ninja Ramen",
+      "phone_number": "720-810-2189",
+      "location": "73.98789, -35.9847",
+      "address": "100 Broadway St Denver, CO 80203",
       "status": false,
-      "hours": "11:00-2:00pm, 5:00-8:00pm",
-      "description": "Greatest curries on the planet!",
-      "tags": "#curry #naan #rice #asian",
-      "website": "www.tajpalace.com",
-      "img": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT0_EV4mk8uZ3qdd95MN7XI8hsdvg0fXUAPFQ&usqp=CAU",
-      "wait_time": 20,
+      "hours": "5:00-9:00pm",
+      "description": "Best ramen you have ever tasted!",
+      "tags": "#ramen #soup #noodles #asian",
+      "website": "www.ninjaramen.com",
+      "img": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR4RtjALnHoxaxWWI8GfoWaqNbGACozqFrheSZX2vPVupFI2ok0qQ63vVRXWmxeqd5sR5M&usqp=CAU",
+      "wait_time": 10,
       "upvote": false,
       "downvote": false,
       "favorited": false,
-      "up_rating": 66,
-      "down_rating": 2,
+      "up_rating": 56,
+      "down_rating": 12,
       "distanceFromUser": 0
     }
   }
