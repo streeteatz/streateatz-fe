@@ -4,7 +4,7 @@ import bell from '../../assets/bell.png';
 import './Header.css';
 import { NavLink } from 'react-router-dom';
 
-const Header = ({ togView, currentUser }) => {
+const Header = ({ togView, currentUser, notifs }) => {
   const [showNotifs, setShowNotifs] = useState(false)
   const [selectedUser, setSelectedUser] = useState('')
 
@@ -24,10 +24,20 @@ const Header = ({ togView, currentUser }) => {
   
   const selUser = JSON.parse(sessionStorage.getItem('SEuserBtnStatus')) || 'customer'
 
+  const notification = () => {
+    console.log('peter')
+    if (notifs.length) {
+      console.log('youre doing it peter')
+      return `${notifs[0].vendorName} has gone live`
+    } else {
+      return ''
+    }
+  }
+
   return (
     <div className="header-container">
       <div className="dropdown">
-          <p className={`${showNotifs === false ? "dropdown-hide" : "dropdown-show"}`}>notification text will go here</p>
+          <p className={`${showNotifs === false ? "dropdown-hide" : "dropdown-show"}`}>{notification()}</p>
       </div>
       <NavLink to="/" style={{ textDecoration: 'none', color: "#2f2f2f" }}>
         <div className="left-container">
@@ -53,7 +63,9 @@ const Header = ({ togView, currentUser }) => {
         </div>
         <div className="notifications-container">
           <img className="notifications-icon" onClick={(event) => seeNotifs(event)}src={bell}></img>
-          <button className="notifications-btn">3</button>
+          {/* lets checkout the seeNotifs function */}
+          <button className="notifications-btn">{notifs.length}</button>
+          {/* conditional rendering for className here and for the number inside of button */}
         </div>
       </div>
     </div>

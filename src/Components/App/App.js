@@ -20,6 +20,7 @@ const App = () => {
   const [error, setError] = useState('')
   const [truckLocation, setTruckLocation] = useState([])
   const [userLocation, setUserLocation] = useState('')
+  const [pushNote, setPushNote] = useState([])
 
 
 // vendors and customers toggle switch. 
@@ -82,6 +83,7 @@ const App = () => {
     try {
       const data = await fetchAllTrucks()
         setVendors(data.data.attributes)
+        console.log(data.data.attributes)
       } catch(error) {
        setError("fetch")
        console.log(error, "fetch")
@@ -93,10 +95,12 @@ const App = () => {
 
     socket.on('receive_data', (data) => {
       setVendors([data.truck, ...data.updatedVendors])
+      setPushNote([...pushNote, { vendorName: data.truck.name }])
     });
 
     socket.on('receive_address', (data) => {
       setVendors([data.vendor, ...data.updatedVendors])
+      
     })
 
     return () => {
@@ -107,7 +111,7 @@ const App = () => {
 
   return (
     <div>
-      <Header togView={toggleView} currentUser={currentUser}/>
+      <Header togView={toggleView} currentUser={currentUser} notifs={pushNote}/>
       <Routes>
         <Route path="/" element={
           <div>
@@ -119,7 +123,7 @@ const App = () => {
       />
       <Route path="/vendor-view" element={
         <div>
-          <VendorView toggleLive={sendData} getAddress={sendAddress} vendor={vendors.find(v => v.id == 1)} currentVendor={currentVendor}/>
+          <VendorView toggleLive={sendData} getAddress={sendAddress} vendor={vendors.find(v => v.id == 9)} currentVendor={currentVendor}/>
         </div>
       } />
       <Route path="*" element={
