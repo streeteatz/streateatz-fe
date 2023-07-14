@@ -30,7 +30,7 @@ const VendorView = ({ vendor, currentVendor, toggleLive }) => {
   return(
     <div className="vendor-view">
       <div className='status-container'>
-        <Status toggle={toggleLive} vendor={vendor} />
+        <Status toggle={toggleLive} getAddress={getAddress} vendor={vendor} />
       </div>
     <div className="vendor-view-cont">
       <div className="vv-left">

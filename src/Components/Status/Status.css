@@ -144,6 +144,29 @@
   transition: all .3s ease-in-out;
 }
 
+.broadcast-btn {
+  height: 38px;
+  width: 147px;
+  background: #D43C0D;
+  color: #ffffff;
+  border: none;
+  border-radius: 25px;
+  cursor: pointer;
+  transition: all .3s ease-in-out;
+  margin: 10px;
+}
+
+.broadcast-btn:hover {
+  width: 155px;
+  
+  transition: all .3s ease-in-out;
+}
+
+.broadcast-btn:active {
+  color: black;
+  transition: .1s
+}
+
 @media screen and (max-width: 50em) {
   .status-container {
     margin: 10vh 21vw 0vh 21vw;
