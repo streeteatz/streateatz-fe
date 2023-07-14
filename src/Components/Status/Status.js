@@ -5,16 +5,6 @@ import './Status.css'
 const Status = ({ toggle, vendor, getAddress }) => {
   const [location, setLocation] = useState('')
 
-  const saveStatus = () => {
-    if (vendor.status) {
-      sessionStorage.setItem('SEvendorStatus', JSON.stringify(false))
-    } else {
-      sessionStorage.setItem('SEvendorStatus', JSON.stringify(true))
-    }
-  }
-
-  const checked = JSON.parse(sessionStorage.getItem('SEvendorStatus')) || false
-
   return (
     <div className="status-container">
       <p className="status-header">welcome back!</p>
@@ -22,11 +12,8 @@ const Status = ({ toggle, vendor, getAddress }) => {
       <div className="status-toggle-container">
         <p className="closed">closed</p>
         <div className="toggle-switch">
-          <input type="checkbox" checked={checked} className="checkbox" 
-            name="live-switch" id="live-switch" onChange={() => {
-              toggle(vendor)
-              // saveStatus()
-            }}/>
+          <input type="checkbox" className="checkbox" 
+            name="live-switch" id="live-switch" onChange={() => toggle(vendor)}/>
           <label className="label" htmlFor={"live-switch"}>
             <span className="inner" />
             <span className="switch" />
@@ -48,11 +35,7 @@ const Status = ({ toggle, vendor, getAddress }) => {
       />
     </form>
       </div>
-      <button className="broadcast-btn" onClick={(event) => {
-        event.preventDefault()
-        getAddress(location, vendor)
-        console.log(vendor)
-      }}>Broadcast Location</button>
+      <button className="broadcast-btn" onClick={() => getAddress(location, vendor)}>Broadcast Location</button>
     </div>
   )
 }
