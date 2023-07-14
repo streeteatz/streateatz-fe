@@ -21,7 +21,7 @@ const App = () => {
   const [truckLocation, setTruckLocation] = useState([])
   const [userLocation, setUserLocation] = useState('')
   const [pushNote, setPushNote] = useState([])
-
+  const [loading, setLoading] = useState(true)
 
 // vendors and customers toggle switch. 
 // make a state that holds boolean
@@ -94,6 +94,7 @@ const App = () => {
         }
         return vendor;
       });
+      setLoading(false)
       setVendors(updatedVendors);
     } catch (error) {
       setError("fetch");
@@ -139,6 +140,7 @@ const App = () => {
         <Route path="/" element={
           <div>
             <Search vendors={vendors} search={searchResults} reset={resestResults} allSearch={searchButtons}/>
+            {loading === false ? (<Results vendors={vendors} remFav={removeFav} addFav={favTruck} favorites={favorites} />) : <p>Loading....</p>}
             {error === "" ? (<Results vendors={vendors} remFav={removeFav} addFav={favTruck} favorites={favorites} />) : (error === "fetch" ?(<Error message={"fetch"} />) : (<Error message={"search"} />)) }
           </div>
         } />
