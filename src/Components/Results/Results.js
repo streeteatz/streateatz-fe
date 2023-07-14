@@ -14,7 +14,7 @@ const Results = ({ vendors, addFav, remFav, favorites, dist }) => {
       )
   })
   return(
-    <div>
+    <div className='trucks-cont'>
       {allVendors}
     </div>
   )
