@@ -1,14 +1,29 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import pin from '../../assets/pin.png'
 import './Status.css'
+import { fetchAllMenus, fetchOneTruck } from '../../utilities/apiCalls'
+
 
 const Status = ({ toggle, vendor, getAddress }) => {
   const [location, setLocation] = useState('')
-
+  const [id, setId] = useState(9)
+  const [currentVendor, setCurrentVendor] = useState({})
+  
+  const fetchData = async () => {
+    try {
+      const data = await fetchOneTruck(id)
+      setCurrentVendor(data.data.attributes)
+    } catch(error) {
+      console.log(error, "error")
+    }
+  }
+useEffect(() => {
+  fetchData()
+}, [])
   return (
     <div className="status-container">
       <p className="status-header">welcome back!</p>
-      <p className="vendor-name">{vendor.name}!!!</p>
+      <p className="vendor-name">{currentVendor.name}!!!</p>
       <div className="status-toggle-container">
         <p className="closed">closed</p>
         <div className="toggle-switch">

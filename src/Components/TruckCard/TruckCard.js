@@ -10,6 +10,7 @@ import pin from '../../assets/pin.png'
 import './TruckCard.css'
 
 const TruckCard = (props) => {
+  const [isOpen, setIsOpen] = useState(props.truck.status)
   const [isFavorite, setIsFavorite] = useState(false)
   const [isDownvoted, setIsDownvoted] = useState(false)
   let [downVote, setDownVote] = useState(parseInt(props.truck.down_rating))
@@ -65,6 +66,13 @@ const TruckCard = (props) => {
       return "open now"
     }
   }
+  // const translateStatus = (status) => {
+  //   if (!isOpen) {
+  //     return "closed"
+  //   } else {
+  //     return "open now"
+  //   }
+  // }
 
   const currentStar = isFavorite ? Fav : notFav
   const currentUpvote = isUpvoted ? upvoted : notUpvoted
