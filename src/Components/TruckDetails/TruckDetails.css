@@ -25,8 +25,7 @@
   flex-direction: row;
   justify-content: flex-start;
   align-items: top;
-  margin: 0vh 0vw 0vh 0vw;
-  flex: 1
+  margin: 5.5vh 0vw 0vh 0vw;
 }
 /* .left-side {
   display: flex;
@@ -79,6 +78,10 @@
   align-items: flex-start; 
 }
 
+.details-icon {
+  height: 20px;
+  width: 20px;
+}
 
 .menu-container {
   margin: 3vh 0vw 0vh 0vw;
@@ -88,8 +91,13 @@
   box-sizing: border-box; 
 }
 
+.button-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+
 .back-btn {
-  margin: 53vh 0vw 0vh 0vw;
   height: 30px;
   width: 90px;
   background: #ffffff;

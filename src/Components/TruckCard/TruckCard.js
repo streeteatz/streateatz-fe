@@ -1,14 +1,13 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import notFav from '../../assets/notFav.png'
 import Fav from '../../assets/fav.png'
 import notDownvoted from '../../assets/notDownvoted.png'
 import notUpvoted from '../../assets/notUpvoted.png'
 import downvoted from '../../assets/downvoted.png'
 import upvoted from '../../assets/upvoted.png'
-import { NavLink } from 'react-router-dom';
+import { NavLink } from 'react-router-dom'
 import pin from '../../assets/pin.png'
 import './TruckCard.css'
-import { getDistance } from '../../utilities/distance-calculator'
 
 const TruckCard = (props) => {
   const [isFavorite, setIsFavorite] = useState(false)
@@ -29,47 +28,48 @@ const TruckCard = (props) => {
     }
   }
 
-const handleUpvote = () => {
-  if (isDownvoted) {
-    return
-  } else {
-    setIsUpvoted(!isUpvoted)
-    if (!isUpvoted) {
-      setupVote(upVote += 1)
-      props.truck.userUpvote = true
+  const handleUpvote = () => {
+    if (isDownvoted) {
+      return
     } else {
-      setupVote(upVote += -1)
-      props.truck.userUpvote = false
+      setIsUpvoted(!isUpvoted)
+      if (!isUpvoted) {
+        setupVote(upVote += 1)
+        props.truck.userUpvote = true
+      } else {
+        setupVote(upVote += -1)
+        props.truck.userUpvote = false
+      }
     }
   }
-}
 
-const handleDownvote = () => {
-  if (isUpvoted) {
-    return
-  } else {
-    setIsDownvoted(!isDownvoted)
-    if (!isDownvoted) {
-      setDownVote(downVote += 1)
-      props.truck.userDownvote = true
+  const handleDownvote = () => {
+    if (isUpvoted) {
+      return
     } else {
-      setDownVote(downVote += -1)
-      props.truck.userDownvote = false
+      setIsDownvoted(!isDownvoted)
+      if (!isDownvoted) {
+        setDownVote(downVote += 1)
+        props.truck.userDownvote = true
+      } else {
+        setDownVote(downVote += -1)
+        props.truck.userDownvote = false
+      }
     }
   }
-}
 
-const translateStatus = (status) => {
-  if (status === false) {
-    return "closed"
-  } else {
-    return "open now"
+  const translateStatus = (status) => {
+    if (status === false) {
+      return "closed"
+    } else {
+      return "open now"
+    }
   }
-}
-const currentStar = isFavorite ? Fav : notFav
-const currentUpvote = isUpvoted ? upvoted : notUpvoted
-const currentDownvote = isDownvoted ? downvoted : notDownvoted
-const starAltText = isFavorite ? "Favorited Food Truck Star" : "Not Favorited Food Truck Star"
+
+  const currentStar = isFavorite ? Fav : notFav
+  const currentUpvote = isUpvoted ? upvoted : notUpvoted
+  const currentDownvote = isDownvoted ? downvoted : notDownvoted
+  const starAltText = isFavorite ? "Favorited Food Truck Star" : "Not Favorited Food Truck Star"
 
   return(
     <div className="card-container">
@@ -79,17 +79,17 @@ const starAltText = isFavorite ? "Favorited Food Truck Star" : "Not Favorited Fo
       src={currentStar} 
       onClick={() => handleFav()} 
       height={50} width={50}/> 
-      <img className="image" src={props.truck.img}/>
+      <NavLink to={`/vendor/${props.truck.id}`}><img className="image" src={props.truck.img}/></NavLink>
       <div className="card-details-container">
+        <NavLink to={`/vendor/${props.truck.id}`} style={{ textDecoration: 'none', color: "#2f2f2f" }}>
+          <p className="name">{props.truck.name}</p>
+        </NavLink>
         <div className="details-status-container">
         <button className={`${props.truck.status === false ? "status-icon-closed" : "status-icon-open"}`}></button>
           <p className="status">{translateStatus(props.truck.status)}</p>
           <img className="pin" src={pin}></img>
           <p className="location">{props.truck.address}</p>
       </div>
-      <NavLink to={`/vendor/${props.truck.id}`} style={{ textDecoration: 'none', color: "#2f2f2f" }}>
-          <p className="name">{props.truck.name}</p>
-      </NavLink>
       <p className="tags">{props.truck.tags}</p>
       <div className="votes-container">
         <img 
@@ -109,7 +109,7 @@ const starAltText = isFavorite ? "Favorited Food Truck Star" : "Not Favorited Fo
       </div>
     </div>
   </div>
-)
+  )
 }
 
 export default TruckCard;

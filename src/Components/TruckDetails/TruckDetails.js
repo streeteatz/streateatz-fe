@@ -97,13 +97,13 @@ const goBackHome = () => {
       <div className='right-side'>
         <div className="votes-container">
           <img 
-          className="notUpvoted icon" 
+          className="notUpvoted details-icon" 
           alt="empty thumbs up icon" 
           src={notUpvoted} 
           height={50} width={50} />
           <p className="upvotes">{singularTruck.up_rating}</p>
           <img 
-          className="downvoted icon" 
+          className="downvoted details-icon" 
           alt="downvoted icon" 
           src={notDownvoted}
           height={50} width={50}/>
@@ -117,7 +117,9 @@ const goBackHome = () => {
           })}
         </div>
       </div>
-      <NavLink to="/"><button className="back-btn">back</button></NavLink>
+      <div className='button-container'>
+        <NavLink to="/"><button className="back-btn">back</button></NavLink>
+      </div>
     </section>
   )
 }
