@@ -1,0 +1,27 @@
+{
+  "data": {
+    "attributes": [
+      {
+        "id": 19,
+        "name": "Cream cheese chicken dumplings",
+        "price": "6.00",
+        "description": "Steamed dumplings filled with chicken, veggies, and cream cheese",
+        "vendor": 8
+      },
+      {
+        "id": 16,
+        "name": "Tonkutsu Ramen",
+        "price": "9.00",
+        "description": "Pork ramen in a creamy broth topped with egg, corn, and green onions",
+        "vendor": 8
+      },
+      {
+        "id": 17,
+        "name": "Karaage",
+        "price": "10.00",
+        "description": "Japanese fried chicken",
+        "vendor": 8
+      }
+    ]
+  }
+}
