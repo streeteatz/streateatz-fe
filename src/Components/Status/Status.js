@@ -23,7 +23,7 @@ useEffect(() => {
   return (
     <div className="status-container">
       <p className="status-header">welcome back!</p>
-      <p className="vendor-name">{currentVendor.name}!!!</p>
+      <p className="vendor-name">{currentVendor.name}</p>
       <div className="status-toggle-container">
         <p className="closed">closed</p>
         <div className="toggle-switch">

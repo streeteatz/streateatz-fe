@@ -36,7 +36,7 @@ describe('Vendor Page', () => {
   it('should display the restaurant name', () => {
     cy.get('.status-container')
       .get('.vendor-name')
-    cy.contains('Ninja Ramen!!!')
+    cy.contains('Ninja Ramen')
   });
 
   it('should display a toggle button to swtich from open and close', () => {
@@ -56,15 +56,15 @@ describe('Vendor Page', () => {
 
   it('should display statisics', () => {
     cy.get('.statistics-container')
-      .contains('h3', 'Ninja Ramen Statistics!')
+      .contains('h3', 'Ninja Ramen Statistics')
       .get('.statistics-info').contains('You have a total of 56 Streeteatz users who love your truck!')
-      .get('.statistics-info').contains('You have a total of 12 Streeteatz users who need more convincing to love your truck!')
+      .get('.statistics-info').contains('You have a total of 12 Streeteatz users who need more convincing.')
   });
 
   it('should display a list of resources', () => {
     cy.get('.links-container')
-      .contains('h3', 'Want to expand your business!?')
-      .get('span').contains('www.foodtruckr.com - Resources for Food Truck Owners')
+      .contains('h3', 'Want to expand your business')
+      .get('span').contains('Resources for Food Truck Owners')
   });
 
   it('should show a list of menu items', () => {

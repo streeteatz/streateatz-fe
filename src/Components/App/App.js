@@ -67,9 +67,11 @@ const App = () => {
         return (
           v.status === true
         )
-      }))
+        })
+      )
     }
   }
+
 
   const toggleView = (id) => {
     setCurrentUser(id)

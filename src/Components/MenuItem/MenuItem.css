@@ -1,14 +1,14 @@
 .menu-item {
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
-    margin-bottom: 1rem;
+    justify-content: flex-start;
   }
   
   .menu-top {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    margin-bottom: 0px;
     width: 100%;
   }
   
@@ -22,5 +22,6 @@
   }
   
   .menu-bottom {
-    margin-top: 0.5rem;
+    margin-top: 0;
+    width: 85%;
   }

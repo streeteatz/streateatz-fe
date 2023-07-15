@@ -72,8 +72,8 @@ describe('Bad url route', () => {
   })
 
   it('Should Display an error message', () => {
-   cy.get(`.error-url`).contains('p', 'You have reached a bad link. Check the URL and try again, or head back to the home page!')
-   cy.get(`.home-button`).contains('home')
+    cy.get(`.error-url`).contains('p', 'You have reached a bad link. Check the URL and try again, or head back to the home page!')
+    cy.get(`.home-button`).contains('home')
   })
 
   it('Should allow a user to go to the home page by clicking the home button', () => {

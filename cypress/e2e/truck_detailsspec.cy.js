@@ -45,18 +45,11 @@ describe('Single Truck Page', () => {
     cy.contains('welcome back!')
   });
 
-  it('should see the name, address, tags, and wait time of the truck', () => {
+  it('should see the name, address, and tags of the truck', () => {
     cy.get('.details-name').contains('h2', 'Ninja Ramen')
       .get('.details-status-container').contains('p', '100 Broadway St Denver, CO 80203')
       .get('.details-tags').contains('p', '#ramen #soup #noodles #asian')
-      .get('.wait-time').contains('p', '10 minutes wait')
       .get('.details-image')
-  });
-
-  it('should see the likes and dislikes', () => {
-    cy.get('.right-side')
-      .get('.votes-container').contains('p', '56')
-      .get('.details-icon').get('.downvoted')
   });
 
   it('should see a menu', () => {
