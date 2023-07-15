@@ -47,8 +47,8 @@ const VendorView = ({ vendor, toggleLive, getAddress }) => {
             <div className="vv-left">
               <div className="statistics-container">
                 <h3>{currentVendor.name} Statistics!</h3>
-                <p>You have a total of {currentVendor.up_rating} Streeteatz users who love your truck!</p>
-                <p>You have a total of {currentVendor.down_rating} Streeteatz users who love your truck!</p>
+                <p className='statistics-info'>You have a total of {currentVendor.up_rating} Streeteatz users who love your truck!</p>
+                <p className='statistics-info'>You have a total of {currentVendor.down_rating} Streeteatz users who need more convincing to love your truck!</p>
                 <p>{suggestion}</p>
               </div>
               <div className="links-container">
