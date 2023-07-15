@@ -25,7 +25,7 @@ describe('Vendor Page', () => {
       .get('.left-container')
       .get('.logo-name').contains('p', 'street eatz').click()
     cy.contains('h2', 'hungry?')
-  })
+  });
 
   it('should be able to go to Vendor View from home page', () => {
     cy.get('.status-container')
