@@ -36,13 +36,11 @@ Simply put, [Street Eatz]([https://birdsongs-mu.vercel.app/](https://streateatz-
 
 ## Preview 🌭
 
-![Preview Home Page]()
+![Preview Home Page](https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExNDZ6Y2IxdHNldHg1ZmpsNzhuOTZ5bGhiaDEwdjB3NWt3cXJsZDZ0OCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/G8nv63tz7QfKD05F7x/giphy.gif)
 
-![Preview Search and Sort Functionality]()
+![Preview Search and Sort Functionality](https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExZmdldHh0ZzR3bzA2anVuOWkzNmdtNWM2cG4waWpwdzhmeWMxdXNkNCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/FShTuhLJ2C8H4G08gX/giphy.gif)
 
-![Preview Truck Details]()
-
-![Preview Vendor View]()
+![Preview Vendor View](https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExNjU4MzBzMWRqNjF2YXFsaXVqamE1ZnZiZ3dibGIza2FuY3E1YnY4cSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/fOlBvVlq0uVLanbFzA/giphy.gif)
 
 ---
 
