@@ -40,7 +40,6 @@ const App = () => {
       const newFavState = [...favorites, truck]
       setFavorites(newFavState)  
     }
-    }
   }
 
   const removeFav =  (truck) => {
