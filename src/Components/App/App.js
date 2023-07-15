@@ -90,8 +90,6 @@ const App = () => {
   const resestResults = (event) => {
     setError('')
     event.preventDefault()
-    console.log(vendors, 'vendors after rest')
-    console.log(storedVendors, 'vendors after rest')
     setVendors(vendors)
   }
   const fetchData = async () => {
