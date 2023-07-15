@@ -37,7 +37,7 @@ it("should have a notifications icon", () => {
 });
 
 it("should display a list of food truck cards with content", () => {
-  cy.get('.vendor-display').children().should('have.length', 2)
+  cy.get('.trucks-cont').children().should('have.length', 2)
   cy.get('[class="card-container"]:first').children().should('have.length', 3)
   cy.get('[class="card-container"]:first').children('.star-icon')
   cy.get('[class="card-container"]:first').children('.card-details-container')
