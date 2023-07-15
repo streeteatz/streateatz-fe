@@ -60,7 +60,6 @@ const App = () => {
   
   const searchButtons = (event, button ) => {
     event.preventDefault()
-      console.log(storedVendors, 'vendors line 69')
     if (button === "favorites") { 
       setVendors(favorites)
     } else if (button === "openNow") {
