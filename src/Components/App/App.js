@@ -42,7 +42,7 @@ const App = () => {
     if (!favorites.includes(truck)) {
       const newFavState = [...favorites, truck]
       setFavorites(newFavState)  
-  }
+    }
   }
 
   const removeFav =  (truck) => {
@@ -65,17 +65,18 @@ const App = () => {
     if (button === "favorites") { 
       setStoredVendors(vendors)
       setVendors(favorites)
-    } 
+    }
+
     if (button === "openNow") {
       setStoredVendors(vendors)
       setVendors(vendors.filter(v => {
         return (
           v.status === true
         )
-      })
-    )
+      }))
+    }
   }
-  }
+
   const toggleView = (id) => {
     setCurrentUser(id)
   }
@@ -88,6 +89,7 @@ const App = () => {
     const correctVendors = vendors.length === 10 ? vendors : storedVendors
     setVendors(correctVendors)
   }
+
   const fetchData = async () => {
     try {
       const data = await fetchAllTrucks();
