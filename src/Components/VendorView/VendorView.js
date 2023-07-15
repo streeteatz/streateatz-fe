@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react'
 import Status from '../Status/Status'
 import TruckDetails from '../TruckDetails/TruckDetails'
+import Error from '../Error/Error'
 import { MenuItem } from '../MenuItem/MenuItem'
 import { fetchAllMenus, fetchOneTruck } from '../../utilities/apiCalls'
 import './VendorView.css'
@@ -9,6 +10,7 @@ const VendorView = ({ vendor, toggleLive, getAddress }) => {
   const [currentVendor, setCurrentVendor] = useState({})
   const [loading, setLoading] = useState(true)
   const [menu, setMenu] = useState([])
+  const [error, setError] = useState('')
   const [id, setId] = useState(9)
   const truncateUrl = (url) => {
     const maxTextLength = 25;
@@ -27,6 +29,7 @@ const VendorView = ({ vendor, toggleLive, getAddress }) => {
       setCurrentVendor(data.data.attributes)
       setMenu(currentMenu)
     } catch(error) {
+      setError("fetch");
       console.log(error, "error")
     }
       }
@@ -39,7 +42,7 @@ const VendorView = ({ vendor, toggleLive, getAddress }) => {
     <div className="vendor-view">
       {loading === true ?  <p>Loading....</p> : (
       <><div className='status-container'>
-          <Status toggle={toggleLive} getAddress={getAddress} vendor={vendor} />
+          {error === '' ? <Status toggle={toggleLive} getAddress={getAddress} vendor={vendor} /> : <Error message={"fetch"} />}
         </div><div className="vendor-view-cont">
             <div className="vv-left">
               <div className="statistics-container">
