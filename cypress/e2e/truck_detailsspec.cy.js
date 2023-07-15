@@ -17,6 +17,9 @@ describe('Single Truck Page', () => {
       statusCode: 200,
       fixture: "ramenMenu.json"
     })
+    cy.intercept("GET", 'https://street-eatz-express.onrender.com', {
+      statusCode: 200
+    })
     cy.visit("http://localhost:3000/");
     cy.wait(2000);
     cy.get('.card-container')
@@ -58,9 +61,10 @@ describe('Single Truck Page', () => {
 
   it('should see a menu', () => {
     cy.get('.menu-container')
-      // .get('.menu-item').contains('h3', 'Vegan Samosas')
-      // .get('.menu-top').contains('p', '$5.00')
-      // .get('.menu-item').contains('h3', 'Gulab Jamun')
-      // .get('.menu-bottom').contains('p', 'Milk doughnuts soaked in syrup')
+  });
+
+  it('should be able to press the back button and go to main page', () => {
+    cy.get('.back-btn').click()
+    cy.contains('h2', 'hungry?')
   });
 });
