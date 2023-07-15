@@ -73,7 +73,7 @@ useEffect(()  => {
               <div className="details-status-container">
                 <button className="status-icon-open"></button>
                 <p className="status">{singularTruck.status}</p>
-                <img className="pin" src={pin}></img>
+                <img className="pin" src={pin}/>
                 <p className="location">{singularTruck.address}</p>
               </div>
             </div>
@@ -81,31 +81,33 @@ useEffect(()  => {
             <p className="wait-time">{singularTruck.wait_time} minutes wait</p>
             <img className="details-image" src={singularTruck.img} alt='food truck preview image' />
           </div>
-        </div><div className='right-side'>
-            <div className="votes-container">
-              <img
-                className="notUpvoted details-icon"
-                alt="empty thumbs up icon"
-                src={notUpvoted}
-                height={50} width={50} />
-              <p className="upvotes">{singularTruck.up_rating}</p>
-              <img
-                className="downvoted details-icon"
-                alt="downvoted icon"
-                src={notDownvoted}
-                height={50} width={50} />
-              <p className="downvotes">{singularTruck.down_rating}</p>
-            </div>
-            <div className="menu-container">
-              {menu.map((item, index) => {
-                return (
-                  <MenuItem item={item} key={index} />
-                );
-              })}
-            </div>
-          </div><div className='button-container'>
-            <NavLink to="/"><button className="back-btn">back</button></NavLink>
-          </div></>)
+        </div>
+        <div className='right-side'>
+          <div className="votes-container">
+            <img
+              className="notUpvoted details-icon"
+              alt="empty thumbs up icon"
+              src={notUpvoted}
+              height={50} width={50} />
+            <p className="upvotes">{singularTruck.up_rating}</p>
+            <img
+              className="downvoted details-icon"
+              alt="downvoted icon"
+              src={notDownvoted}
+              height={50} width={50} />
+            <p className="downvotes">{singularTruck.down_rating}</p>
+          </div>
+          <div className="menu-container">
+            {menu.map((item, index) => {
+              return (
+                <MenuItem item={item} key={index} />
+              );
+            })}
+          </div>
+        </div>
+        <div className='button-container'>
+          <NavLink to="/"><button className="back-btn">back</button></NavLink>
+        </div></>)
       }
       
     </section>

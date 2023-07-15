@@ -66,13 +66,6 @@ const TruckCard = (props) => {
       return "open now"
     }
   }
-  // const translateStatus = (status) => {
-  //   if (!isOpen) {
-  //     return "closed"
-  //   } else {
-  //     return "open now"
-  //   }
-  // }
 
   const currentStar = props.truck.favorited === true ? Fav : notFav
   const currentUpvote = isUpvoted ? upvoted : notUpvoted
