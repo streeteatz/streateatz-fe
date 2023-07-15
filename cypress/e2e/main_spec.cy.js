@@ -4,7 +4,7 @@ beforeEach(() => {
     fixture: "truckData.json"
   })
   .visit("http://localhost:3000/")
-  // cy.wait(2000)
+  cy.wait(2000)
 });
 
 it("should display a title", () => {
