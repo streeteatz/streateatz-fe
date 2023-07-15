@@ -42,7 +42,7 @@ const App = () => {
     if (!favorites.includes(truck)) {
       const newFavState = [...favorites, truck]
       setFavorites(newFavState)  
-  }
+    }
   }
 
   const removeFav =  (truck) => {
@@ -72,10 +72,11 @@ const App = () => {
         return (
           v.status === true
         )
-      })
-    )
+        })
+      )
+    }
   }
-  }
+
   const toggleView = (id) => {
     setCurrentUser(id)
   }
