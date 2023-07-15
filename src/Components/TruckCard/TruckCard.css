@@ -3,10 +3,10 @@
   flex-direction: row;
   justify-content: flex-start;
   align-items: top;
-  margin: 2% 33% 0% 33%;
   height: fit-content;
   width: fit-content;
   white-space: nowrap;
+  margin-bottom: 15px;
 }
 
 .icon {
@@ -94,8 +94,13 @@
 }
 
 .tags  {
-  margin: 0px 0px 83px 0px;
+  margin: 0px 0px 2px 0px;
   color: #5D5D5D;
+  font-size: .9em;
+}
+
+.wait-time {
+  margin: 0px 0px 15px 0px;
   font-size: .9em;
 }
 
@@ -104,6 +109,7 @@
   flex-direction: row;
   justify-content: flex-start;
   align-items: center;
+  margin-top: 12%;
 }
 
 .upvotes, .downvotes  {

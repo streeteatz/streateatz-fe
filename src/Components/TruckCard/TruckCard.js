@@ -17,7 +17,6 @@ const TruckCard = (props) => {
   let [upVote, setupVote] = useState(parseInt(props.truck.up_rating))
   const [isUpvoted, setIsUpvoted] = useState(false)
   
-
   const handleFav = () => {
     setIsFavorite(!isFavorite)
     if (!isFavorite) {
@@ -66,13 +65,6 @@ const TruckCard = (props) => {
       return "open now"
     }
   }
-  // const translateStatus = (status) => {
-  //   if (!isOpen) {
-  //     return "closed"
-  //   } else {
-  //     return "open now"
-  //   }
-  // }
 
   const currentStar = props.truck.favorited === true ? Fav : notFav
   const currentUpvote = isUpvoted ? upvoted : notUpvoted
@@ -99,6 +91,7 @@ const TruckCard = (props) => {
           <p className="location">{props.truck.address}</p>
       </div>
       <p className="tags">{props.truck.tags}</p>
+      {props.truck.status === true ? <p className="wait-time">{props.truck.wait_time} minutes wait</p> : <p></p>}
       <div className="votes-container">
         <img 
         className="notUpvoted icon" 

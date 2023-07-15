@@ -46,26 +46,21 @@ const VendorView = ({ vendor, toggleLive, getAddress }) => {
         </div><div className="vendor-view-cont">
             <div className="vv-left">
               <div className="statistics-container">
-                <h3>{currentVendor.name} Statistics!</h3>
+                <h3>{currentVendor.name} Statistics</h3>
                 <p className='statistics-info'>You have a total of {currentVendor.up_rating} Streeteatz users who love your truck!</p>
-                <p className='statistics-info'>You have a total of {currentVendor.down_rating} Streeteatz users who need more convincing to love your truck!</p>
+                <p className='statistics-info'>You have a total of {currentVendor.down_rating} Streeteatz users who need more convincing.</p>
                 <p>{suggestion}</p>
               </div>
               <div className="links-container">
-                <h3>Want to expand your business!?</h3>
+                <h3>Want to expand your business?</h3>
                 <span>
-                  <a href="https://www.foodtruckr.com" target="_blank" rel="noopener noreferrer">
-                    {truncateUrl('www.foodtruckr.com')} - Resources for Food Truck Owners
-                  </a>
+                  <a href="https://www.foodtruckr.com" target="_blank" rel="noopener noreferrer">Resources for Food Truck Owners</a>
                 </span>
                 <span>
-                  <a href="https://mobile-cuisine.com" target="_blank" rel="noopener noreferrer">
-                    {truncateUrl('mobile-cuisine.com')} - Food Truck Information and Guides
-                  </a>
+                  <a href="https://mobile-cuisine.com" target="_blank" rel="noopener noreferrer">Food Truck Information and Guides</a>
                 </span>
                 <span>
-                  <a href="https://www.businessnewsdaily.com/9237-how-to-start-food-truck-business.html" target="_blank" rel="noopener noreferrer">
-                    {truncateUrl('https://www.businessnewsdaily.com/9237-how-to-start-food-truck-business.html')} - How to Start a Food Truck Business!
+                  <a href="https://www.businessnewsdaily.com/9237-how-to-start-food-truck-business.html" target="_blank" rel="noopener noreferrer">How to Start a Food Truck Business
                   </a>
                 </span>
               </div>

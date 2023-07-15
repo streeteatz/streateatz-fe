@@ -20,7 +20,7 @@
 }
 
 #searchQueryInput {
-  width: 20%;
+  width: 45%;
   height: 2.8rem;
   background: #ffffff;
   outline: none;
@@ -32,12 +32,12 @@
 }
 
 #searchQueryInput:focus {
-  width: 25%;
+  width: 50%;
   transition: all .3s ease-in-out;
 }
 
 #searchQueryInput:hover {
-  width: 25%;
+  width: 50%;
   transition: all .3s ease-in-out;
 }
 
