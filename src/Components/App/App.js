@@ -24,11 +24,6 @@ const App = () => {
   const [pushNote, setPushNote] = useState([])
   const [loading, setLoading] = useState(true)
 
-// vendors and customers toggle switch. 
-// make a state that holds boolean
-// based off of that value, it will be on vendor or user page
-// pass 
-
   const sendData = (truck) => {
     if (truck.status === false) {
       truck.status = true
@@ -59,7 +54,6 @@ const App = () => {
     let lowerSearchValue = searchValue.toLowerCase()
     let nameSearchResults = vendors.filter((v) => v.name.toLowerCase().includes(lowerSearchValue) || v.tags.toLowerCase().includes(lowerSearchValue) || v.description.toLowerCase().includes(lowerSearchValue))
     if (!nameSearchResults.length) {
-      // setVendors(storedVendors)
       setError("search")
     } else {
       setVendors(nameSearchResults)
@@ -79,8 +73,7 @@ const App = () => {
           v.status === true
         )
       })
-      // setVendors(vendors.filter(v => v.status === true))
-      )
+    )
   }
   }
   const toggleView = (id) => {
@@ -90,7 +83,10 @@ const App = () => {
   const resestResults = (event) => {
     setError('')
     event.preventDefault()
-    setVendors(vendors)
+    console.log(vendors, 'all vendors after reset')
+    console.log(storedVendors, 'stroed vendosr reset')
+    const correctVendors = vendors.length === 10 ? vendors : storedVendors
+    setVendors(correctVendors)
   }
   const fetchData = async () => {
     try {
@@ -111,20 +107,10 @@ const App = () => {
       console.log(error, "fetch");
     }
   };
-  // const fetchData = async () => {
-  //   try {
-  //     const data = await fetchAllTrucks()
-  //       setVendors(data.data.attributes)
-  //     } catch(error) {
-  //      setError("fetch")
-  //      console.log(error, "fetch")
-  //     }
-  //   }
 
   useEffect(() => {
     fetchData()
     socket.on('receive_data', (data) => {
-      // setVendors([...data.updatedVendors, data.truck])
       setVendors([data.truck, ...data.updatedVendors])
       setPushNote([...pushNote, { vendorName: data.truck.name }])
     });
@@ -146,7 +132,6 @@ const App = () => {
         <Route path="/" element={
           <div>
             <Search vendors={vendors} search={searchResults} reset={resestResults} allSearch={searchButtons}/>
-            {/* {loading === false ? (<Results vendors={vendors} remFav={removeFav} addFav={favTruck} favorites={favorites} />) : <p>Loading....</p>} */}
             {error === "" ? (<Results vendors={vendors} remFav={removeFav} addFav={favTruck} favorites={favorites} />) : (error === "fetch" ?(<Error message={"fetch"} />) : (<Error message={"search"} />)) }
           </div>
         } />
