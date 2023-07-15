@@ -15,6 +15,9 @@ describe('Bad Fetch Call Vendor View', () => {
     cy.intercept("GET", "https://streeteatz-be-b15261620498.herokuapp.com/vendors/9", {
       statusCode: 500,
     })
+    cy.intercept("GET", "https://streeteatz-be-b15261620498.herokuapp.com/vendors/", {
+      statusCode: 500,
+    })
     cy.visit('http://localhost:3000/vendor-view').wait(2000);
   })
   it('Should Display an error message', () => {
@@ -39,7 +42,7 @@ describe('Bad Search', () => {
     cy.get('.search-field').type('Son Wukong')
     cy.get('.searchQuerySubmit').click()
     cy.get(`.search-error`).contains('p', 'No results for that search, try again!')
-    cy.get(`.clear-btn`).click()
+    cy.get(`#clear-btn`).click()
     cy.get(`:nth-child(1) > .card-details-container > a > .name`).contains('p', "Mac and Noodles")
     cy.get(`:nth-child(2) > .card-details-container > a > .name`).contains('p', 'Deja Roux Cajun & Soul')
     cy.get('.search-field').type('soulfood')
@@ -53,6 +56,10 @@ describe('Bad url route', () => {
     cy.intercept("GET", "https://streeteatz-be-b15261620498.herokuapp.com/vendors/9", {
       statusCode: 200,
       fixture: 'truckData.json',
+    })
+    cy.intercept("GET", "https://streeteatz-be-b15261620498.herokuapp.com/vendors/", {
+      statusCode: 200,
+      fixture: 'truckData.json'
     })
     cy.visit('http://localhost:3000/Jacobrocksiguess').wait(2000);
   })

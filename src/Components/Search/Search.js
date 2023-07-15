@@ -31,7 +31,7 @@ return(
       {/* eventually I want to change the styling of the filter buttons on click. The easiest way to do that will be to add  setStyle(".selected-filter.btn") to the onClick function we set up for filtering  */}
       <button className="filter-btn" value="openNow" onClick={(event) => props.allSearch(event, event.target.value)}>open now</button>
       <button className="filter-btn" value="favorites" onClick={(event) => props.allSearch(event, event.target.value)}>favorites</button>
-      <button className="clear-btn" onClick={(event) => props.reset(event)}>clear</button>
+      <button className="clear-btn" id="clear-btn" onClick={(event) => props.reset(event)}>clear</button>
     </div>
   </div>
   )
