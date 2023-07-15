@@ -3,8 +3,8 @@ beforeEach(() => {
     statusCode: 200,
     fixture: "truckData.json"
   })
-  .visit("http://localhost:3000/")
-  cy.wait(2000)
+  cy.visit("http://localhost:3000/")
+  cy.wait(1000)
 });
 
 it("should display a title", () => {
@@ -61,3 +61,5 @@ it("should display a list of food truck cards with content", () => {
   cy.get('[class="card-container"]:first').children('.card-details-container')
     .children('.votes-container').children('.downvotes').contains(12)
 });
+
+

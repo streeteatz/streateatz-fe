@@ -14,13 +14,10 @@ import { fetchAllTrucks, fetchAllMenus } from '../../utilities/apiCalls'
 const App = () => {
   const [vendors, setVendors] = useState([])
   const [storedVendors, setStoredVendors] = useState([])
-  const [allMenuItems, setAllMenuItems] = useState([])
   const [currentUser, setCurrentUser] = useState('customer')
-  const [currentVendor, setCurrentVendor] = useState(1)
+  const [currentVendor] = useState(1)
   const [favorites, setFavorites] = useState([])
   const [error, setError] = useState('')
-  const [truckLocation, setTruckLocation] = useState([])
-  const [userLocation, setUserLocation] = useState('')
   const [pushNote, setPushNote] = useState([])
   const [loading, setLoading] = useState(true)
 
@@ -43,6 +40,7 @@ const App = () => {
       const newFavState = [...favorites, truck]
       setFavorites(newFavState)  
     }
+    }
   }
 
   const removeFav =  (truck) => {
@@ -51,6 +49,7 @@ const App = () => {
   }
 
   const searchResults = (searchValue) => {
+    setStoredVendors(vendors)
     let lowerSearchValue = searchValue.toLowerCase()
     let nameSearchResults = vendors.filter((v) => v.name.toLowerCase().includes(lowerSearchValue) || v.tags.toLowerCase().includes(lowerSearchValue) || v.description.toLowerCase().includes(lowerSearchValue))
     if (!nameSearchResults.length) {
@@ -63,11 +62,8 @@ const App = () => {
   const searchButtons = (event, button ) => {
     event.preventDefault()
     if (button === "favorites") { 
-      setStoredVendors(vendors)
       setVendors(favorites)
-    } 
-    if (button === "openNow") {
-      setStoredVendors(vendors)
+    } else if (button === "openNow") {
       setVendors(vendors.filter(v => {
         return (
           v.status === true
@@ -77,6 +73,7 @@ const App = () => {
     }
   }
 
+
   const toggleView = (id) => {
     setCurrentUser(id)
   }
@@ -84,11 +81,10 @@ const App = () => {
   const resestResults = (event) => {
     setError('')
     event.preventDefault()
-    console.log(vendors, 'all vendors after reset')
-    console.log(storedVendors, 'stroed vendosr reset')
-    const correctVendors = vendors.length === 10 ? vendors : storedVendors
-    setVendors(correctVendors)
+    setVendors(storedVendors)
+    
   }
+
   const fetchData = async () => {
     try {
       const data = await fetchAllTrucks();
@@ -103,6 +99,7 @@ const App = () => {
       });
       setLoading(false)
       setVendors(updatedVendors);
+      setStoredVendors(updatedVendors)
     } catch (error) {
       setError("fetch");
       console.log(error, "fetch");

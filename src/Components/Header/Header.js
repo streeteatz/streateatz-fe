@@ -12,6 +12,7 @@ const Header = ({ togView, notifs }) => {
     event.preventDefault()
     if (!showNotifs)  {
       setShowNotifs(true)
+      setTimeout(() => setShowNotifs(false), 3000)
     } else {
       setShowNotifs(false)
     }
