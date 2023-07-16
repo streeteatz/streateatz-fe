@@ -30,7 +30,7 @@ Simply put, [Street Eatz]([https://birdsongs-mu.vercel.app/](https://streateatz-
 > - In that third terminal tab, run the command `npm start` to begin running the express server via local host. 
 
 > ### Sounds like too much work?
-> - I get it. You can also visit the [StreetEatz](https://streateatz-fe.vercel.app/) via Vercel right in your browser of choice. In order to utilize the application's full WebSockets functionality, you'll still need to clone down the [express server](https://github.com/streeteatz/street-eatz-xpress-server) and run that locally on your machine while you enjoy the Street Eatz deployed site. 
+> - I get it. You can also visit the [StreetEatz](https://streateatz-fe.vercel.app/) via Vercel right in your browser of choice. Here's the catch-- Vercel doesn't support websockets functionality, so this will only allow you to demo 50% of the application's full capabilities. If you want to explore StreetEatz as a vendor who can make real-time changes to their truck or watch the live updates in action, you'll need to follow the instructions above and run the application locally. 
 
 ---
 
